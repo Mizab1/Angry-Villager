@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.GameMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,15 +21,12 @@ public class AngryVillagerMod implements ModInitializer {
 
     private void onEndWorldTick(ServerWorld world) {
         for (ServerPlayerEntity player : world.getPlayers()) {
-            if (!player.getAbilities().allowFlying && player.getCommandTags().contains("can_fly")) {
+            if (player.getCommandTags().contains("can_fly") || player.interactionManager.getGameMode() == GameMode.CREATIVE) {
                 player.getAbilities().allowFlying = true;
                 player.sendAbilitiesUpdate();
             } else {
-                if (!player.getCommandTags().contains("can_fly") && player.getAbilities().allowFlying) {
-                    player.getAbilities().allowFlying = false;
-                    player.getAbilities().flying = false;
-                    player.sendAbilitiesUpdate();
-                }
+                player.getAbilities().allowFlying = false;
+                player.sendAbilitiesUpdate();
             }
         }
     }
