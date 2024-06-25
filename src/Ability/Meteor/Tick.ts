@@ -70,7 +70,7 @@ const meteorCooldownLogic = MCFunction("ability/meteor/cooldown_logic", () => {
         cooldownScore.remove(1);
         // ! Change the namespace
         _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.meteorAbility}` }), () => {
-          title(self).actionbar({ text: "Reloading..", color: "red" });
+          title(self).actionbar([{ text: "Reloading.. ", color: "red" }, cooldownScore]);
         }).else(() => {
           title(self).actionbar({ text: "" });
         });
