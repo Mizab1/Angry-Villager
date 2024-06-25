@@ -18,6 +18,7 @@ import {
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 import { abilitiesNamesDict } from "../Tick";
+import { RunOnce } from "../../Utils/UtilFunctions";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("tornado_cooldown", "dummy")("@s");
@@ -54,11 +55,6 @@ export const tornadoLogic = MCFunction("ability/tornado/logic", () => {
           MCFunction("raycast/tornado/hit", () => {
             execute.positioned(rel(0, 40, 0)).run(() => {
               summonTornado();
-              // Add a life to the tornado
-              execute.as(Selector("@e", { tag: "new_tornado" })).run(() => {
-                tornadoLifeScore.set(TORNADO_LIFE);
-                tag(self).remove("new_tornado");
-              });
             });
             // Add a cooldown
             cooldownScore.set(300);
@@ -100,6 +96,11 @@ const tornadoRunningLogic = MCFunction("ability/tornado/tornado_running_logic", 
     .as(Selector("@e", { tag: ["tornado"] }))
     .at(self)
     .run(() => {
+      // Set the tornado life
+      new RunOnce(() => {
+        tornadoLifeScore.set(TORNADO_LIFE);
+      });
+
       // Particle to be displayed as the tornado
       for (let i = 0; i < 20; i++) {
         particle(

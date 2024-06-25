@@ -1,4 +1,4 @@
-import { BLOCKS, ITEMS, LiteralUnion, RootNBT, execute, nbtParser, rel, setblock } from "sandstone";
+import { BLOCKS, ITEMS, LiteralUnion, RootNBT, Selector, SelectorClass, execute, nbtParser, rel, setblock, tag } from "sandstone";
 
 /**
  * Concatenates the given item with the parsed nbt string.
@@ -146,5 +146,57 @@ export function genFullDiscOfBlock(radius: number, pointDensity: number): void {
     const z: number = parseFloat((radius * Math.sin(angle)).toFixed(3));
 
     setblock(rel(x, 0, z), "minecraft:stone");
+  }
+}
+
+/**
+ * A class that can be used to run a function only once.
+ * @param {() => void} callback - The function to run.
+ **/
+export class RunOnce {
+  private localTag: string;
+
+  /**
+   * Creates a new RunOnce instance.
+   * @param {() => void} callback - The function to run once.
+   */
+  constructor(callback: () => void) {
+    this.localTag = "run_once_" + Math.random().toString(36).slice(2);
+
+    // Check if the entity does not have the tag
+    execute.as(Selector("@s", { tag: `!${this.localTag}` })).run(() => {
+      // Run the callback
+      callback();
+      // Add the tag to the entity
+      tag("@s").add(this.localTag);
+    });
+  }
+
+  /**
+   * Removes the tag from the entity.
+   */
+  public resetSelf() {
+    execute.as(Selector("@s", { tag: `${this.localTag}` })).run(() => {
+      tag("@s").remove(this.localTag);
+    });
+  }
+
+  /**
+   * Removes the tag from all entities.
+   */
+  public resetAll() {
+    execute.as(Selector("@e", { tag: `${this.localTag}` })).run(() => {
+      tag("@s").remove(this.localTag);
+    });
+  }
+
+  /**
+   * Removes the tag from the given entity.
+   * @param {SelectorClass} entity - The entity to remove the tag from.
+   */
+  public resetOn(entity: SelectorClass) {
+    execute.as(entity).run(() => {
+      tag("@s").remove(this.localTag);
+    });
   }
 }
