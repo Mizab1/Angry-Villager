@@ -65,23 +65,18 @@ export const tornadoLogic = MCFunction("ability/tornado/logic", () => {
       });
   });
 });
-const tornadoCooldownLogic = MCFunction("ability/tornado/cooldown_logic", () => {
-  execute
-    .as("@a")
-    .at(self)
-    .run(() => {
-      _.if(_.not(cooldownScore.matches([Infinity, 0])), () => {
-        cooldownScore.remove(1);
-        // ! Change the namespace
-        _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.tornado_ability}` }), () => {
-          title(self).actionbar([{ text: "Reloading.. ", color: "red" }, cooldownScore]);
-        }).else(() => {
-          title(self).actionbar({ text: "" });
-        });
-      }).else(() => {
-        cooldownScore.set(0);
-      });
+export const tornadoCooldownLogic = MCFunction("ability/tornado/cooldown_logic", () => {
+  _.if(_.not(cooldownScore.matches([Infinity, 0])), () => {
+    cooldownScore.remove(1);
+    // ! Change the namespace
+    _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.tornado_ability}` }), () => {
+      title(self).actionbar([{ text: "Reloading.. ", color: "red" }, cooldownScore]);
+    }).else(() => {
+      title(self).actionbar({ text: "" });
     });
+  }).else(() => {
+    cooldownScore.set(0);
+  });
 });
 
 const summonTornado = MCFunction("ability/tornado/summon_tornado", () => {
