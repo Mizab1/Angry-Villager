@@ -2,6 +2,7 @@ import { MCFunction, Objective, Score, _, execute } from "sandstone";
 import { self } from "../Tick";
 import { meteorLogic, meteorTick } from "./Meteor/Tick";
 import { runAbility } from "./Private/RunAbility";
+import { tornadoLogic, tornadoTick } from "./Tornado/Tick";
 
 // Global Variable
 const selfRightClickCAOS: Score<string> = Objective.create(
@@ -12,6 +13,7 @@ const selfRightClickCAOS: Score<string> = Objective.create(
 // * Dictionary fr names of abilities
 export const abilitiesNamesDict = {
   meteorAbility: "meteor_ability",
+  tornado_ability: "tornado_ability",
 };
 
 // Functions
@@ -22,8 +24,11 @@ const checkUsedAbility = MCFunction("ability/check_used", () => {
     .run(() => {
       _.if(selfRightClickCAOS.greaterThan(0), () => {
         // Run the ability logic according to the item
-        runAbility(abilitiesNamesDict.meteorAbility, "meteor_ability", () => {
+        runAbility(abilitiesNamesDict.meteorAbility, () => {
           meteorLogic();
+        });
+        runAbility(abilitiesNamesDict.tornado_ability, () => {
+          tornadoLogic();
         });
 
         // Reset the COAS score
@@ -41,6 +46,7 @@ const Tick = MCFunction(
 
     // Ability specific functions
     meteorTick();
+    tornadoTick();
   },
   {
     runEachTick: true,
