@@ -13,7 +13,6 @@ const giveTornadoAbility = MCFunction("ability/tornado/give", () => {
           '{"text":"By pressing right click","color":"light_purple","italic":true}',
         ],
       },
-      Unbreakable: NBT.byte(1),
       CustomModelData: 100002,
       tornado_ability: NBT.byte(1),
       is_ability: NBT.byte(1),

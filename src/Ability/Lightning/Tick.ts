@@ -1,18 +1,4 @@
-import {
-  ItemModifier,
-  MCFunction,
-  Objective,
-  Score,
-  Selector,
-  _,
-  execute,
-  loc,
-  playsound,
-  rel,
-  say,
-  summon,
-  title,
-} from "sandstone";
+import { ItemModifier, MCFunction, Objective, Score, Selector, _, execute, loc, playsound, rel, summon } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 import { abilitiesNamesDict } from "../Tick";
@@ -60,17 +46,14 @@ export const lightningCooldownLogic = MCFunction("ability/lightning/cooldown_log
     _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.lightning_ability}` }), () => {
       const itemModifier = ItemModifier(abilitiesNamesDict.lightning_ability, {
         function: "set_damage",
-        // damage: 0,
         damage: {
           type: "minecraft:score",
           target: "this",
           score: cooldownScore.objective.name,
-          scale: 0.01,
+          scale: 1 / COOL_DOWN_TIME,
         },
       });
       itemModifier.modify.entity(self, "weapon.mainhand");
-
-      // title(self).actionbar([{ text: "Reloading.. ", color: "red" }, cooldownScore]);
     });
   }).else(() => {
     cooldownScore.set(COOL_DOWN_TIME);

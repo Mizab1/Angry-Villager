@@ -1,4 +1,5 @@
 import {
+  ItemModifier,
   MCFunction,
   NBT,
   Objective,
@@ -22,7 +23,7 @@ import { abilitiesNamesDict } from "../Tick";
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("tornado_cooldown", "dummy")("@s");
 const tornadoLifeScore: Score<string> = Objective.create("tornado_life", "dummy")("@s");
-
+const COOL_DOWN_TIME = 100;
 const TORNADO_LIFE = 240;
 
 // ! Ticking function
@@ -38,7 +39,7 @@ export const tornadoTick = MCFunction(
 
 // * Functions
 export const tornadoLogic = MCFunction("ability/tornado/logic", () => {
-  _.if(cooldownScore.matches(0), () => {
+  _.if(cooldownScore.matches(COOL_DOWN_TIME), () => {
     playsound("minecraft:item.trident.thunder", "master", "@a", rel(0, 0, 0), 1, 0.8);
     execute
       .anchored("eyes")
@@ -55,7 +56,7 @@ export const tornadoLogic = MCFunction("ability/tornado/logic", () => {
               summonTornado();
             });
             // Add a cooldown
-            cooldownScore.set(300);
+            cooldownScore.set(0);
           }),
           1,
           60
@@ -66,14 +67,23 @@ export const tornadoLogic = MCFunction("ability/tornado/logic", () => {
   });
 });
 export const tornadoCooldownLogic = MCFunction("ability/tornado/cooldown_logic", () => {
-  _.if(_.not(cooldownScore.matches([Infinity, 0])), () => {
-    cooldownScore.remove(1);
+  _.if(cooldownScore.matches([Infinity, COOL_DOWN_TIME - 1]), () => {
+    cooldownScore.add(1);
     // ! Change the namespace
     _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.tornado_ability}` }), () => {
-      title(self).actionbar([{ text: "Reloading.. ", color: "red" }, cooldownScore]);
+      const itemModifier = ItemModifier(abilitiesNamesDict.meteorAbility, {
+        function: "set_damage",
+        damage: {
+          type: "minecraft:score",
+          target: "this",
+          score: cooldownScore.objective.name,
+          scale: 1 / COOL_DOWN_TIME,
+        },
+      });
+      itemModifier.modify.entity(self, "weapon.mainhand");
     });
   }).else(() => {
-    cooldownScore.set(0);
+    cooldownScore.set(COOL_DOWN_TIME);
   });
 });
 

@@ -13,7 +13,6 @@ const giveMeteorAbility = MCFunction("ability/meteor/give", () => {
           '{"text":"By pressing right click","color":"light_purple","italic":true}',
         ],
       },
-      Unbreakable: NBT.byte(1),
       CustomModelData: 100001,
       meteor_ability: NBT.byte(1),
       is_ability: NBT.byte(1),

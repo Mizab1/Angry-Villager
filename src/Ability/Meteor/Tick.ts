@@ -1,4 +1,5 @@
 import {
+  ItemModifier,
   MCFunction,
   NBT,
   Objective,
@@ -12,7 +13,6 @@ import {
   playsound,
   rel,
   summon,
-  title,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
@@ -20,6 +20,7 @@ import { abilitiesNamesDict } from "../Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("meteor_cooldown", "dummy")("@s");
+const COOL_DOWN_TIME = 60;
 
 // ! Ticking function
 export const meteorTick = MCFunction(
@@ -34,7 +35,7 @@ export const meteorTick = MCFunction(
 
 // * Functions
 export const meteorLogic = MCFunction("ability/meteor/logic", () => {
-  _.if(cooldownScore.matches(0), () => {
+  _.if(cooldownScore.matches(COOL_DOWN_TIME), () => {
     playsound("minecraft:item.totem.use", "master", "@a", rel(0, 0, 0), 1, 0.5);
     execute
       .anchored("eyes")
@@ -51,7 +52,7 @@ export const meteorLogic = MCFunction("ability/meteor/logic", () => {
               summonMeteor();
             });
             // Add a cooldown
-            cooldownScore.set(60);
+            cooldownScore.set(0);
           }),
           1,
           60
@@ -63,14 +64,23 @@ export const meteorLogic = MCFunction("ability/meteor/logic", () => {
 });
 
 export const meteorCooldownLogic = MCFunction("ability/meteor/cooldown_logic", () => {
-  _.if(_.not(cooldownScore.matches([Infinity, 0])), () => {
-    cooldownScore.remove(1);
+  _.if(cooldownScore.matches([Infinity, COOL_DOWN_TIME - 1]), () => {
+    cooldownScore.add(1);
     // ! Change the namespace
     _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.meteorAbility}` }), () => {
-      title(self).actionbar([{ text: "Reloading.. ", color: "red" }, cooldownScore]);
+      const itemModifier = ItemModifier(abilitiesNamesDict.meteorAbility, {
+        function: "set_damage",
+        damage: {
+          type: "minecraft:score",
+          target: "this",
+          score: cooldownScore.objective.name,
+          scale: 1 / COOL_DOWN_TIME,
+        },
+      });
+      itemModifier.modify.entity(self, "weapon.mainhand");
     });
   }).else(() => {
-    cooldownScore.set(0);
+    cooldownScore.set(COOL_DOWN_TIME);
   });
 });
 
