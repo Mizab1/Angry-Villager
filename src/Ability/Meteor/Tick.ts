@@ -25,7 +25,6 @@ const cooldownScore: Score<string> = Objective.create("meteor_cooldown", "dummy"
 export const meteorTick = MCFunction(
   "ability/meteor/tick",
   () => {
-    meteorCooldownLogic();
     fallingMeteorLogic();
   },
   {
@@ -86,7 +85,7 @@ const summonMeteor = MCFunction("ability/meteor/summon_meteor", () => {
 
 const fallingMeteorLogic = MCFunction("ability/meteor/meteor_explode", () => {
   execute
-    .as(Selector("@e", { tag: ["falling_meteor"] }))
+    .as(Selector("@e", { type: "armor_stand", tag: ["falling_meteor"] }))
     .at(self)
     .run(() => {
       // If the meteor if in the air, display the particles

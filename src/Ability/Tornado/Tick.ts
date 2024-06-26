@@ -12,13 +12,12 @@ import {
   playsound,
   rel,
   summon,
-  tag,
   title,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
-import { abilitiesNamesDict } from "../Tick";
 import { RunOnce } from "../../Utils/UtilFunctions";
+import { abilitiesNamesDict } from "../Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("tornado_cooldown", "dummy")("@s");
@@ -30,7 +29,6 @@ const TORNADO_LIFE = 240;
 export const tornadoTick = MCFunction(
   "ability/tornado/tick",
   () => {
-    tornadoCooldownLogic();
     tornadoRunningLogic();
   },
   {
@@ -88,7 +86,7 @@ const summonTornado = MCFunction("ability/tornado/summon_tornado", () => {
 });
 const tornadoRunningLogic = MCFunction("ability/tornado/tornado_running_logic", () => {
   execute
-    .as(Selector("@e", { tag: ["tornado"] }))
+    .as(Selector("@e", { type: "minecraft:armor_stand", tag: ["tornado"] }))
     .at(self)
     .run(() => {
       // Set the tornado life
