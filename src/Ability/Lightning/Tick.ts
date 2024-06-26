@@ -42,19 +42,19 @@ export const lightningLogic = MCFunction("ability/lightning/logic", () => {
 export const lightningCooldownLogic = MCFunction("ability/lightning/cooldown_logic", () => {
   _.if(cooldownScore.matches([Infinity, COOL_DOWN_TIME - 1]), () => {
     cooldownScore.add(1);
-    // ! Change the namespace
-    _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.lightning_ability}` }), () => {
-      const itemModifier = ItemModifier(abilitiesNamesDict.lightning_ability, {
-        function: "set_damage",
-        damage: {
-          type: "minecraft:score",
-          target: "this",
-          score: cooldownScore.objective.name,
-          scale: 1 / COOL_DOWN_TIME,
-        },
-      });
-      itemModifier.modify.entity(self, "weapon.mainhand");
-    });
+    // // ! Change the namespace
+    // _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.lightning_ability}` }), () => {
+    //   const itemModifier = ItemModifier(abilitiesNamesDict.lightning_ability, {
+    //     function: "set_damage",
+    //     damage: {
+    //       type: "minecraft:score",
+    //       target: "this",
+    //       score: cooldownScore.objective.name,
+    //       scale: 1 / COOL_DOWN_TIME,
+    //     },
+    //   });
+    //   itemModifier.modify.entity(self, "weapon.mainhand");
+    // });
   }).else(() => {
     cooldownScore.set(COOL_DOWN_TIME);
   });
