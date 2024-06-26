@@ -4,6 +4,7 @@ import { meteorCooldownLogic, meteorLogic, meteorTick } from "./Meteor/Tick";
 import { runAbility } from "./Private/RunAbility";
 import { tornadoCooldownLogic, tornadoLogic, tornadoTick } from "./Tornado/Tick";
 import { lightningCooldownLogic, lightningLogic, lightningTick } from "./Lightning/Tick";
+import { earthquakeCooldownLogic, earthquakeLogic, earthquakeTick } from "./Earthquake/Tick";
 
 // Global Variable
 const selfRightClickCAOS: Score<string> = Objective.create(
@@ -16,6 +17,7 @@ export const abilitiesNamesDict = {
   meteorAbility: "meteor_ability",
   tornado_ability: "tornado_ability",
   lightning_ability: "lightning_ability",
+  earthquake_ability: "earthquake_ability",
 };
 
 // Functions
@@ -28,6 +30,7 @@ const checkUsedAbility = MCFunction("ability/check_used", () => {
       meteorCooldownLogic();
       tornadoCooldownLogic();
       lightningCooldownLogic();
+      earthquakeCooldownLogic();
 
       // Check which ability was used
       _.if(selfRightClickCAOS.greaterThan(0), () => {
@@ -40,6 +43,9 @@ const checkUsedAbility = MCFunction("ability/check_used", () => {
         });
         runAbility(abilitiesNamesDict.lightning_ability, () => {
           lightningLogic();
+        });
+        runAbility(abilitiesNamesDict.earthquake_ability, () => {
+          earthquakeLogic();
         });
 
         // Reset the COAS score
@@ -59,6 +65,7 @@ const Tick = MCFunction(
     meteorTick();
     tornadoTick();
     lightningTick();
+    earthquakeTick();
   },
   {
     runEachTick: true,
