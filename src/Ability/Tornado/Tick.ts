@@ -61,6 +61,8 @@ export const tornadoLogic = MCFunction("ability/tornado/logic", () => {
           60
         );
       });
+  }).else(() => {
+    playsound("minecraft:block.anvil.land", "master", self, rel(0, 0, 0), 0.6, 1.5);
   });
 });
 export const tornadoCooldownLogic = MCFunction("ability/tornado/cooldown_logic", () => {
@@ -69,8 +71,6 @@ export const tornadoCooldownLogic = MCFunction("ability/tornado/cooldown_logic",
     // ! Change the namespace
     _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.tornado_ability}` }), () => {
       title(self).actionbar([{ text: "Reloading.. ", color: "red" }, cooldownScore]);
-    }).else(() => {
-      title(self).actionbar({ text: "" });
     });
   }).else(() => {
     cooldownScore.set(0);

@@ -16,6 +16,7 @@ const giveTornadoAbility = MCFunction("ability/tornado/give", () => {
       Unbreakable: NBT.byte(1),
       CustomModelData: 100002,
       tornado_ability: NBT.byte(1),
+      is_ability: NBT.byte(1),
     })
   );
 });
