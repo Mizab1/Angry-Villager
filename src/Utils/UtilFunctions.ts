@@ -1,4 +1,18 @@
-import { BLOCKS, ITEMS, LiteralUnion, RootNBT, Selector, SelectorClass, execute, nbtParser, rel, setblock, tag } from "sandstone";
+import {
+  BLOCKS,
+  ITEMS,
+  LiteralUnion,
+  RootNBT,
+  Selector,
+  SelectorClass,
+  TimeArgument,
+  execute,
+  nbtParser,
+  rel,
+  schedule,
+  setblock,
+  tag,
+} from "sandstone";
 
 /**
  * Concatenates the given item with the parsed nbt string.
@@ -157,7 +171,9 @@ export class RunOnce {
   private localTag: string;
 
   /**
-   * Creates a new RunOnce instance.
+   * runOnce is used to run a function only once.
+   * @context It is called in the relational (as) context of an entity.
+   * @important It does not provide the positional context by default.
    * @param {() => void} callback - The function to run once.
    */
   constructor(callback: () => void) {
@@ -198,5 +214,78 @@ export class RunOnce {
     execute.as(entity).run(() => {
       tag("@s").remove(this.localTag);
     });
+  }
+
+  /**
+   * Returns the tag associated with this instance.
+   *
+   * @return {string} The tag associated with this instance.
+   */
+  public getTag(): string {
+    return this.localTag;
+  }
+}
+
+export class runAfter {
+  private localTag: string;
+  private entityContext: SelectorClass;
+  private time: TimeArgument;
+
+  /**
+   * Creates a new instance of the runAfter class.
+   *
+   * @param {SelectorClass} entityContext - The entity context to run the callback on.
+   * @param {() => void} callback - The callback function to run after the specified time.
+   * @param {TimeArgument} time - The time to wait before running the callback.
+   */
+  constructor(entityContext: SelectorClass, callback: () => void, time: TimeArgument) {
+    this.localTag = "run_after_" + Math.random().toString(36).slice(2);
+    this.entityContext = entityContext;
+    this.time = time;
+
+    execute
+      .as(this.entityContext)
+      .as(Selector("@s", { tag: `!${this.localTag}` }))
+      .run(() => {
+        // Add the tag
+        tag("@s").add(this.localTag);
+        // Schedule the callback
+        schedule.function(() => {
+          execute
+            .as(this.entityContext)
+            .as(Selector("@s", { tag: this.localTag }))
+            .at("@s")
+            .run(() => {
+              callback();
+            });
+        }, this.time);
+      });
+  }
+
+  /**
+   * Returns the tag associated with this instance.
+   *
+   * @return {string} The tag associated with this instance.
+   */
+  public getTag(): string {
+    return this.localTag;
+  }
+
+  /**
+   * Returns the entity context associated with this instance.
+   *
+   * @return {SelectorClass} The entity context associated with this instance.
+   */
+  public getEntityContext(): SelectorClass {
+    return this.entityContext;
+  }
+
+  /**
+   * Retrieves the time associated with this instance.
+   *
+   * @return {TimeArgument} The time associated with this instance.
+   */
+  public getTime(): TimeArgument {
+    return this.time;
   }
 }
