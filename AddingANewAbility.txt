@@ -1,0 +1,4 @@
+1. Make a folder with the ability name in the Ability/ and cd into it
+2. Create Give and Tick file
+3. Add cooldown logic function and make a new ability to Ability/Tick.ts
+4. Add the new ability to dictionary in Ability/Tick.ts
