@@ -1,4 +1,4 @@
-import { MCFunction, NBT, Objective, Score, Selector, _, execute, kill, loc, playsound, rel, say, summon } from "sandstone";
+import { MCFunction, NBT, Objective, Score, Selector, _, execute, kill, loc, playsound, rel, summon } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 import { setScreenShakeTimer, shakeScreen } from "../../Utils/ScreenShake";
@@ -7,7 +7,7 @@ import { runAfter } from "../../Utils/UtilFunctions";
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("erthqk_cooldown", "dummy")("@s");
 const COOL_DOWN_TIME = 150;
-const SCREEN_SHAKE_TIMER = 40;
+const SCREEN_SHAKE_TIMER = 80;
 
 // ! Ticking function
 export const earthquakeTick = MCFunction(
@@ -18,7 +18,7 @@ export const earthquakeTick = MCFunction(
         .as("@a")
         .at(self)
         .run(() => {
-          shakeScreen(SCREEN_SHAKE_TIMER);
+          shakeScreen(SCREEN_SHAKE_TIMER, [2, 2]);
         });
     });
   },
@@ -80,7 +80,9 @@ const summonEarthquake = MCFunction("ability/earthquake/summon_earthquake", () =
   new runAfter(
     Selector("@e", { type: "minecraft:armor_stand", tag: "earthquake_as" }),
     () => {
-      say("Earthquake!");
+      for (let i = -2; i <= 2; i++) {
+        execute.positioned(rel(i, 0, i)).run.fill(rel(1, 1, 1), rel(-1, -2, -1), "minecraft:air");
+      }
 
       // Play the sound
       playsound("minecraft:entity.ender_dragon.growl", "master", "@a", rel(0, 0, 0), 1, 0.1);
