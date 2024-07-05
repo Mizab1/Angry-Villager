@@ -25,10 +25,14 @@ MCFunction(
  * @param {number} time - The duration of the screen shake in ticks. Defaults to 20.
  * @return {void} This function does not return anything.
  */
-export const shakeScreen = (time: number = 20): void => {
+export const shakeScreen = (time: number = 20, intensity: [x: number, y: number]): void => {
   for (let i = 1; i <= time; i++) {
     _.if(shakeTimer.matches(i), () => {
-      teleport(self, rel(0, 0, 0), rel(randomIntFromInterval(-5, 5), randomIntFromInterval(-5, 5)));
+      teleport(
+        self,
+        rel(0, 0, 0),
+        rel(randomIntFromInterval(-intensity[0], intensity[0]), randomIntFromInterval(-intensity[1], intensity[1]))
+      );
     });
   }
 };
