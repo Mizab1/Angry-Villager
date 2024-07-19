@@ -6,7 +6,8 @@ import { tornadoCooldownLogic, tornadoLogic, tornadoTick } from "./Tornado/Tick"
 import { lightningCooldownLogic, lightningLogic, lightningTick } from "./Lightning/Tick";
 import { earthquakeCooldownLogic, earthquakeLogic, earthquakeTick } from "./Earthquake/Tick";
 import { fireStormCooldownLogic, fireStormLogic, fireStormTick } from "./FireStorm/Tick";
-import { iceBarrageCooldownLogic, iceBarrageLogic } from "./IceBarrage/Tick";
+import { iceBarrageCooldownLogic, iceBarrageLogic, iceBarrageTick } from "./IceBarrage/Tick";
+import { healingLightCooldownLogic, healingLightLogic, healingLightTick } from "./HealingLight/Tick";
 
 // Global Variable
 const selfRightClickCAOS: Score<string> = Objective.create(
@@ -22,6 +23,7 @@ export const abilitiesNamesDict = {
   earthquake_ability: "earthquake_ability",
   fire_storm_ability: "fire_storm_ability",
   ice_barrage_ability: "ice_barrage_ability",
+  healing_light_ability: "healing_light_ability",
 };
 
 // Functions
@@ -37,6 +39,7 @@ const checkUsedAbility = MCFunction("ability/check_used", () => {
       earthquakeCooldownLogic();
       fireStormCooldownLogic();
       iceBarrageCooldownLogic();
+      healingLightCooldownLogic();
 
       // Check which ability was used
       _.if(selfRightClickCAOS.greaterThan(0), () => {
@@ -59,6 +62,9 @@ const checkUsedAbility = MCFunction("ability/check_used", () => {
         runAbility(abilitiesNamesDict.ice_barrage_ability, () => {
           iceBarrageLogic();
         });
+        runAbility(abilitiesNamesDict.healing_light_ability, () => {
+          healingLightLogic();
+        });
 
         // Reset the COAS score
         selfRightClickCAOS.set(0);
@@ -79,7 +85,8 @@ const Tick = MCFunction(
     lightningTick();
     earthquakeTick();
     fireStormTick();
-    iceBarrageLogic();
+    iceBarrageTick();
+    healingLightTick();
   },
   {
     runEachTick: true,
