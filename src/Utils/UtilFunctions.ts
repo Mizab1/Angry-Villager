@@ -232,7 +232,7 @@ export class runAfter {
   private time: TimeArgument;
 
   /**
-   * Creates a new instance of the runAfter class.
+   * This class is used to run a function after a specified time. retaining the context of the entity itself.
    *
    * @param {SelectorClass} entityContext - The entity context to run the callback on.
    * @param {() => void} callback - The callback function to run after the specified time.
