@@ -1,18 +1,4 @@
-import {
-  MCFunction,
-  Objective,
-  Score,
-  Selector,
-  _,
-  effect,
-  execute,
-  particle,
-  playsound,
-  rel,
-  say,
-  schedule,
-  tag,
-} from "sandstone";
+import { MCFunction, Objective, Score, Selector, _, effect, execute, particle, playsound, rel, schedule, tag } from "sandstone";
 import { self } from "../../Tick";
 
 // Global Variables
@@ -37,9 +23,10 @@ export const healingLightTick = MCFunction(
 // * Functions
 export const healingLightLogic = MCFunction("ability/healing_light/logic", () => {
   _.if(cooldownScore.matches(COOL_DOWN_TIME), () => {
-    playsound("minecraft:entity.ender_dragon.growl", "master", "@a", rel(0, 0, 0), 1, 0.5);
+    // Play the sound at the position of the player
+    playsound("minecraft:item.trident.return", "master", "@a", rel(0, 0, 0), 1, 0.2);
     executeHealingEffect();
-    say("hi");
+    cooldownScore.set(0);
   }).else(() => {
     playsound("minecraft:block.anvil.land", "master", self, rel(0, 0, 0), 0.6, 1.5);
   });
@@ -58,9 +45,6 @@ const executeHealingEffect = MCFunction("ability/healing_light/execute_healing_e
 
   // Apply the healing effect
   effect.give(self, "minecraft:regeneration", EFFECT_LAST_FOR, 4);
-
-  // Play the sound
-  playsound("minecraft:entity.ender_dragon.growl", "master", "@a", rel(0, 0, 0), 1, 0.1);
 
   // Delete the appointed tag after some time
   schedule.function(() => {
