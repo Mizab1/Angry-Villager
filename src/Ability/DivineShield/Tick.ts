@@ -1,19 +1,4 @@
-import {
-  MCFunction,
-  Objective,
-  Score,
-  Selector,
-  _,
-  effect,
-  execute,
-  kill,
-  particle,
-  playsound,
-  rel,
-  say,
-  schedule,
-  tag,
-} from "sandstone";
+import { MCFunction, Objective, Score, Selector, _, execute, kill, particle, playsound, rel, schedule, tag } from "sandstone";
 import { self } from "../../Tick";
 
 // Global Variables

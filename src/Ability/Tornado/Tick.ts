@@ -1,5 +1,4 @@
 import {
-  ItemModifier,
   MCFunction,
   NBT,
   Objective,
@@ -14,12 +13,10 @@ import {
   raw,
   rel,
   summon,
-  title,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 import { RunOnce } from "../../Utils/UtilFunctions";
-import { abilitiesNamesDict } from "../Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("tornado_cooldown", "dummy")("@s");

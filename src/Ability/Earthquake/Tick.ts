@@ -1,19 +1,4 @@
-import {
-  MCFunction,
-  NBT,
-  Objective,
-  Score,
-  Selector,
-  _,
-  execute,
-  kill,
-  loc,
-  particle,
-  playsound,
-  raw,
-  rel,
-  summon,
-} from "sandstone";
+import { MCFunction, NBT, Objective, Score, Selector, _, execute, kill, loc, playsound, raw, rel, summon } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 import { setScreenShakeTimer, shakeScreen } from "../../Utils/ScreenShake";
