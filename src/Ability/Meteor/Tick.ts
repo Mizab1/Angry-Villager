@@ -1,5 +1,4 @@
 import {
-  ItemModifier,
   MCFunction,
   NBT,
   Objective,
@@ -11,12 +10,12 @@ import {
   loc,
   particle,
   playsound,
+  raw,
   rel,
   summon,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
-import { abilitiesNamesDict } from "../Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("meteor_cooldown", "dummy")("@s");
@@ -46,7 +45,9 @@ export const meteorLogic = MCFunction("ability/meteor/logic", () => {
           // @ts-ignore
           "#aestd1:passthrough",
           null,
-          MCFunction("raycast/meteor/update", () => {}),
+          MCFunction("raycast/meteor/update", () => {
+            raw(`particle dust 0.412 0.431 0.404 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
+          }),
           MCFunction("raycast/meteor/hit", () => {
             execute.positioned(rel(0, 40, 0)).run(() => {
               summonMeteor();

@@ -1,7 +1,6 @@
-import { ItemModifier, MCFunction, Objective, Score, Selector, _, execute, loc, playsound, rel, summon } from "sandstone";
+import { MCFunction, Objective, Score, Selector, _, execute, loc, playsound, raw, rel, summon } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
-import { abilitiesNamesDict } from "../Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("ltng_cooldown", "dummy")("@s");
@@ -25,7 +24,9 @@ export const lightningLogic = MCFunction("ability/lightning/logic", () => {
           // @ts-ignore
           "#aestd1:passthrough",
           null,
-          MCFunction("raycast/lightning/update", () => {}),
+          MCFunction("raycast/lightning/update", () => {
+            raw(`particle dust 0.941 0.941 0.941 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
+          }),
           MCFunction("raycast/lightning/hit", () => {
             summonLightning();
             // Add a cooldown

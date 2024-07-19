@@ -11,6 +11,7 @@ import {
   loc,
   particle,
   playsound,
+  raw,
   rel,
   summon,
 } from "sandstone";
@@ -48,7 +49,9 @@ export const fireStormLogic = MCFunction("ability/fire_storm/logic", () => {
           // @ts-ignore
           "#aestd1:passthrough",
           null,
-          MCFunction("raycast/fire_storm/update", () => {}),
+          MCFunction("raycast/fire_storm/update", () => {
+            raw(`particle dust 0.788 0.765 0.063 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
+          }),
           MCFunction("raycast/fire_storm/hit", () => {
             execute.positioned(rel(0, 40, 0)).run(() => {
               summonFireStorm();

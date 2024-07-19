@@ -1,4 +1,19 @@
-import { MCFunction, NBT, Objective, Score, Selector, _, execute, kill, loc, playsound, rel, summon } from "sandstone";
+import {
+  MCFunction,
+  NBT,
+  Objective,
+  Score,
+  Selector,
+  _,
+  execute,
+  kill,
+  loc,
+  particle,
+  playsound,
+  raw,
+  rel,
+  summon,
+} from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 import { setScreenShakeTimer, shakeScreen } from "../../Utils/ScreenShake";
@@ -14,6 +29,9 @@ export const earthquakeTick = MCFunction(
   "ability/earthquake/tick",
   () => {
     execute.if(Selector("@e", { type: "minecraft:armor_stand", tag: "earthquake_as" })).run(() => {
+      execute
+        .at(Selector("@e", { type: "minecraft:armor_stand", tag: "earthquake_as" }))
+        .run.particle("minecraft:block", "minecraft:dirt", rel(0, 0.35, 0), [2, 2, 2], 0.5, 10, "force");
       execute
         .as("@a")
         .at(self)
@@ -40,7 +58,9 @@ export const earthquakeLogic = MCFunction("ability/earthquake/logic", () => {
           // @ts-ignore
           "#aestd1:passthrough",
           null,
-          MCFunction("raycast/earthquake/update", () => {}),
+          MCFunction("raycast/earthquake/update", () => {
+            raw(`particle dust 0.588 0.549 0.294 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
+          }),
           MCFunction("raycast/earthquake/hit", () => {
             summonEarthquake();
             // Add a cooldown
@@ -81,7 +101,7 @@ const summonEarthquake = MCFunction("ability/earthquake/summon_earthquake", () =
     Selector("@e", { type: "minecraft:armor_stand", tag: "earthquake_as" }),
     () => {
       for (let i = -2; i <= 2; i++) {
-        execute.positioned(rel(i, 0, i)).run.fill(rel(1, 1, 1), rel(-1, -2, -1), "minecraft:air");
+        execute.positioned(rel(i, 0, i)).run.fill(rel(2, 1, 0), rel(-1, -2, 0), "minecraft:air");
       }
 
       // Play the sound

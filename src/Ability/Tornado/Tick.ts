@@ -11,6 +11,7 @@ import {
   loc,
   particle,
   playsound,
+  raw,
   rel,
   summon,
   title,
@@ -50,7 +51,9 @@ export const tornadoLogic = MCFunction("ability/tornado/logic", () => {
           // @ts-ignore
           "#aestd1:passthrough",
           null,
-          MCFunction("raycast/tornado/update", () => {}),
+          MCFunction("raycast/tornado/update", () => {
+            raw(`particle dust 0.706 0.769 0.663 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
+          }),
           MCFunction("raycast/tornado/hit", () => {
             execute.positioned(rel(0, 40, 0)).run(() => {
               summonTornado();
