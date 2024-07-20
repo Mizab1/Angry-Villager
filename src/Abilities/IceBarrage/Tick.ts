@@ -79,14 +79,7 @@ export const iceBarrageCooldownLogic = MCFunction("ability/ice_barrage/cooldown_
 });
 
 const executeIceBarrage = MCFunction("ability/ice_barrage/execute_ice_barrage", () => {
-  // Create the ice barrage marker
-  summon("minecraft:armor_stand", rel(0, 0, 0), {
-    Invisible: NBT.byte(1),
-    Marker: NBT.byte(1),
-    Tags: ["ice_barrage_as"],
-  });
-
-  // Create a 3x3 falling ice model
+  // Create a falling ice model
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       summon("minecraft:falling_block", rel(i, 5 + parseFloat(Math.random().toFixed(2)), j), {
