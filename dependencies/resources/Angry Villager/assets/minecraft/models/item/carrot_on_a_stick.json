@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "minecraft:item/wooden_hoe"
+  },
+  "overrides": [
+      { "predicate": {"custom_model_data":100001}, "model": "item/abilities/meteor"},
+      { "predicate": {"custom_model_data":100002}, "model": "item/abilities/tornado"},
+      { "predicate": {"custom_model_data":100003}, "model": "item/abilities/lightning"},
+      { "predicate": {"custom_model_data":100004}, "model": "item/abilities/earthquake"},
+      { "predicate": {"custom_model_data":100005}, "model": "item/abilities/firestorm"},
+      { "predicate": {"custom_model_data":100006}, "model": "item/abilities/ice_barrage"},
+      { "predicate": {"custom_model_data":100007}, "model": "item/abilities/healing_light"},
+      { "predicate": {"custom_model_data":100008}, "model": "item/abilities/divine_shield"}
+  ]
+}
