@@ -1,0 +1,3 @@
+tag entity_typess damaging_entities {
+    minecraft:arrow
+}

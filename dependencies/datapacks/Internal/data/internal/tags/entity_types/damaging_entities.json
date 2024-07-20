@@ -1,9 +1,0 @@
-{
-	"description": "Entities that can damage the player",
-	"values": [
-		{
-			"id": "minecraft:arrow",
-			"required": false
-		}
-	]
-}
