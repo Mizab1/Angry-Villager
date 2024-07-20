@@ -1,7 +1,7 @@
 import { execute, kill, MCFunction, raw, rel, Selector, teleport } from "sandstone";
 import { self } from "../Tick";
 
-const AXE_TAG = "rotating_axe";
+export const AXE_TAG = "rotating_axe";
 
 MCFunction(
   "attacks/tick",
