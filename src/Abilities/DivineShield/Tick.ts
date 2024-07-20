@@ -1,5 +1,6 @@
 import { MCFunction, Objective, Score, Selector, _, execute, kill, particle, playsound, rel, schedule, tag } from "sandstone";
 import { self } from "../../Tick";
+import { AXE_TAG } from "../../Attacks/Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("divine_cooldown", "dummy")("@s");
@@ -36,6 +37,7 @@ export const divineShieldTick = MCFunction(
 
       // Kill or deflect all the attacks from the player
       kill(Selector("@e", { type: "#aestd1:projectiles", distance: [Infinity, SPHERE_RADIUS + 1] }));
+      kill(Selector("@e", { tag: AXE_TAG, distance: [Infinity, SPHERE_RADIUS + 1] }));
     });
   },
   {
