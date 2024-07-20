@@ -1,1 +1,2 @@
 data/internal/tags/entity_types/damaging_entities.json:61e7de1824b421a61f91893501cc7eb4793da985
+data/internal/tags/entity_types/rotating_entities.json:4519997856164cf170875c360bf8bb35bcc68892

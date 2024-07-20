@@ -1,3 +1,7 @@
 tag entity_typess damaging_entities {
     minecraft:arrow
 }
+tag entity_typess rotating_entities {
+    minecraft:item_display
+    minecraft:block_display
+}
