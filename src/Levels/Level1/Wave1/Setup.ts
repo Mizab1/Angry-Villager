@@ -1,4 +1,6 @@
-import { give, item, MCFunction, NBT, summon } from "sandstone";
+import { execute, give, item, MCFunction, NBT, summon } from "sandstone";
+import { summonNormalPillager } from "../../../Enemies/SummonNormalPillager";
+import { summonNormalVindicator } from "../../../Enemies/SummonNormalVindicator";
 
 const tpPlayerToVillage = MCFunction("levels/level_1/wave_1/tp_player_to_village", () => {
   // TODO: Add the village coordinates here
@@ -23,44 +25,14 @@ const spawnEnemies = MCFunction("levels/level_1/wave_1/spawn_enemies", () => {
   ];
 
   enemiesPillagerSpawnCoords.forEach((coords) => {
-    summon("minecraft:pillager", coords, {
-      PersistenceRequired: NBT.byte(1),
-      CanPickUpLoot: NBT.byte(0),
-      PatrolLeader: NBT.byte(0),
-      Patrolling: NBT.byte(0),
-      CanJoinRaid: NBT.byte(0),
-      Tags: ["enemy", " custom_pillager"],
+    execute.positioned(coords).run(() => {
+      summonNormalPillager();
     });
   });
 
   enemiesVindicatorSpawnCoords.forEach((coords) => {
-    summon("minecraft:vindicator", coords, {
-      PersistenceRequired: NBT.byte(1),
-      CanPickUpLoot: NBT.byte(0),
-      PatrolLeader: NBT.byte(0),
-      Patrolling: NBT.byte(0),
-      CanJoinRaid: NBT.byte(0),
-      Tags: ["enemy", " custom_vindicator"],
-      HandItems: [
-        {
-          id: "minecraft:iron_axe",
-          Count: NBT.byte(1),
-          tag: {
-            AttributeModifiers: [
-              {
-                AttributeName: "generic.attack_damage",
-                Name: "generic.attack_damage",
-                Amount: 1,
-                Operation: 0,
-                UUID: NBT.intArray([199699329, 1439778767, -1927542810, 257854477]),
-                Slot: "mainhand",
-              },
-            ],
-          },
-        },
-        {},
-      ],
-      Attributes: [{ Name: "generic.attack_damage", Base: 1 }],
+    execute.positioned(coords).run(() => {
+      summonNormalVindicator();
     });
   });
 });
