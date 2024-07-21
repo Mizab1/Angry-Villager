@@ -1,19 +1,11 @@
-import { Data, execute, loc, MCFunction, Objective, rel, scoreboard, Selector, summon, teleport } from "sandstone";
+import { Data, execute, loc, MCFunction, rel, scoreboard, Selector, summon, teleport } from "sandstone";
 import { self } from "../../Tick";
+import { posX1, posX2, posY1, posY2, posZ1, posZ2 } from "../Tick";
 import { cannonEntity } from "./PlaceCannon";
 
 // Constants to configure the cannon
 const FiringDistance: number = 30;
 const ActivationDistance: number = 40;
-
-// Create scores for storing the position
-const posX1 = Objective.create("pos_x1", "dummy")("@s");
-const posY1 = Objective.create("pos_y1", "dummy")("@s");
-const posZ1 = Objective.create("pos_z1", "dummy")("@s");
-
-const posX2 = Objective.create("pos_x2", "dummy")("@s");
-const posY2 = Objective.create("pos_y2", "dummy")("@s");
-const posZ2 = Objective.create("pos_z2", "dummy")("@s");
 
 MCFunction(
   "attacks/cannon/face",
