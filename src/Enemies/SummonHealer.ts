@@ -1,7 +1,7 @@
 import { MCFunction, NBT, rel, summon } from "sandstone";
 
 export const summonHealer = MCFunction("enemies/summon_healer", () => {
-  summon("minecraft:pillager", rel(0, 0, 0), {
+  summon("minecraft:witch", rel(0, 0, 0), {
     PersistenceRequired: NBT.byte(1),
     CanPickUpLoot: NBT.byte(0),
     PatrolLeader: NBT.byte(0),

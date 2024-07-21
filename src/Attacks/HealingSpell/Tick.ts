@@ -8,7 +8,7 @@ MCFunction(
   "attacks/healing_spell/tick",
   () => {
     execute
-      .as(Selector("@e", { type: "minecraft:pillager", tag: "healer" }))
+      .as(Selector("@e", { type: "minecraft:witch", tag: "healer" }))
       .at(self)
       .run(() => {
         // Display the particle
