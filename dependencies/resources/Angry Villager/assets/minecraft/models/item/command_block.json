@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:block/command_block",
+
+ "overrides": [
+  { "predicate": {"custom_model_data": 230001}, "model": "item/catapult_loaded1"},
+  { "predicate": {"custom_model_data": 230002}, "model": "item/catapult_loaded2"},
+  { "predicate": {"custom_model_data": 230003}, "model": "item/catapult_loaded3"},
+  { "predicate": {"custom_model_data": 230004}, "model": "item/catapult_loaded4"},
+  { "predicate": {"custom_model_data": 230005}, "model": "item/catapult_empty1"},
+  { "predicate": {"custom_model_data": 230006}, "model": "item/catapult_empty2"},
+  { "predicate": {"custom_model_data": 230007}, "model": "item/catapult_empty3"},
+  { "predicate": {"custom_model_data": 230008}, "model": "item/catapult_empty4"}
+
+ ]
+}

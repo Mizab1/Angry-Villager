@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "hit": {
+      "trigger": "minecraft:player_hurt_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_scores",
+            "entity": "this",
+            "scores": {
+              "tfcp_id": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "function": "tf_catapult:shoot"
+  }
+}

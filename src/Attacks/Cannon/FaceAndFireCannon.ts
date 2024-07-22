@@ -4,8 +4,8 @@ import { posX1, posX2, posY1, posY2, posZ1, posZ2 } from "../Tick";
 import { cannonEntity } from "./PlaceCannon";
 
 // Constants to configure the cannon
-const FiringDistance: number = 30;
-const ActivationDistance: number = 40;
+const firingDistance: number = 30;
+const activationDistance: number = 40;
 
 MCFunction(
   "attacks/cannon/face",
@@ -19,7 +19,7 @@ MCFunction(
 
         // Face the cannon to the nearest player
         execute
-          .facingEntity(Selector("@a", { distance: [Infinity, ActivationDistance], limit: 1, sort: "nearest" }), "eyes")
+          .facingEntity(Selector("@a", { distance: [Infinity, activationDistance], limit: 1, sort: "nearest" }), "eyes")
           .run(() => {
             teleport(self, rel(0, 0, 0), rel(0, 0));
           });
@@ -39,7 +39,7 @@ MCFunction(
       .at(self)
       .anchored("eyes")
       .positioned(loc(0, 0, 1))
-      .if(Selector("@a", { distance: [Infinity, FiringDistance] }))
+      .if(Selector("@a", { distance: [Infinity, firingDistance] }))
       .run(() => {
         summon("minecraft:tnt", rel(0, 0, 0), {
           Tags: ["cannon_ball"],

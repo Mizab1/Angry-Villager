@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "minecraft:block/obsidian"
+  },
+  "overrides": [
+  { "predicate": {"custom_model_data": 230001}, "model": "item/projectile"}
+
+ ]
+
+}
