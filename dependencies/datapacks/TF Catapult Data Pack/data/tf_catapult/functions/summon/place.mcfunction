@@ -1,6 +1,6 @@
 
 # Summon armorstand
-summon armor_stand ^4 ^-3 ^ {NoGravity:0b,Invisible:1b,NoBasePlate:1b,Tags:["tf_catapult","loaded"],DisabledSlots:4144959,ArmorItems:[{},{},{},{id:"minecraft:command_block",Count:1b,tag:{CustomModelData:230001}}]}
+summon armor_stand ^4 ^-3 ^ {NoGravity:0b,Invisible:1b,NoBasePlate:1b,Tags:["tf_catapult","loaded", "enemy", "no_kill_cmd"],DisabledSlots:4144959,ArmorItems:[{},{},{},{id:"minecraft:command_block",Count:1b,tag:{CustomModelData:230001}}]}
 
 # Correct Rotation
 execute if block ~1 ~ ~ oak_slab as @e[type=armor_stand,sort=nearest,limit=1,tag=tf_catapult] at @s run tp @s ~ ~ ~ ~-90 ~
