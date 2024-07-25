@@ -2,6 +2,7 @@ import { MCFunction, NBT, rel, summon } from "sandstone";
 
 export const summonNormalVindicator = MCFunction("enemies/summon_normal_vindicator", () => {
   summon("minecraft:vindicator", rel(0, 0, 0), {
+    CustomName: '{"text":"Axe Wielder"}',
     PersistenceRequired: NBT.byte(1),
     CanPickUpLoot: NBT.byte(0),
     PatrolLeader: NBT.byte(0),
