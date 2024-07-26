@@ -1,11 +1,17 @@
-import { execute, MCFunction, rel, Selector, teleport } from "sandstone";
+import { effect, MCFunction, Selector } from "sandstone";
 
 // Global Variables
 export const self = Selector("@s");
 
-MCFunction("tick", () => {}, {
-  runEachTick: true,
-});
+MCFunction(
+  "tick",
+  () => {
+    effect.give("@a", "minecraft:saturation", 500, 0, true);
+  },
+  {
+    runEachTick: true,
+  }
+);
 
 MCFunction("load", () => {}, {
   runOnLoad: true,
