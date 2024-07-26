@@ -93,6 +93,10 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
   execute.as("@a").at(self).run.playsound("minecraft:ui.toast.challenge_complete", "master", self);
   clear("@a");
 
+  await sleep("2s");
+
+  tellraw("@a", { text: "Initializing the next level", color: "red" });
+
   await sleep("6s");
 
   // Start the next level
