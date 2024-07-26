@@ -1,8 +1,14 @@
 import { MCFunction, Objective, scoreboard } from "sandstone";
 import { countEnemies } from "./EnemyCounter";
 
+// Side scores for information
 const gameScoreboard = Objective.create("game_scb", "dummy", { text: "Game", color: "gold" });
-export const enemyCounterScore = gameScoreboard("Wave:");
+export const enemyCounterScore = gameScoreboard("Enemy:");
+export const waveCounterScore = gameScoreboard("Wave:");
+
+// Private Scoreboard
+const gameplayPrivateScoreboard = Objective.create("pvt_gmply", "dummy");
+export const isStarted = gameplayPrivateScoreboard("is_started");
 
 MCFunction(
   "gameplay/load",
