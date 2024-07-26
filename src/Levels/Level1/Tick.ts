@@ -1,15 +1,17 @@
-import { _, abs, clear, execute, give, item, MCFunction, schedule, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
+import { _, abs, clear, execute, give, item, MCFunction, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
 import { summonNormalPillager } from "../../Enemies/SummonNormalPillager";
 import { summonNormalVindicator } from "../../Enemies/SummonNormalVindicator";
 import { enemyCounterScore, isStarted, levelCounterScore } from "../../Gameplay/Tick";
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
+import { startLevel2 } from "../Level2/Tick";
 
 // ! Change this according to the level
+// !! RENAME "startLevel" to the current level
 const levelStartCoords = abs(-38, 150, 956);
 const levelNumber = 1;
 const villageNumber = 1;
-const nextLevelCoords = abs(-38, 150, 956);
+const nextLevel = startLevel2;
 
 const showTip = () => {
   tellraw("@a", { text: "TIP: You basically have to dodge the attacks and kill enemies", color: "green" });
@@ -43,7 +45,7 @@ const spawnEnemiesAtCoord = MCFunction(`levels/village_${villageNumber}/level_${
 });
 
 // ! Don't modify these
-const startLevel1 = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/start`, () => {
+export const startLevel1 = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/start`, async () => {
   // Teleport player to the village
   teleport("@a", levelStartCoords);
 
@@ -53,51 +55,56 @@ const startLevel1 = MCFunction(`levels/village_${villageNumber}/level_${levelNum
   // Set the level counter
   levelCounterScore.set(levelNumber);
 
-  // Delay
-  schedule.function(async () => {
-    // Display the title of the level
-    title("@a").title([{ text: `Level ${levelNumber} Started`, color: "green" }]);
+  await sleep("1s");
 
-    // Play the sound
-    execute.as("@a").at(self).run.playsound("minecraft:block.basalt.break", "master", self);
+  // Display the title of the level
+  title("@a").title([{ text: `Level ${levelNumber} Started`, color: "green" }]);
 
-    // Give tools to the player
-    giveToolsToAllPlayers();
+  // Play the sound
+  execute.as("@a").at(self).run.playsound("minecraft:block.basalt.break", "master", self);
 
-    // Spawn enemies
-    spawnEnemiesAtCoord();
+  // Give tools to the player
+  giveToolsToAllPlayers();
 
-    // Set the level started variable
-    isStarted.set(1);
+  // Spawn enemies
+  spawnEnemiesAtCoord();
 
-    // Wait for 1 second
-    await sleep("3s");
+  // Set the level started variable
+  isStarted.set(1);
 
-    // Give tips to the player
-    showTip();
-  }, "1s");
+  // Wait for 1 second
+  await sleep("3s");
+
+  // Give tips to the player
+  showTip();
 });
 
-const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/end`, () => {
+const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/end`, async () => {
   // Kill all the enemy in the level
   killAllEnemy();
 
   // Unset the level started variable
   isStarted.set(0);
 
-  schedule.function(async () => {
-    // Display the title to all the player
-    title("@a").title({ text: "You have completed the level!", color: "gold" });
-    execute.as("@a").at(self).run.playsound("minecraft:ui.toast.challenge_complete", "master", self);
-    clear("@a");
+  await sleep("1s");
 
-    await sleep("3s");
+  // Display the title to all the player
+  title("@a").title({ text: "You have completed the level!", color: "gold" });
+  execute.as("@a").at(self).run.playsound("minecraft:ui.toast.challenge_complete", "master", self);
+  clear("@a");
 
-    // Teleport the player to the next scene
-    teleport("@a", nextLevelCoords);
-  }, "1s");
+  await sleep("6s");
+
+  // Start the next level
+  nextLevel();
 });
 
-const checkAndEndLevel = MCFunction("levels/tick", () => {
-  _.if(_.and(isStarted.equalTo(1), enemyCounterScore.equalTo(0), levelCounterScore.equalTo(levelNumber)), levelEndSequence);
-});
+const checkAndEndLevel = MCFunction(
+  "levels/tick",
+  () => {
+    _.if(_.and(isStarted.equalTo(1), enemyCounterScore.equalTo(0), levelCounterScore.equalTo(levelNumber)), levelEndSequence);
+  },
+  {
+    onConflict: "append",
+  }
+);
