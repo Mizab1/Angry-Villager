@@ -1,6 +1,10 @@
 import { MCFunction, NBT, rel, summon } from "sandstone";
 
-export const summonNormalVindicator = MCFunction("enemies/summon_normal_vindicator", () => {
+MCFunction("enemies/summon_normal_vindicator", () => {
+  summonNormalVindicator();
+});
+
+export const summonNormalVindicator = (damage?: number) => {
   summon("minecraft:vindicator", rel(0, 0, 0), {
     CustomName: '{"text":"Axe Wielder"}',
     PersistenceRequired: NBT.byte(1),
@@ -18,7 +22,7 @@ export const summonNormalVindicator = MCFunction("enemies/summon_normal_vindicat
             {
               AttributeName: "generic.attack_damage",
               Name: "generic.attack_damage",
-              Amount: 6,
+              Amount: 6 || damage,
               Operation: 0,
               UUID: NBT.intArray([199699329, 1439778767, -1927542810, 257854477]),
               Slot: "mainhand",
@@ -30,4 +34,4 @@ export const summonNormalVindicator = MCFunction("enemies/summon_normal_vindicat
     ],
     Attributes: [{ Name: "generic.attack_damage", Base: 0 }],
   });
-});
+};
