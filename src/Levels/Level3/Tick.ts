@@ -6,13 +6,14 @@ import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { giveLightningAbility } from "../../Abilities/Lightning/Give";
 import { summonEnchantedPillager } from "../../Enemies/SummonEnchantedPillager";
+import { startLevel4 } from "../Level4/Tick";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
 const levelStartCoords = abs(495, 150, 1003);
 const levelNumber = 3;
 const villageNumber = 2;
-const nextLevel = 0;
+const nextLevel = startLevel4;
 
 const showTip = () => {
   tellraw("@a", { text: "TIP: You unlocked your first power that is lightning bolt, use it in your advantage", color: "green" });
@@ -123,8 +124,7 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
   await sleep("6s");
 
   // Start the next level
-  // nextLevel();
-  say("Test Completed");
+  nextLevel();
 });
 
 const checkAndEndLevel = MCFunction(
