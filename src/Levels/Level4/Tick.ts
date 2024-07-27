@@ -7,13 +7,14 @@ import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { giveTornadoAbility } from "../../Abilities/Tornado/Give";
 import { summonFireWizard } from "../../Enemies/SummonFireWizard";
+import { startLevel5 } from "../Level5/Tick";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
 const levelStartCoords = abs(500, 150, 1500);
 const levelNumber = 4;
 const villageNumber = 2;
-const nextLevel = 0;
+const nextLevel = startLevel5;
 
 const showTip = () => {
   tellraw("@a", {
@@ -136,8 +137,7 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
   await sleep("6s");
 
   // Start the next level
-  // nextLevel();
-  say("Test Completed");
+  nextLevel();
 });
 
 const checkAndEndLevel = MCFunction(
