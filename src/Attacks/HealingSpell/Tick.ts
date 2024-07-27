@@ -1,4 +1,4 @@
-import { effect, execute, MCFunction, particle, rel, say, Selector } from "sandstone";
+import { effect, execute, MCFunction, particle, rel, Selector } from "sandstone";
 import { self } from "../../Tick";
 
 // The effective distance within which healer can heal

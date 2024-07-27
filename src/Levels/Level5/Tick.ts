@@ -1,31 +1,15 @@
-import {
-  _,
-  abs,
-  clear,
-  execute,
-  give,
-  item,
-  MCFunction,
-  NBT,
-  raw,
-  say,
-  sleep,
-  spawnpoint,
-  teleport,
-  tellraw,
-  title,
-} from "sandstone";
+import { _, abs, clear, execute, give, item, MCFunction, NBT, say, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
+import { giveFireStormAbility } from "../../Abilities/FireStorm/Give";
 import { giveLightningAbility } from "../../Abilities/Lightning/Give";
+import { giveTornadoAbility } from "../../Abilities/Tornado/Give";
 import { summonEnchantedPillager } from "../../Enemies/SummonEnchantedPillager";
+import { summonFireWizard } from "../../Enemies/SummonFireWizard";
+import { summonNormalPillager } from "../../Enemies/SummonNormalPillager";
 import { summonNormalVindicator } from "../../Enemies/SummonNormalVindicator";
 import { enemyCounterScore, isStarted, levelCounterScore } from "../../Gameplay/Tick";
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
-import { giveTornadoAbility } from "../../Abilities/Tornado/Give";
-import { summonFireWizard } from "../../Enemies/SummonFireWizard";
-import { giveFireStormAbility } from "../../Abilities/FireStorm/Give";
 import { i } from "../../Utils/UtilFunctions";
-import { summonNormalPillager } from "../../Enemies/SummonNormalPillager";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level

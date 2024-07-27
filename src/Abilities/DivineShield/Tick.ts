@@ -1,6 +1,6 @@
 import { MCFunction, Objective, Score, Selector, _, execute, kill, particle, playsound, rel, schedule, tag } from "sandstone";
+import { AXE_TAG } from "../../Attacks/RotatingAxe/Tick";
 import { self } from "../../Tick";
-import { AXE_TAG } from "../../Attacks/Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("divine_cooldown", "dummy")("@s");

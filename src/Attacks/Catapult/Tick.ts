@@ -1,4 +1,4 @@
-import { _, execute, MCFunction, Objective, rel, say, scoreboard, Selector, teleport } from "sandstone";
+import { _, execute, MCFunction, Objective, rel, scoreboard, Selector, teleport } from "sandstone";
 import { self } from "../../Tick";
 
 const isLoaded = Objective.create("ctplt_ld", "dummy")("@s");

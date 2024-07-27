@@ -1,4 +1,4 @@
-import { execute, functionCmd, MCFunction, particle, rel, say, Selector } from "sandstone";
+import { execute, MCFunction, particle, rel, Selector } from "sandstone";
 import { self } from "../../Tick";
 
 MCFunction(

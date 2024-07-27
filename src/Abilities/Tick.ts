@@ -1,14 +1,14 @@
 import { MCFunction, Objective, Score, _, execute } from "sandstone";
 import { self } from "../Tick";
+import { divineShieldCooldownLogic, divineShieldLogic, divineShieldTick } from "./DivineShield/Tick";
+import { earthquakeCooldownLogic, earthquakeLogic, earthquakeTick } from "./Earthquake/Tick";
+import { fireStormCooldownLogic, fireStormLogic, fireStormTick } from "./FireStorm/Tick";
+import { healingLightCooldownLogic, healingLightLogic, healingLightTick } from "./HealingLight/Tick";
+import { iceBarrageCooldownLogic, iceBarrageLogic, iceBarrageTick } from "./IceBarrage/Tick";
+import { lightningCooldownLogic, lightningLogic, lightningTick } from "./Lightning/Tick";
 import { meteorCooldownLogic, meteorLogic, meteorTick } from "./Meteor/Tick";
 import { runAbility } from "./Private/RunAbility";
 import { tornadoCooldownLogic, tornadoLogic, tornadoTick } from "./Tornado/Tick";
-import { lightningCooldownLogic, lightningLogic, lightningTick } from "./Lightning/Tick";
-import { earthquakeCooldownLogic, earthquakeLogic, earthquakeTick } from "./Earthquake/Tick";
-import { fireStormCooldownLogic, fireStormLogic, fireStormTick } from "./FireStorm/Tick";
-import { iceBarrageCooldownLogic, iceBarrageLogic, iceBarrageTick } from "./IceBarrage/Tick";
-import { healingLightCooldownLogic, healingLightLogic, healingLightTick } from "./HealingLight/Tick";
-import { divineShieldCooldownLogic, divineShieldLogic, divineShieldTick } from "./DivineShield/Tick";
 
 // Global Variable
 const selfRightClickCAOS: Score<string> = Objective.create(

@@ -1,7 +1,7 @@
 import { Data, execute, loc, MCFunction, rel, scoreboard, Selector, summon, teleport } from "sandstone";
+import { cannonEntity } from "../../Enemies/SummonCannon";
 import { self } from "../../Tick";
 import { posX1, posX2, posY1, posY2, posZ1, posZ2 } from "../Tick";
-import { cannonEntity } from "../../Enemies/SummonCannon";
 
 // Constants to configure the cannon
 const firingDistance: number = 30;

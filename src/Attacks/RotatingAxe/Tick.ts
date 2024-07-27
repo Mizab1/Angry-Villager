@@ -2,7 +2,7 @@ import { execute, kill, MCFunction, raw, Selector } from "sandstone";
 import { self } from "../../Tick";
 import { summonRotatingAxe } from "./summonAxe";
 
-const AXE_TAG = "rotating_axe";
+export const AXE_TAG = "rotating_axe";
 
 export const rotatingAxeTick = MCFunction("attacks/rotating_axe/tick", () => {
   // Teleport the rotating axe towards the player

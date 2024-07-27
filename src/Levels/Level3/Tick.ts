@@ -1,11 +1,10 @@
-import { _, abs, clear, execute, give, item, MCFunction, say, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
-import { summonNormalPillager } from "../../Enemies/SummonNormalPillager";
+import { _, abs, clear, execute, give, item, MCFunction, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
+import { giveLightningAbility } from "../../Abilities/Lightning/Give";
+import { summonEnchantedPillager } from "../../Enemies/SummonEnchantedPillager";
 import { summonNormalVindicator } from "../../Enemies/SummonNormalVindicator";
 import { enemyCounterScore, isStarted, levelCounterScore } from "../../Gameplay/Tick";
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
-import { giveLightningAbility } from "../../Abilities/Lightning/Give";
-import { summonEnchantedPillager } from "../../Enemies/SummonEnchantedPillager";
 import { startLevel4 } from "../Level4/Tick";
 
 // ! Change this according to the level
