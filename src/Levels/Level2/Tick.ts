@@ -53,7 +53,7 @@ const spawnEnemiesAtCoord = MCFunction(`levels/village_${villageNumber}/level_${
 
   enemiesVindicatorSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
-      summonNormalVindicator(10);
+      summonNormalVindicator(8);
     });
   });
 });
