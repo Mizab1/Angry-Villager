@@ -1,4 +1,4 @@
-import { effect, MCFunction, Selector } from "sandstone";
+import { effect, execute, MCFunction, raw, Selector } from "sandstone";
 
 // Global Variables
 export const self = Selector("@s");
@@ -13,6 +13,12 @@ MCFunction(
   }
 );
 
-MCFunction("load", () => {}, {
-  runOnLoad: true,
-});
+MCFunction(
+  "load",
+  () => {
+    execute.as("@a").run.raw(`scale reset`);
+  },
+  {
+    runOnLoad: true,
+  }
+);
