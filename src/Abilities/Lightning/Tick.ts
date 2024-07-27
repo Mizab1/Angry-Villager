@@ -46,7 +46,7 @@ export const lightningCooldownLogic = MCFunction("ability/lightning/cooldown_log
 
     // Give the feedback
     _.if(cooldownScore.matches(COOL_DOWN_TIME - 1), () => {
-      tellraw(self, { text: "Lightning Bolt Ability is charged!", color: "dark_purple" });
+      tellraw(self, { text: "Lightning Bolt Ability is charged!", color: "white" });
     });
     // // ! Change the namespace
     // _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.lightning_ability}` }), () => {

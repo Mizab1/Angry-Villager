@@ -14,6 +14,7 @@ import {
   raw,
   rel,
   summon,
+  tellraw,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
@@ -70,6 +71,11 @@ export const fireStormLogic = MCFunction("ability/fire_storm/logic", () => {
 export const fireStormCooldownLogic = MCFunction("ability/fire_storm/cooldown_logic", () => {
   _.if(cooldownScore.matches([Infinity, COOL_DOWN_TIME - 1]), () => {
     cooldownScore.add(1);
+
+    // Give the feedback
+    _.if(cooldownScore.matches(COOL_DOWN_TIME - 1), () => {
+      tellraw(self, { text: "Lightning Bolt Ability is charged!", color: "yellow" });
+    });
   }).else(() => {
     cooldownScore.set(COOL_DOWN_TIME);
   });
