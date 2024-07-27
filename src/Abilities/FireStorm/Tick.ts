@@ -23,7 +23,7 @@ import { RunOnce } from "../../Utils/UtilFunctions";
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("fr_stm_cdn", "dummy")("@s");
 const fireStormLifeScore: Score<string> = Objective.create("fire_storm_life", "dummy")("@s");
-const COOL_DOWN_TIME = 300;
+const COOL_DOWN_TIME = 250;
 const FIRE_STORM_LIFE = 360;
 
 // ! Ticking function
@@ -74,7 +74,7 @@ export const fireStormCooldownLogic = MCFunction("ability/fire_storm/cooldown_lo
 
     // Give the feedback
     _.if(cooldownScore.matches(COOL_DOWN_TIME - 1), () => {
-      tellraw(self, { text: "Lightning Bolt Ability is charged!", color: "yellow" });
+      tellraw(self, { text: "Firestorm Ability is charged!", color: "yellow" });
     });
   }).else(() => {
     cooldownScore.set(COOL_DOWN_TIME);
