@@ -16,7 +16,6 @@ export const summonEnchantedPillager = MCFunction("enemies/summon_enchanted_pill
         tag: {
           Enchantments: [
             { id: "minecraft:multishot", lvl: NBT.short(1) },
-            { id: "minecraft:piercing", lvl: NBT.short(1) },
             { id: "minecraft:quick_charge", lvl: NBT.short(2) },
           ],
         },
