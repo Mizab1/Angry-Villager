@@ -5,6 +5,7 @@ import { enemyCounterScore, isStarted, levelCounterScore } from "../../Gameplay/
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { giveLightningAbility } from "../../Abilities/Lightning/Give";
+import { summonEnchantedPillager } from "../../Enemies/SummonEnchantedPillager";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
@@ -21,6 +22,7 @@ const giveToolsToAllPlayers = MCFunction(`levels/village_${villageNumber}/level_
   give("@a", "minecraft:diamond_sword");
   give("@a", "minecraft:bow");
   give("@a", "minecraft:arrow", 20);
+  give("@a", "minecraft:shield");
 
   // Ability
   execute.as("@a").run(() => giveLightningAbility());
@@ -33,30 +35,31 @@ const giveToolsToAllPlayers = MCFunction(`levels/village_${villageNumber}/level_
 });
 
 const spawnEnemiesAtCoord = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/spawn_enemies`, () => {
-  const enemiesPillagerSpawnCoords = [
-    abs(1, 150, 1514),
-    abs(-25, 150, 1502),
-    abs(-14, 150, 1482),
-    abs(4, 150, 1500),
-    abs(20, 150, 1504),
+  const enemiesEnchantedPillagerSpawnCoords = [
+    abs(496, 150, 1017),
+    abs(497, 150, 1038),
+    abs(488, 150, 1039),
+    abs(509, 150, 985),
+    abs(514, 150, 996),
   ];
-  const enemiesVindicatorSpawnCoords = [
-    abs(-32, 150, 1508),
-    abs(-49, 150, 1499),
-    abs(-10, 150, 1533),
-    abs(-9, 150, 1551),
-    abs(-3, 150, 1530),
+  const enemiesEnchantedVindicatorSpawnCoords = [
+    abs(514, 150, 1014),
+    abs(524, 150, 1019),
+    abs(496, 150, 970),
+    abs(483, 150, 984),
+    abs(480, 150, 974),
+    abs(480, 150, 961),
   ];
 
-  enemiesPillagerSpawnCoords.forEach((coords) => {
+  enemiesEnchantedPillagerSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
-      summonNormalPillager();
+      summonEnchantedPillager();
     });
   });
 
-  enemiesVindicatorSpawnCoords.forEach((coords) => {
+  enemiesEnchantedVindicatorSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
-      summonNormalVindicator(10);
+      summonNormalVindicator(6, "minecraft:iron_axe");
     });
   });
 });
