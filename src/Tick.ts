@@ -1,4 +1,4 @@
-import { effect, execute, MCFunction, raw, Selector } from "sandstone";
+import { effect, execute, gamerule, MCFunction, raw, Selector } from "sandstone";
 
 // Global Variables
 export const self = Selector("@s");
@@ -17,6 +17,7 @@ MCFunction(
   "load",
   () => {
     execute.as("@a").run.raw(`scale reset`);
+    gamerule("doFireTick", false);
   },
   {
     runOnLoad: true,
