@@ -43,20 +43,20 @@ MCFunction(
       .rotatedAs(Selector("@e", { type: "minecraft:pillager", tag: "fire_pillager", limit: 1, sort: "nearest" }))
       .run(() => {
         // Variable that stores the cannon data
-        const cannonData = Data("entity", "@s");
+        const fireballData = Data("entity", "@s");
 
         // Store the initial position of the fire charge
-        posX1.set(cannonData.select("Pos[0]"), 1000);
-        posY1.set(cannonData.select("Pos[1]"), 1000);
-        posZ1.set(cannonData.select("Pos[2]"), 1000);
+        posX1.set(fireballData.select("Pos[0]"), 1000);
+        posY1.set(fireballData.select("Pos[1]"), 1000);
+        posZ1.set(fireballData.select("Pos[2]"), 1000);
 
         // Teleport the fire charge forward
         teleport(self, loc(0, 0, 0.1));
 
         // Store the final position of the fire charge
-        posX2.set(cannonData.select("Pos[0]"), 1000);
-        posY2.set(cannonData.select("Pos[1]"), 1000);
-        posZ2.set(cannonData.select("Pos[2]"), 1000);
+        posX2.set(fireballData.select("Pos[0]"), 1000);
+        posY2.set(fireballData.select("Pos[1]"), 1000);
+        posZ2.set(fireballData.select("Pos[2]"), 1000);
 
         // Subtract the final position from the initial position
         posX2["-="](posX1);
