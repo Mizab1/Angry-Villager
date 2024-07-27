@@ -4,13 +4,14 @@ import { summonNormalVindicator } from "../../Enemies/SummonNormalVindicator";
 import { enemyCounterScore, isStarted, levelCounterScore } from "../../Gameplay/Tick";
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
+import { startLevel3 } from "../Level3/Tick";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
 const levelStartCoords = abs(16, 150, 1537);
 const levelNumber = 2;
 const villageNumber = 1;
-const nextLevel = 0;
+const nextLevel = startLevel3;
 
 const showTip = () => {
   tellraw("@a", { text: "TIP: You now have a bow, you can shoot projectile and dodge attacks", color: "green" });
@@ -64,6 +65,9 @@ export const startLevel2 = MCFunction(`levels/village_${villageNumber}/level_${l
 
   // Set the spawnpoint
   spawnpoint("@a", levelStartCoords);
+
+  // Kill any residual mobs
+  killAllEnemy();
 
   // Set the level counter
   levelCounterScore.set(levelNumber);
