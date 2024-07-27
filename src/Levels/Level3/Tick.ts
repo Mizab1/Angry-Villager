@@ -74,7 +74,7 @@ export const startLevel3 = MCFunction(`levels/village_${villageNumber}/level_${l
   spawnpoint("@a", levelStartCoords);
 
   // Kill any residual mobs
-  killAllEnemy();
+  execute.at("@a").run(() => killAllEnemy());
 
   // Set the level counter
   levelCounterScore.set(levelNumber);
