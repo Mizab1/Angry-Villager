@@ -1,4 +1,4 @@
-import { Data, execute, loc, MCFunction, particle, rel, scoreboard, Selector, summon, teleport } from "sandstone";
+import { Data, execute, loc, MCFunction, NBT, particle, rel, scoreboard, Selector, summon, teleport } from "sandstone";
 import { self } from "../../Tick";
 import { posX1, posX2, posY1, posY2, posZ1, posZ2 } from "../Tick";
 
@@ -29,6 +29,7 @@ MCFunction(
           .run(() => {
             summon("minecraft:fireball", rel(0, 0, 0), {
               Tags: ["fireball"],
+              ExplosionPower: NBT.byte(2),
             });
 
             // Display thr particle
