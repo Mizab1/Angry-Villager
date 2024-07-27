@@ -3,6 +3,7 @@ import { self } from "./Tick";
 
 export const killAllEnemy = MCFunction("kill_all", () => {
   kill(Selector("@e", { tag: ["enemy", "!no_kill_cmd"] }));
+  kill(Selector("@e", { type: "minecraft:fireball" }));
   execute
     .as(Selector("@e", { type: "minecraft:armor_stand", tag: "tf_catapult" }))
     .at(self)
