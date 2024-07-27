@@ -1,0 +1,16 @@
+{
+  "mappings": {
+    "me/mizab/generic_mod/mixin/PillagerEntityMixin": {
+      "Lnet/minecraft/entity/mob/PillagerEntity;shoot(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/projectile/ProjectileEntity;FF)V": "Lnet/minecraft/class_1604;method_24652(Lnet/minecraft/class_1309;Lnet/minecraft/class_1309;Lnet/minecraft/class_1676;FF)V",
+      "shoot": "Lnet/minecraft/class_1604;method_18811(Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;Lnet/minecraft/class_1676;F)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "me/mizab/generic_mod/mixin/PillagerEntityMixin": {
+        "Lnet/minecraft/entity/mob/PillagerEntity;shoot(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/projectile/ProjectileEntity;FF)V": "Lnet/minecraft/class_1604;method_24652(Lnet/minecraft/class_1309;Lnet/minecraft/class_1309;Lnet/minecraft/class_1676;FF)V",
+        "shoot": "Lnet/minecraft/class_1604;method_18811(Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;Lnet/minecraft/class_1676;F)V"
+      }
+    }
+  }
+}

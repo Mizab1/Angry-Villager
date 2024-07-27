@@ -1,0 +1,2 @@
+v1	named	intermediary
+METHOD	me/mizab/generic_mod/mixin/PillagerEntityMixin	()Lnet/minecraft/entity/mob/IllagerEntity$State;	getState	method_6990
