@@ -76,6 +76,6 @@ MCFunction(
       });
   },
   {
-    runEach: "120t",
+    runEach: "80t",
   }
 );
