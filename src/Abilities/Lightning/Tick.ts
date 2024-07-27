@@ -1,4 +1,4 @@
-import { MCFunction, Objective, Score, Selector, _, execute, loc, playsound, raw, rel, summon } from "sandstone";
+import { MCFunction, Objective, Score, Selector, _, execute, loc, playsound, raw, rel, summon, tellraw } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 
@@ -43,6 +43,11 @@ export const lightningLogic = MCFunction("ability/lightning/logic", () => {
 export const lightningCooldownLogic = MCFunction("ability/lightning/cooldown_logic", () => {
   _.if(cooldownScore.matches([Infinity, COOL_DOWN_TIME - 1]), () => {
     cooldownScore.add(1);
+
+    // Give the feedback
+    _.if(cooldownScore.matches(COOL_DOWN_TIME - 1), () => {
+      tellraw(self, { text: "Lightning Bolt Ability is charged!", color: "dark_purple" });
+    });
     // // ! Change the namespace
     // _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.lightning_ability}` }), () => {
     //   const itemModifier = ItemModifier(abilitiesNamesDict.lightning_ability, {
