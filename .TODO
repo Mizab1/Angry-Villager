@@ -55,10 +55,10 @@
   ✔ Enemies: Villagers with TNT and axes.
   ✔ Special Attacks: TNT explosions.
   ✔ Strategy: Use earthquakes to disrupt TNT placements and create chaos.
-☐ Level 8
-  ☐ Enemies: Villagers with cannons and crossbows.
-  ☐ Special Attacks: Cannon fire.
-  ☐ Strategy: Use divine shield to protect against cannon fire and counterattack.
+✔ Level 8
+  ✔ Enemies: Villagers with cannons and crossbows.
+  ✔ Special Attacks: Cannon fire.
+  ✔ Strategy: Use divine shield to protect against cannon fire and counterattack.
 ☐ Level 9
   ☐ Enemies: Villagers with catapults and magic spells.
   ☐ Special Attacks: Catapult stones and powerful spells.
@@ -75,6 +75,6 @@
   level1    0 150 1000 (-38 150 956),   0 150 1500 (16 150 1537)
   level2   500 150 1000(495 150 1003),   500 150 1500 (500 150 1500)
   level3   1000 150 1000 (1036 150 985),  1000 150 1500 (1000 150 1500)
-  level4   1500 150 1500,  2000 150 1500,   2500 150 1500,  3000 150 1500
+  level4   1500 150 1500 (1488 150 1536),  2000 150 1500 (1988 150 1532),   2500 150 1500,  3000 150 1500
 
 ☐ Kill all the villager and iron golems and cats
