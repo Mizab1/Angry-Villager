@@ -47,10 +47,10 @@
   ✔ Enemies: Wizards with ice spells and villagers with crossbows.
   ✔ Special Attacks: Ice spells that freeze and slow.
   ✔ Strategy: Utilize firestorms to counter ice spells and maintain mobility.
-☐ Level 6
-  ☐ Enemies: Villagers with potions that heal and boost attacks.
-  ☐ Special Attacks: Healing and attack-boosting potions.
-  ☐ Strategy: Focus on eliminating potion-wielding villagers first.
+✔ Level 6
+  ✔ Enemies: Villagers with potions that heal and boost attacks.
+  ✔ Special Attacks: Healing and attack-boosting potions.
+  ✔ Strategy: Focus on eliminating potion-wielding villagers first.
 ☐ Level 7
   ☐ Enemies: Villagers with TNT and axes.
   ☐ Special Attacks: TNT explosions.
@@ -74,7 +74,7 @@
 - Coords
   level1    0 150 1000 (-38 150 956),   0 150 1500 (16 150 1537)
   level2   500 150 1000(495 150 1003),   500 150 1500 (500 150 1500)
-  level3   1000 150 1000 (1036 150 985),  1000 150 1500
+  level3   1000 150 1000 (1036 150 985),  1000 150 1500 (1000 150 1500)
   level4   1500 150 1500,  2000 150 1500,   2500 150 1500,  3000 150 1500
 
 ☐ Kill all the villager and iron golems and cats
