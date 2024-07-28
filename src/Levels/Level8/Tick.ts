@@ -26,7 +26,7 @@ const nextLevel = startLevel9;
 
 const showTip = () => {
   tellraw("@a", {
-    text: "TIP: You are now promoted to Skywalker, meaning that you can fly. You have now unlocked the Shield Ability. Be cautious villagers are now using cannons",
+    text: "TIP: You are now promoted to Skywalker, meaning that you can fly. You reach is also extended. You have now unlocked the Shield Ability. Be cautious villagers are now using cannons",
     color: "green",
   });
 };
