@@ -1,4 +1,18 @@
-import { MCFunction, Objective, Score, Selector, _, execute, kill, particle, playsound, rel, schedule, tag } from "sandstone";
+import {
+  MCFunction,
+  Objective,
+  Score,
+  Selector,
+  _,
+  execute,
+  kill,
+  particle,
+  playsound,
+  rel,
+  schedule,
+  tag,
+  tellraw,
+} from "sandstone";
 import { AXE_TAG } from "../../Attacks/RotatingAxe/Tick";
 import { self } from "../../Tick";
 
@@ -59,6 +73,11 @@ export const divineShieldLogic = MCFunction("ability/divine_shield/logic", () =>
 export const divineShieldCooldownLogic = MCFunction("ability/divine_shield/cooldown_logic", () => {
   _.if(cooldownScore.matches([Infinity, COOL_DOWN_TIME - 1]), () => {
     cooldownScore.add(1);
+
+    // Give the feedback
+    _.if(cooldownScore.matches(COOL_DOWN_TIME - 1), () => {
+      tellraw(self, { text: "Shield Ability is charged!", color: "blue" });
+    });
   }).else(() => {
     cooldownScore.set(COOL_DOWN_TIME);
   });
