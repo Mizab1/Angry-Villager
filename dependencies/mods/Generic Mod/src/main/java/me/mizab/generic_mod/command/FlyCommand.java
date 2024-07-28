@@ -31,9 +31,9 @@ public class FlyCommand {
         if (targets != null) {
             targets.forEach((target) -> {
                 target.getAbilities().allowFlying = true;
-                target.getAbilities().flying = true;
+//                target.getAbilities().flying = true;
                 target.sendAbilitiesUpdate();
-                target.sendMessage(Text.literal("You can now fly"));
+//                target.sendMessage(Text.literal("You can now fly"));
             });
             return 1;
         } else {
@@ -46,9 +46,9 @@ public class FlyCommand {
         if (targets != null) {
             targets.forEach((target) -> {
                 target.getAbilities().allowFlying = false;
-                target.getAbilities().flying = false;
+//                target.getAbilities().flying = false;
                 target.sendAbilitiesUpdate();
-                target.sendMessage(Text.literal("You can no longer fly"));
+//                target.sendMessage(Text.literal("You can no longer fly"));
             });
             return 1;
         } else {
