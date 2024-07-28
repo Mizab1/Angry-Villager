@@ -13,6 +13,7 @@ import {
   raw,
   rel,
   summon,
+  tellraw,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
@@ -67,6 +68,11 @@ export const meteorLogic = MCFunction("ability/meteor/logic", () => {
 export const meteorCooldownLogic = MCFunction("ability/meteor/cooldown_logic", () => {
   _.if(cooldownScore.matches([Infinity, COOL_DOWN_TIME - 1]), () => {
     cooldownScore.add(1);
+
+    // Give the feedback
+    _.if(cooldownScore.matches(COOL_DOWN_TIME - 1), () => {
+      tellraw(self, { text: "Meteor Ability is charged!", color: "green" });
+    });
     // // ! Change the namespace
     // _.if(Selector("@s", { predicate: `angry_villager:${abilitiesNamesDict.meteorAbility}` }), () => {
     //   const itemModifier = ItemModifier(abilitiesNamesDict.meteorAbility, {
