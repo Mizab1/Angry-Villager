@@ -52,7 +52,6 @@ const giveToolsToAllPlayers = MCFunction(`levels/village_${villageNumber}/level_
   // Convert to giant
   // ! MOD USED
   execute.as("@a").run.raw(`scale reset`);
-  raw(`fly enable @a`);
   execute.as("@a").run.raw(`scale set pehkui:entity_reach 30 @a`);
 
   // Give full set of armor
