@@ -85,7 +85,7 @@ export const startLevel1 = MCFunction(`levels/village_${villageNumber}/level_${l
 
 const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/end`, async () => {
   // Kill all the enemy in the level
-  killAllEnemy();
+  execute.at("@a").run(() => killAllEnemy());
 
   // Unset the level started variable
   isStarted.set(0);
