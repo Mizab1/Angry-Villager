@@ -1,4 +1,18 @@
-import { MCFunction, Objective, Score, Selector, _, effect, execute, particle, playsound, rel, schedule, tag } from "sandstone";
+import {
+  MCFunction,
+  Objective,
+  Score,
+  Selector,
+  _,
+  effect,
+  execute,
+  particle,
+  playsound,
+  rel,
+  schedule,
+  tag,
+  tellraw,
+} from "sandstone";
 import { self } from "../../Tick";
 
 // Global Variables
@@ -34,6 +48,11 @@ export const healingLightLogic = MCFunction("ability/healing_light/logic", () =>
 export const healingLightCooldownLogic = MCFunction("ability/healing_light/cooldown_logic", () => {
   _.if(cooldownScore.matches([Infinity, COOL_DOWN_TIME - 1]), () => {
     cooldownScore.add(1);
+
+    // Give the feedback
+    _.if(cooldownScore.matches(COOL_DOWN_TIME - 1), () => {
+      tellraw(self, { text: "Healing Light Ability is charged!", color: "dark_aqua" });
+    });
   }).else(() => {
     cooldownScore.set(COOL_DOWN_TIME);
   });

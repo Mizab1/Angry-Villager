@@ -2,7 +2,7 @@ import { MCFunction, NBT, give } from "sandstone";
 import { self } from "../../Tick";
 import { i } from "../../Utils/UtilFunctions";
 
-const giveHealingLightAbility = MCFunction("ability/healing_light/give", () => {
+export const giveHealingLightAbility = MCFunction("ability/healing_light/give", () => {
   give(
     self,
     i("minecraft:carrot_on_a_stick", {
