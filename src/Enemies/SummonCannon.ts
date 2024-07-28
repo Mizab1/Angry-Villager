@@ -18,6 +18,7 @@ export const summonCannon = MCFunction("enemies/summon_cannon", () => {
     NoAI: NBT.byte(1),
     ActiveEffects: [{ Id: 14, Amplifier: NBT.byte(1), Duration: 999999, ShowParticles: NBT.byte(0) }],
     ArmorItems: [{}, {}, {}, { id: "minecraft:wooden_hoe", Count: NBT.byte(1), tag: { CustomModelData: 100002 } }],
+    ArmorDropChances: [NBT.float(0.085), NBT.float(0.085), NBT.float(0.085), NBT.float(0.0)],
     DeathLootTable: "minecraft:bat",
   });
 });
