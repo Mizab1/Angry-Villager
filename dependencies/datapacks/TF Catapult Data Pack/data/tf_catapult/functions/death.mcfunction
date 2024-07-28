@@ -5,7 +5,7 @@ execute positioned ^-0.1 ^1.6 ^-3.5 run tp @e[tag=tfcp_release,sort=nearest,limi
 tp @e[tag=tfcp_hitbox,sort=nearest,limit=1,distance=0..3] ~ -256 ~
 
 # Drops
-loot spawn ~ ~0.2 ~ loot tf_catapult:entities/catapult
+# loot spawn ~ ~0.2 ~ loot tf_catapult:entities/catapult
 
 # Sounds/particles
 playsound minecraft:block.wood.step block @a ~ ~ ~ 2 1
