@@ -59,14 +59,14 @@
   ✔ Enemies: Villagers with cannons and crossbows.
   ✔ Special Attacks: Cannon fire.
   ✔ Strategy: Use divine shield to protect against cannon fire and counterattack.
-☐ Level 9
-  ☐ Enemies: Villagers with catapults and magic spells.
-  ☐ Special Attacks: Catapult stones and powerful spells.
-  ☐ Strategy: Use a combination of healing light and ice barrage to slow and heal.
-☐ Level 10
-  ☐ Enemies: Villagers with missiles, bombs, and all previous weapons.
-  ☐ Special Attacks: Missiles, bombs, and combined attacks.
-  ☐ Strategy: Use all divine powers to survive this ultimate challenge, focusing on area damage and protection.
+✔ Level 9
+  ✔ Enemies: Villagers with catapults and magic spells.
+  ✔ Special Attacks: Catapult stones and powerful spells.
+  ✔ Strategy: Use a combination of healing light and ice barrage to slow and heal.
+✔ Level 10
+  ✔ Enemies: Villagers with missiles, bombs, and all previous weapons.
+  ✔ Special Attacks: Missiles, bombs, and combined attacks.
+  ✔ Strategy: Use all divine powers to survive this ultimate challenge, focusing on area damage and protection.
 
 - Textures
   ✔ Abilites
@@ -75,7 +75,7 @@
   level1    0 150 1000 (-38 150 956),   0 150 1500 (16 150 1537)
   level2   500 150 1000(495 150 1003),   500 150 1500 (500 150 1500)
   level3   1000 150 1000 (1036 150 985),  1000 150 1500 (1000 150 1500)
-  level4   1500 150 1500 (1488 150 1536),  2000 150 1500 (1988 150 1532),   2500 150 1500,  3000 150 1500
+  level4   1500 150 1500 (1488 150 1536),  2000 150 1500 (1988 150 1532),   2500 150 1500 (2488, 150, 1539),  3000 150 1500 (2981 150 1531)
 
 ☐ Kill all the villager and iron golems and cats
 ☐ Change the pillager sound
