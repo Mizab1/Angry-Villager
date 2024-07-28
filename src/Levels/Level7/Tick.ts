@@ -12,6 +12,7 @@ import { enemyCounterScore, isStarted, levelCounterScore } from "../../Gameplay/
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { i } from "../../Utils/UtilFunctions";
+import { startLevel8 } from "../Level8/Tick";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
@@ -19,7 +20,7 @@ const levelStartCoords = abs(1488, 150, 1536);
 const levelStartViewAngle = abs(180, 0);
 const levelNumber = 7;
 const villageNumber = 4;
-const nextLevel = 0;
+const nextLevel = startLevel8;
 
 const showTip = () => {
   tellraw("@a", {
@@ -165,8 +166,7 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
   await sleep("6s");
 
   // Start the next level
-  // nextLevel();
-  say("Test Completed");
+  nextLevel();
 });
 
 const checkAndEndLevel = MCFunction(
