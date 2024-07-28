@@ -9,6 +9,7 @@ import { startLevel2 } from "../Level2/Tick";
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
 const levelStartCoords = abs(-38, 150, 956);
+const levelStartViewAngle = abs(-29, 1);
 const levelNumber = 1;
 const villageNumber = 1;
 const nextLevel = startLevel2;
@@ -47,7 +48,7 @@ const spawnEnemiesAtCoord = MCFunction(`levels/village_${villageNumber}/level_${
 // ! Don't modify these
 export const startLevel1 = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/start`, async () => {
   // Teleport player to the village
-  teleport("@a", levelStartCoords);
+  teleport("@a", levelStartCoords, levelStartViewAngle);
 
   // Set the spawnpoint
   spawnpoint("@a", levelStartCoords);
@@ -92,7 +93,7 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
   await sleep("1s");
 
   // Display the title to all the player
-  title("@a").title({ text: "You have completed the level!", color: "gold" });
+  title("@a").title({ text: `You have completed the Level ${levelNumber}!`, color: "gold" });
   execute.as("@a").at(self).run.playsound("minecraft:ui.toast.challenge_complete", "master", self);
   clear("@a");
 

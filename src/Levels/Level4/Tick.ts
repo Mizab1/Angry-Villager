@@ -12,6 +12,7 @@ import { startLevel5 } from "../Level5/Tick";
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
 const levelStartCoords = abs(500, 150, 1500);
+const levelStartViewAngle = abs(70, 2);
 const levelNumber = 4;
 const villageNumber = 2;
 const nextLevel = startLevel5;
@@ -81,7 +82,7 @@ const spawnEnemiesAtCoord = MCFunction(`levels/village_${villageNumber}/level_${
 // ! Don't modify these
 export const startLevel4 = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/start`, async () => {
   // Teleport player to the village
-  teleport("@a", levelStartCoords);
+  teleport("@a", levelStartCoords, levelStartViewAngle);
 
   // Set the spawnpoint
   spawnpoint("@a", levelStartCoords);
@@ -132,7 +133,7 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
 
   await sleep("2s");
 
-  tellraw("@a", { text: "Initializing the next level", color: "red" });
+  tellraw("@a", { text: `You have completed the Level ${levelNumber}!`, color: "red" });
 
   await sleep("6s");
 

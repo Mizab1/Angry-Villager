@@ -14,6 +14,7 @@ import { i } from "../../Utils/UtilFunctions";
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
 const levelStartCoords = abs(1036, 150, 985);
+const levelStartViewAngle = abs(58, -1);
 const levelNumber = 5;
 const villageNumber = 3;
 const nextLevel = 0;
@@ -156,7 +157,7 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
   await sleep("1s");
 
   // Display the title to all the player
-  title("@a").title({ text: "You have completed the level!", color: "gold" });
+  title("@a").title({ text: `You have completed the Level ${levelNumber}!`, color: "gold" });
   execute.as("@a").at(self).run.playsound("minecraft:ui.toast.challenge_complete", "master", self);
   clear("@a");
 
