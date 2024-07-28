@@ -1,4 +1,4 @@
-import { effect, execute, gamerule, MCFunction, raw, Selector } from "sandstone";
+import { effect, MCFunction, Selector } from "sandstone";
 
 // Global Variables
 export const self = Selector("@s");
@@ -14,18 +14,5 @@ MCFunction(
   },
   {
     runEachTick: true,
-  }
-);
-
-MCFunction(
-  "load",
-  () => {
-    execute.as("@a").run.raw(`scale reset`);
-    raw(`scale persist set pehkui:base true @a`);
-    gamerule("doFireTick", false);
-    gamerule("commandBlockOutput", false);
-  },
-  {
-    runOnLoad: true,
   }
 );
