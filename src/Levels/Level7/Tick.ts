@@ -1,4 +1,4 @@
-import { _, abs, clear, execute, give, item, MCFunction, NBT, say, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
+import { _, abs, clear, execute, give, item, MCFunction, NBT, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
 import { giveFireStormAbility } from "../../Abilities/FireStorm/Give";
 import { giveLightningAbility } from "../../Abilities/Lightning/Give";
 import { giveMeteorAbility } from "../../Abilities/Meteor/Give";
