@@ -1,20 +1,4 @@
-import {
-  _,
-  abs,
-  clear,
-  execute,
-  give,
-  item,
-  MCFunction,
-  NBT,
-  raw,
-  say,
-  sleep,
-  spawnpoint,
-  teleport,
-  tellraw,
-  title,
-} from "sandstone";
+import { _, abs, clear, execute, give, item, MCFunction, NBT, raw, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
 import { giveDivineShieldAbility } from "../../Abilities/DivineShield/Give";
 import { giveFireStormAbility } from "../../Abilities/FireStorm/Give";
 import { giveHealingLightAbility } from "../../Abilities/HealingLight/Give";
@@ -32,6 +16,7 @@ import { enemyCounterScore, isStarted, levelCounterScore } from "../../Gameplay/
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { i } from "../../Utils/UtilFunctions";
+import { startLevel10 } from "../Level10/Tick";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
@@ -39,7 +24,7 @@ const levelStartCoords = abs(2488, 150, 1539);
 const levelStartViewAngle = abs(180, 0);
 const levelNumber = 9;
 const villageNumber = 4;
-const nextLevel = 0;
+const nextLevel = startLevel10;
 
 const showTip = () => {
   tellraw("@a", {
@@ -201,8 +186,7 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
   await sleep("6s");
 
   // Start the next level
-  // nextLevel();
-  say("Test Completed");
+  nextLevel();
 });
 
 const checkAndEndLevel = MCFunction(
