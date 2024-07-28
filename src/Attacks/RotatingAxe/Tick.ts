@@ -20,7 +20,7 @@ export const rotatingAxeTick = MCFunction("attacks/rotating_axe/tick", () => {
     .if(Selector("@e", { type: "minecraft:armor_stand", tag: AXE_TAG, distance: [Infinity, 1] }))
     .run(() => {
       kill(Selector("@e", { tag: AXE_TAG, distance: [Infinity, 3] }));
-      raw(`damage @s 2`);
+      raw(`damage @s 3`);
     });
 });
 
