@@ -1,4 +1,19 @@
-import { MCFunction, NBT, Objective, Score, Selector, _, execute, kill, loc, playsound, raw, rel, summon } from "sandstone";
+import {
+  MCFunction,
+  NBT,
+  Objective,
+  Score,
+  Selector,
+  _,
+  execute,
+  kill,
+  loc,
+  playsound,
+  raw,
+  rel,
+  summon,
+  tellraw,
+} from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 import { setScreenShakeTimer, shakeScreen } from "../../Utils/ScreenShake";
@@ -62,6 +77,11 @@ export const earthquakeLogic = MCFunction("ability/earthquake/logic", () => {
 export const earthquakeCooldownLogic = MCFunction("ability/earthquake/cooldown_logic", () => {
   _.if(cooldownScore.matches([Infinity, COOL_DOWN_TIME - 1]), () => {
     cooldownScore.add(1);
+
+    // Give the feedback
+    _.if(cooldownScore.matches(COOL_DOWN_TIME - 1), () => {
+      tellraw(self, { text: "Earthquake Ability is charged!", color: "light_purple" });
+    });
   }).else(() => {
     cooldownScore.set(COOL_DOWN_TIME);
   });
