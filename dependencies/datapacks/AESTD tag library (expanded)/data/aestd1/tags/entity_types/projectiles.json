@@ -56,6 +56,10 @@
 		{
 			"id": "minecraft:wither_skull",
 			"required": false
+		},
+		{
+			"id": "minecraft:tnt",
+			"required": false
 		}
 	]
 }
