@@ -2,7 +2,7 @@ import { MCFunction, NBT, give } from "sandstone";
 import { self } from "../../Tick";
 import { i } from "../../Utils/UtilFunctions";
 
-const giveDivineShieldAbility = MCFunction("ability/divine_shield/give", () => {
+export const giveDivineShieldAbility = MCFunction("ability/divine_shield/give", () => {
   give(
     self,
     i("minecraft:carrot_on_a_stick", {

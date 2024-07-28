@@ -2,7 +2,7 @@ import { ENTITY_TYPES, MCFunction, NBT, rel, summon } from "sandstone";
 
 export const cannonEntity: ENTITY_TYPES = "minecraft:zombie";
 
-const summonCannon = MCFunction("enemies/summon_cannon", () => {
+export const summonCannon = MCFunction("enemies/summon_cannon", () => {
   // summon("minecraft:armor_stand", rel(0, 0, 0), {
   //   Invisible: NBT.byte(1),
   //   Tags: ["cannon"],
