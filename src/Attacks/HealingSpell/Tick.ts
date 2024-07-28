@@ -2,7 +2,7 @@ import { effect, execute, MCFunction, particle, rel, Selector } from "sandstone"
 import { self } from "../../Tick";
 
 // The effective distance within which healer can heal
-const healingDistance: number = 15;
+const healingDistance: number = 20;
 
 MCFunction(
   "attacks/healing_spell/tick",
@@ -12,7 +12,7 @@ MCFunction(
       .at(self)
       .run(() => {
         // Display the particle
-        particle("minecraft:instant_effect", rel(0, 1, 0), [2, 0.5, 2], 0.5, 30, "force");
+        particle("minecraft:instant_effect", rel(0, 1, 0), [3, 0.5, 3], 0.5, 40, "force");
 
         execute
           .as(Selector("@e", { tag: "enemy", distance: [Infinity, healingDistance] }))
