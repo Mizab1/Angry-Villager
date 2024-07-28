@@ -52,6 +52,7 @@ export const divineShieldTick = MCFunction(
       // Kill or deflect all the attacks from the player
       kill(Selector("@e", { type: "#aestd1:projectiles", distance: [Infinity, SPHERE_RADIUS + 1] }));
       kill(Selector("@e", { tag: AXE_TAG, distance: [Infinity, SPHERE_RADIUS + 1] }));
+      kill(Selector("@e", { type: "minecraft:armor_stand", tag: "tfcp_proj" }));
     });
   },
   {
