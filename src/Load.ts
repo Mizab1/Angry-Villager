@@ -1,4 +1,4 @@
-import { MCFunction, execute, raw, gamerule } from "sandstone";
+import { MCFunction, execute, gamerule, raw } from "sandstone";
 
 MCFunction(
   "load",
