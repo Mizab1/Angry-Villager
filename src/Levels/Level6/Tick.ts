@@ -22,7 +22,7 @@ const nextLevel = startLevel7;
 
 const showTip = () => {
   tellraw("@a", {
-    text: "TIP: Look out for healers, they cab heal these enemies. Kill them first",
+    text: "TIP: Look out for healers, they can heal these enemies. Kill them first",
     color: "green",
   });
 };
