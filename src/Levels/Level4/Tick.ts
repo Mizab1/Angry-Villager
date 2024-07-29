@@ -127,13 +127,13 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
   await sleep("1s");
 
   // Display the title to all the player
-  title("@a").title({ text: "You have completed the level!", color: "gold" });
+  title("@a").title({ text: `You have completed the Level ${levelNumber}!`, color: "gold" });
   execute.as("@a").at(self).run.playsound("minecraft:ui.toast.challenge_complete", "master", self);
   clear("@a");
 
   await sleep("2s");
 
-  tellraw("@a", { text: `You have completed the Level ${levelNumber}!`, color: "red" });
+  tellraw("@a", { text: "Initializing the next level", color: "red" });
 
   await sleep("6s");
 
