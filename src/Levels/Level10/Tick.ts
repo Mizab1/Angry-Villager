@@ -3,10 +3,12 @@ import {
   abs,
   clear,
   execute,
+  gamemode,
   give,
   item,
   MCFunction,
   NBT,
+  playsound,
   raw,
   say,
   sleep,
@@ -207,13 +209,33 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
 
   await sleep("2s");
 
-  tellraw("@a", { text: "Initializing the next level", color: "red" });
+  tellraw("@a", { text: "Initializing the Celebration Room", color: "red" });
 
   await sleep("6s");
 
-  // Start the next level
-  // nextLevel();
-  say("Test Completed");
+  gamemode("creative", "@a");
+
+  // Teleport to celebration room
+  teleport("@a", abs(2428, 161, 1006), abs(180, 0));
+
+  // Play the sound
+  playsound("minecraft:music_disc.pigstep", "master", "@a", abs(2428, 161, 1006));
+
+  await sleep("30t");
+
+  // Fireworks
+  raw(
+    `summon firework_rocket 2424 163 1003 {LifeTime:1,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:4,Flicker:1b,Trail:1b,Colors:[I;7067903]},{Type:4,Flicker:1b,Trail:1b,Colors:[I;16772958]}]}}}}`
+  );
+  raw(
+    `summon firework_rocket 2432 163 1003 {LifeTime:1,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:4,Flicker:1b,Trail:1b,Colors:[I;7067903]},{Type:4,Flicker:1b,Trail:1b,Colors:[I;16772958]}]}}}}`
+  );
+  raw(
+    `summon firework_rocket 2432 163 1008 {LifeTime:1,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:4,Flicker:1b,Trail:1b,Colors:[I;7067903]},{Type:4,Flicker:1b,Trail:1b,Colors:[I;16772958]}]}}}}`
+  );
+  raw(
+    `summon firework_rocket 2424 163 1008 {LifeTime:1,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:4,Flicker:1b,Trail:1b,Colors:[I;7067903]},{Type:4,Flicker:1b,Trail:1b,Colors:[I;16772958]}]}}}}`
+  );
 });
 
 const checkAndEndLevel = MCFunction(
