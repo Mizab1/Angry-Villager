@@ -23,7 +23,7 @@ import { RunOnce } from "../../Utils/UtilFunctions";
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("fr_stm_cdn", "dummy")("@s");
 const fireStormLifeScore: Score<string> = Objective.create("fire_storm_life", "dummy")("@s");
-const COOL_DOWN_TIME = 250;
+const COOL_DOWN_TIME = 220;
 const FIRE_STORM_LIFE = 360;
 
 // ! Ticking function
@@ -103,7 +103,7 @@ const fireStormRunningLogic = MCFunction("ability/fire_storm/fire_storm_running_
       });
 
       // Particle to be displayed as the tornado
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 30; i++) {
         particle(
           "minecraft:sweep_attack",
           rel(0, 0.5 + i * 1.3, 0),
@@ -117,17 +117,10 @@ const fireStormRunningLogic = MCFunction("ability/fire_storm/fire_storm_running_
           rel(0, 0.5 + i * 1.3, 0),
           [(0.5 * i) / 2, 0.2, (0.5 * i) / 2],
           0.15,
-          Math.round(3 * (i / 3)),
+          Math.round(3 * (i / 8)),
           "force"
         );
-        // particle(
-        //   "minecraft:soul_fire_flame",
-        //   rel(0, 0.5 + i * 1.3, 0),
-        //   [(0.5 * i) / 2, 0.2, (0.5 * i) / 2],
-        //   0.15,
-        //   Math.round(2 * (i / 3)),
-        //   "force"
-        // );
+        particle("minecraft:smoke", rel(0, 0.5 + i * 1.3, 0), [0.3 * i, 0.2, 0.3 * i], 0.5, Math.round(3 * (i / 10)), "force");
       }
 
       // Push entities
