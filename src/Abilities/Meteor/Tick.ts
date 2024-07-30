@@ -93,7 +93,7 @@ export const meteorCooldownLogic = MCFunction("ability/meteor/cooldown_logic", (
 
 const summonMeteor = MCFunction("ability/meteor/summon_meteor", () => {
   // ! Use this with a positional offset
-  summon("minecraft:armor_stand", rel(0, 0, 0), {
+  execute.align("xyz").run.summon("minecraft:armor_stand", rel(-0.5, 0, -0.5), {
     Invisible: NBT.byte(1),
     Tags: ["falling_meteor"],
     ArmorItems: [{}, {}, {}, { id: "minecraft:wooden_hoe", Count: NBT.byte(1), tag: { CustomModelData: 100001 } }],
@@ -108,8 +108,9 @@ const fallingMeteorLogic = MCFunction("ability/meteor/meteor_explode", () => {
       // If the meteor if in the air, display the particles
       particle("minecraft:flame", rel(0, 6, 0), [0.5, 0.5, 0.5], 0.1, 6, "force");
       particle("minecraft:campfire_cosy_smoke", rel(0, 6, 0), [0.5, 0.5, 0.5], 0.05, 3, "force");
+
       // Check if the armor stand/ Meteor is on the ground
-      execute.unless.block(rel(0, -0.35, 0), "#aestd1:air").run(() => {
+      _.if(_.not(_.block(rel(0, -0.5, 0), "#aestd1:air")), () => {
         // Create a impact explosion
         summon("minecraft:creeper", rel(0, 0, 0), {
           ExplosionRadius: NBT.byte(4),
