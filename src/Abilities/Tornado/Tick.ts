@@ -22,7 +22,7 @@ import { RunOnce } from "../../Utils/UtilFunctions";
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("tornado_cooldown", "dummy")("@s");
 const tornadoLifeScore: Score<string> = Objective.create("tornado_life", "dummy")("@s");
-const COOL_DOWN_TIME = 100;
+const COOL_DOWN_TIME = 20;
 const TORNADO_LIFE = 240;
 
 // ! Ticking function
@@ -111,7 +111,7 @@ const tornadoRunningLogic = MCFunction("ability/tornado/tornado_running_logic", 
       });
 
       // Particle to be displayed as the tornado
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 30; i++) {
         particle(
           "minecraft:sweep_attack",
           rel(0, 0.5 + i * 1.3, 0),
@@ -120,7 +120,17 @@ const tornadoRunningLogic = MCFunction("ability/tornado/tornado_running_logic", 
           Math.round(3 * (i / 3)),
           "force"
         );
+        particle(
+          "minecraft:falling_dust",
+          "minecraft:gray_concrete_powder",
+          rel(0, 0.5 + i * 1.3, 0),
+          [0.3 * i, 0.2, 0.3 * i],
+          1,
+          Math.round(3 * (i / 10)),
+          "force"
+        );
       }
+      particle("minecraft:block", "minecraft:dirt", rel(0, 0, 0), [1.5, 0, 1.5], 1, 50, "force");
 
       // Push entities
       _.if(tornadoLifeScore.moduloBy(10).matches(0), () => {
