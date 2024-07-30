@@ -20,7 +20,7 @@ import { self } from "../../Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("meteor_cooldown", "dummy")("@s");
-const COOL_DOWN_TIME = 60;
+const COOL_DOWN_TIME = 80;
 
 // ! Ticking function
 export const meteorTick = MCFunction(
@@ -112,7 +112,7 @@ const fallingMeteorLogic = MCFunction("ability/meteor/meteor_explode", () => {
       execute.unless.block(rel(0, -0.35, 0), "#aestd1:air").run(() => {
         // Create a impact explosion
         summon("minecraft:creeper", rel(0, 0, 0), {
-          ExplosionRadius: NBT.byte(2),
+          ExplosionRadius: NBT.byte(4),
           Fuse: 0,
           ignited: NBT.byte(1),
         });
