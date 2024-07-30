@@ -22,7 +22,7 @@ import { RunOnce } from "../../Utils/UtilFunctions";
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("tornado_cooldown", "dummy")("@s");
 const tornadoLifeScore: Score<string> = Objective.create("tornado_life", "dummy")("@s");
-const COOL_DOWN_TIME = 20;
+const COOL_DOWN_TIME = 160;
 const TORNADO_LIFE = 240;
 
 // ! Ticking function
