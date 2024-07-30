@@ -1,4 +1,4 @@
-import { effect, execute, MCFunction, Objective, raw, scoreboard, Selector, tellraw } from "sandstone";
+import { _, effect, execute, MCFunction, Objective, raw, scoreboard, Selector, tellraw } from "sandstone";
 import { countEnemies } from "./EnemyCounter";
 
 // Side scores for information
@@ -33,8 +33,10 @@ MCFunction(
 MCFunction(
   "gameplay/highlight_enemies",
   () => {
-    effect.give(Selector("@e", { tag: "enemy" }), "minecraft:glowing", 6, 1, false);
-    tellraw("@a", { text: "All enemies are highlighted", color: "red" });
+    _.if(isStarted.equalTo(1), () => {
+      effect.give(Selector("@e", { tag: "enemy" }), "minecraft:glowing", 6, 1, false);
+      tellraw("@a", { text: "All enemies are highlighted", color: "red" });
+    });
   },
   {
     runEach: "60s",
