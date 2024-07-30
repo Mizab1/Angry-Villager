@@ -78,6 +78,21 @@
   level4   1500 150 1500 (1488 150 1536),  2000 150 1500 (1988 150 1532),   2500 150 1500 (2488, 150, 1539),  3000 150 1500 (2981 150 1531)
 
 ✔ Kill all the villager and iron golems and cats
-☐ /trigger highlight
-☐ /function angry_villager:kill_all
-☐ /tp @s 2443 180 1003 180 0
+/trigger highlight
+/function angry_villager:kill_all
+/tp @s 2443 180 1003 180 0
+
+- Tasks
+✔ 1) remove drops from pillagers
+✔ 2) the glow effect could be automatic, after 60 seconds or 90 seconds fighting
+☐ 3) if you are giant, you should have more strenght
+✔ 4) if I remember good, there's a way to make the colddown visual in the items bar
+✔ 5) can u develop more in detail the tornado and the fire tornado, like implement a circle rounding particles to it looks better and more like a tornado instead it looks more like a cloud
+✔ 6) what happen when you die
+✔ 7) meteor should to be more massive explosion
+✔ 8) when I was in the level 3 it say level 4
+☐ 9) level 7 is pretty hard, you should reduce the colddown maybe for the first attacks 
+✔ Remove meteor positional bug
+☐ Add image of fabric installer in zip
+✔ Run glow effect on when the level is started 
+
