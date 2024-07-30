@@ -6,6 +6,7 @@ MCFunction("enemies/summon_normal_vindicator", () => {
 
 export const summonNormalVindicator = (damage: number = 6, axeName: ITEMS = "minecraft:wooden_axe") => {
   summon("minecraft:vindicator", rel(0, 0, 0), {
+    DeathLootTable: "minecraft:bat",
     CustomName: '{"text":"Axe Wielder"}',
     PersistenceRequired: NBT.byte(1),
     CanPickUpLoot: NBT.byte(0),

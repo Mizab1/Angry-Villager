@@ -2,6 +2,7 @@ import { MCFunction, NBT, rel, summon } from "sandstone";
 
 export const summonNormalPillager = MCFunction("enemies/summon_normal_pillager", () => {
   summon("minecraft:pillager", rel(0, 0, 0), {
+    DeathLootTable: "minecraft:bat",
     CustomName: '{"text":"Soldier"}',
     PersistenceRequired: NBT.byte(1),
     CanPickUpLoot: NBT.byte(0),

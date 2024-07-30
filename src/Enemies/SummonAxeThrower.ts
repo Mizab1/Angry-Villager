@@ -2,6 +2,7 @@ import { MCFunction, NBT, rel, summon } from "sandstone";
 
 export const summonAxeThrower = MCFunction("enemies/summon_axe_thrower", () => {
   summon("minecraft:vindicator", rel(0, 0, 0), {
+    DeathLootTable: "minecraft:bat",
     CustomName: '{"text":"Axe Thrower"}',
     PersistenceRequired: NBT.byte(1),
     CanPickUpLoot: NBT.byte(0),
