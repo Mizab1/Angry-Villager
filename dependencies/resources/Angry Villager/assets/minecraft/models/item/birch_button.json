@@ -1,0 +1,10 @@
+{
+    "parent": "block/birch_button_inventory",
+    "overrides": [
+        {"predicate": {"custom_model_data": 10006}, "model": "item/devices/defense_drone"},
+        {"predicate": {"custom_model_data": 10007}, "model": "item/devices/defense_drone_hostile"},
+        {"predicate": {"custom_model_data": 10008}, "model": "item/devices/turret_base"},
+        {"predicate": {"custom_model_data": 10009}, "model": "item/devices/turret"},
+        {"predicate": {"custom_model_data": 10058}, "model": "item/redstone_turret"}
+    ]
+}
