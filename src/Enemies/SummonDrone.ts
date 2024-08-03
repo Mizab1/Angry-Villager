@@ -2,6 +2,7 @@ import { execute, MCFunction, NBT, rel, Selector, summon } from "sandstone";
 import { self } from "../Tick";
 
 export const summonDrone = MCFunction("enemies/summon_drone", () => {
+  // Summon drone model
   summon("minecraft:bee", rel(0, 0, 0), {
     NoAI: NBT.byte(1),
     Silent: NBT.byte(1),
