@@ -8,8 +8,8 @@ import { startLevel2 } from "../Level2/Tick";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
-const levelStartCoords = abs(-38, 150, 956);
-const levelStartViewAngle = abs(-29, 1);
+const levelStartCoords = abs(314, 19, 135);
+const levelStartViewAngle = abs(-152, 1);
 const levelNumber = 1;
 const villageNumber = 1;
 const nextLevel = startLevel2;
