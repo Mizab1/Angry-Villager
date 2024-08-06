@@ -1,6 +1,7 @@
 import { execute, MCFunction, Objective, rel, Selector, teleport } from "sandstone";
 import { self } from "../Tick";
 import { rotatingAxeTick } from "./RotatingAxe/Tick";
+import { tankTick } from "./Tank/Tick";
 
 // Create scores for storing the position
 export const posX1 = Objective.create("pos_x1", "dummy")("@s");
@@ -16,6 +17,9 @@ MCFunction(
   () => {
     // Tick function for rotating axe
     rotatingAxeTick();
+
+    // Run the tick function for tanks
+    tankTick();
 
     // Rotate the entities that have rotate tag
     execute
