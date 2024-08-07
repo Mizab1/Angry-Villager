@@ -1,6 +1,6 @@
 import { MCFunction, Objective, Score, Selector, _, effect, playsound, rel, schedule, tellraw } from "sandstone";
-import { isTemporalOngoing } from "../../Gameplay/Tick";
 import { self } from "../../Tick";
+import { isTemporalOngoing } from "../../Gameplay/Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("tempo_cdn", "dummy")("@s");
