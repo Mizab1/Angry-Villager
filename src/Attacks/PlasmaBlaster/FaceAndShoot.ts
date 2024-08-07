@@ -1,6 +1,7 @@
 import { execute, loc, MCFunction, raw, rel, Selector, teleport } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
+import { isTemporalOngoing } from "../../Gameplay/Tick";
 
 // Constants to configure the blaster
 const firingDistance: number = 30;
@@ -36,6 +37,7 @@ MCFunction(
     execute
       .as(Selector("@e", { type: "minecraft:zombie", tag: "plasma_blaster" }))
       .at(self)
+      .if(isTemporalOngoing.equalTo(0))
       .if(Selector("@a", { distance: [Infinity, firingDistance] }))
       .anchored("eyes")
       .run(() => {

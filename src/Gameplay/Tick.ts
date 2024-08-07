@@ -1,4 +1,4 @@
-import { _, effect, execute, MCFunction, Objective, raw, scoreboard, Selector, tellraw } from "sandstone";
+import { _, effect, execute, kill, MCFunction, Objective, raw, scoreboard, Selector, tellraw } from "sandstone";
 import { countEnemies } from "./EnemyCounter";
 
 // Side scores for information
@@ -25,6 +25,11 @@ MCFunction(
   "gameplay/tick",
   () => {
     countEnemies();
+    execute.if(isTemporalOngoing.equalTo(1)).run(() => {
+      kill(Selector("@e", { type: "minecraft:armor_stand", tag: "missile" }));
+      kill(Selector("@e", { type: "minecraft:tnt" }));
+      kill(Selector("@e", { type: "minecraft:armor_stand", tag: "tfcp_proj" }));
+    });
   },
   {
     runEachTick: true,
