@@ -28,6 +28,7 @@ MCFunction(
     execute.if(isTemporalOngoing.equalTo(1)).run(() => {
       kill(Selector("@e", { type: "minecraft:armor_stand", tag: "missile" }));
       kill(Selector("@e", { type: "minecraft:tnt" }));
+      kill(Selector("@e", { type: "minecraft:arrow" }));
       kill(Selector("@e", { type: "minecraft:armor_stand", tag: "tfcp_proj" }));
     });
   },
