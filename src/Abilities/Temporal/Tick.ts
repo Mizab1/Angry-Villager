@@ -1,4 +1,5 @@
-import { MCFunction, Objective, Score, Selector, _, effect, playsound, rel, tellraw } from "sandstone";
+import { MCFunction, Objective, Score, Selector, _, effect, playsound, rel, schedule, tellraw } from "sandstone";
+import { isTemporalOngoingScore } from "../../Gameplay/Tick";
 import { self } from "../../Tick";
 
 // Global Variables
@@ -14,9 +15,16 @@ export const temporalTick = MCFunction("ability/temporal/tick", () => {}, {
 // * Functions
 export const temporalLogic = MCFunction("ability/temporal/logic", () => {
   _.if(cooldownScore.matches(COOL_DOWN_TIME), () => {
-    playsound("minecraft:item.trident.thunder", "master", "@a", rel(0, 0, 0), 1, 0.2);
+    playsound("minecraft:item.trident.thunder", "master", self, rel(0, 0, 0), 1, 0.4);
 
     effect.give(Selector("@e", { tag: "enemy" }), "minecraft:slowness", FREEZE_FOR, 100);
+    isTemporalOngoingScore.set(1);
+
+    cooldownScore.set(0);
+
+    schedule.function(() => {
+      isTemporalOngoingScore.set(0);
+    }, FREEZE_FOR + "s");
   }).else(() => {
     playsound("minecraft:block.anvil.land", "master", self, rel(0, 0, 0), 0.6, 1.5);
   });
@@ -26,7 +34,7 @@ export const temporalCooldownLogic = MCFunction("ability/temporal/cooldown_logic
     cooldownScore.add(1);
     // Give the feedback
     _.if(cooldownScore.matches(COOL_DOWN_TIME - 1), () => {
-      tellraw(self, { text: "Stop Time Ability is charged!", color: "dark_purple" });
+      tellraw(self, { text: "Stop Time Ability is charged!", color: "dark_green" });
     });
   }).else(() => {
     cooldownScore.set(COOL_DOWN_TIME);

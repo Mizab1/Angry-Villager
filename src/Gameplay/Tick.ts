@@ -9,6 +9,7 @@ export const levelCounterScore = gameScoreboard("Level:");
 // Private Scoreboard
 const gameplayPrivateScoreboard = Objective.create("pvt_gmply", "dummy");
 export const isStarted = gameplayPrivateScoreboard("is_started");
+export const isTemporalOngoingScore = gameplayPrivateScoreboard("is_temporal_ongoing");
 
 MCFunction(
   "gameplay/load",
