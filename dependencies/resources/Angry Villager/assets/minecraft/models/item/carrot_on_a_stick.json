@@ -12,6 +12,7 @@
       { "predicate": {"custom_model_data":100006}, "model": "item/abilities/ice_barrage"},
       { "predicate": {"custom_model_data":100007}, "model": "item/abilities/healing_light"},
       { "predicate": {"custom_model_data":100008}, "model": "item/abilities/divine_shield"},
+      { "predicate": {"custom_model_data":100009}, "model": "item/abilities/temporal"},
       { "predicate": {"custom_model_data":2300001}, "model": "item/catapult_empty1"}
   ]
 }
