@@ -6,7 +6,7 @@ export const summonRobot = MCFunction("enemies/summon_robot", () => {
     CustomName: '{"text":"Robot"}',
     PersistenceRequired: NBT.byte(1),
     CanPickUpLoot: NBT.byte(0),
-    Tags: ["enemy", " robot"],
+    Tags: ["enemy", "robot"],
     Health: NBT.float(20),
     HandItems: [{ id: "minecraft:wooden_hoe", Count: NBT.byte(1), tag: { CustomModelData: 100007 } }, {}],
     HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
