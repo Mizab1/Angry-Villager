@@ -9,6 +9,7 @@
       { "predicate": {"custom_model_data":100003}, "model": "item/objects/tank"},
       { "predicate": {"custom_model_data":100004}, "model": "item/objects/missile_launcher"},
       { "predicate": {"custom_model_data":100005}, "model": "item/objects/futuristic_missile_launcher"},
-      { "predicate": {"custom_model_data":100006}, "model": "item/objects/plasma_blaster"}
+      { "predicate": {"custom_model_data":100006}, "model": "item/objects/plasma_blaster"},
+      { "predicate": {"custom_model_data":100007}, "model": "item/objects/laser_pistol"}
   ]
 }
