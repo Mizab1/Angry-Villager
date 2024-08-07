@@ -1,6 +1,7 @@
 import { execute, kill, MCFunction, raw, Selector } from "sandstone";
 import { self } from "../../Tick";
 import { summonRotatingAxe } from "./summonAxe";
+import { isTemporalOngoing } from "../../Gameplay/Tick";
 
 export const AXE_TAG = "rotating_axe";
 
@@ -31,6 +32,7 @@ MCFunction(
     execute
       .as(Selector("@e", { type: "minecraft:vindicator", tag: "axe_thrower" }))
       .at(self)
+      .if(isTemporalOngoing.equalTo(0))
       .run(() => {
         summonRotatingAxe();
       });
