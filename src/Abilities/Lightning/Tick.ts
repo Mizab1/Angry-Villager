@@ -48,12 +48,12 @@ export const lightningLogic = MCFunction("ability/lightning/logic", () => {
             raw(`particle dust 0.941 0.941 0.941 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
           }),
           MCFunction("raycast/lightning/hit", () => {
+            // Run the function to spawn lightning
+            summonLightning();
+
             // Spawn particle pattern
             execute.positioned(rel(0, 0.35, 0)).run(() => spawnCirclesPattern());
             execute.positioned(rel(0, 30, 0)).run(() => spawnCirclesPattern());
-
-            // Run the function to spawn lightning
-            summonLightning();
 
             // Schedule the function to kill the particle
             schedule.function(() => {
@@ -103,11 +103,11 @@ const summonLightning = MCFunction("ability/lightning/summon_lightning", () => {
   // Summon lightning on the nearby entity
   _.if(isUpgradedLightningAbility.equalTo(1), () => {
     weather.thunder(20 * 6);
-    execute.at(Selector("@e", { distance: [Infinity, 40] })).run(() => {
+    execute.at(Selector("@e", { type: "!#aestd1:non_living_entity_with_player", distance: [Infinity, 40] })).run(() => {
       summon("minecraft:lightning_bolt", rel(0, 0, 0), { Tags: ["lightning_bolt"] });
     });
   }).else(() => {
-    execute.at(Selector("@e", { distance: [Infinity, 6] })).run(() => {
+    execute.at(Selector("@e", { type: "!#aestd1:non_living_entity_with_player", distance: [Infinity, 6] })).run(() => {
       summon("minecraft:lightning_bolt", rel(0, 0, 0), { Tags: ["lightning_bolt"] });
       // execute.positioned(rel(0, 0.35, 0)).run(() => spawnCirclesPattern());
     });
