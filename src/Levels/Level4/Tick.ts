@@ -47,14 +47,14 @@ const nextLevel = startLevel5;
 
 const showTip = () => {
   tellraw("@a", {
-    text: "TIP: You unlocked Healing Light and Meteor Ability and upgraded lightning power. Watch out for catapult!",
+    text: "TIP: You unlocked Healing Light and Meteor Ability. Watch out for catapult!",
     color: "green",
   });
 };
 
 const giveToolsToAllPlayers = MCFunction(`levels/level_${levelNumber}/give_tools_to_players`, () => {
   // Disable the upgraded ability
-  isUpgradedLightningAbility.set(1);
+  isUpgradedLightningAbility.set(0);
   isUpgradedMeteorAbility.set(0);
 
   // Change the gamemode
