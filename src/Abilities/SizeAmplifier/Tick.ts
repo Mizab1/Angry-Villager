@@ -30,7 +30,7 @@ export const sizeAmplifierLogic = MCFunction("ability/size_amplifier/logic", () 
     schedule.function(() => {
       // Revert the size
       // ! MOD USED
-      raw(`scale reset pehkui:base @a`);
+      raw(`scale set pehkui:base 1 @a`);
       raw(`scale reset pehkui:entity_reach @a`);
     }, DURATION + "s");
   }).else(() => {
