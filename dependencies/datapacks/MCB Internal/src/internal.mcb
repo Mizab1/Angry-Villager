@@ -1,7 +1,8 @@
 function tick minecraft:tick{
     execute unless entity @e[type=armor_stand,tag=missile] run stopsound @a master item.trident.thunder
     execute as @e[type=armor_stand,tag=missile,tag=!lockon] at @s run tp @s ^ ^ ^0.25 ~ ~
-    execute as @e[type=minecraft:armor_stand,tag=missile] at @s anchored eyes run particle minecraft:flame ^ ^ ^-2 0.05 0.05 0.05 0.01 30
+    execute as @e[type=minecraft:armor_stand,tag=fire_missile] at @s anchored eyes run particle minecraft:flame ^ ^ ^-2 0.05 0.05 0.05 0.01 30
+    execute as @e[type=minecraft:armor_stand,tag=futuristic_missile] at @s anchored eyes run particle minecraft:dust 1.000 0.000 1.000 1 ^ ^ ^-2 0.05 0.05 0.05 0.01 30
     execute as @e[type=armor_stand,tag=missile] at @s run{
         execute if entity @a[distance=..1] run{
             summon creeper ~ ~ ~ {ExplosionRadius:-1b,Fuse:1,ignited:1b,Tags:["lasercreeper"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:4000,ShowParticles:0b}]}
@@ -36,7 +37,7 @@ function missiles{
         } 
     }
 
-    summon armor_stand ~ ~ ~ {Rotation:[0f,-60f],NoGravity:1b,Invulnerable:1b,Invisible:1b,Tags:["missile"],Pose:{Head:[-20f,0f,1f]},ArmorItems:[{},{},{},{id:"minecraft:blue_dye",Count:1b}]}
+    summon armor_stand ~ ~ ~ {Rotation:[0f,-60f],NoGravity:1b,Invulnerable:1b,Invisible:1b,Tags:["fire_missile","missile"],Pose:{Head:[-20f,0f,1f]},ArmorItems:[{},{},{},{id:"minecraft:wooden_hoe",Count:1b, tag:{CustomModelData:100008}}]}
 
     execute as @e[type=armor_stand,tag=missile] at @s run tp @s ~ ~ ~ ~ -40
 
@@ -48,6 +49,31 @@ function missiles{
     }
 }
 
+# Call this function to spawn missile
+function futuristic_missile{
+    execute at @a run{
+        playsound item.trident.thunder master @a ~ ~ ~ 0.25 2
+        playsound minecraft:item.trident.throw master @a ~ ~ ~ 1 1.5 1
+    } 
+
+    schedule 50t append{
+        execute at @a run{
+            playsound item.trident.thunder master @a ~ ~ ~ 0.25 2
+            playsound minecraft:item.trident.throw master @a ~ ~ ~ 1 1.5 1
+        } 
+    }
+
+    summon armor_stand ~ ~ ~ {Rotation:[0f,-60f],NoGravity:1b,Invulnerable:1b,Invisible:1b,Tags:["futuristic_missile", "missile"],Pose:{Head:[-20f,0f,1f]},ArmorItems:[{},{},{},{id:"minecraft:wooden_hoe",Count:1b, tag:{CustomModelData:100009}}]}
+
+    execute as @e[type=armor_stand,tag=missile] at @s run tp @s ~ ~ ~ ~ -40
+
+    schedule 50t append{
+        tag @e[type=armor_stand,tag=missile] add lockon
+    }
+    schedule 76t append{
+        tag @e[type=armor_stand,tag=missile] add lockon
+    }
+}
 
 
 tag entity_types damaging_entities {

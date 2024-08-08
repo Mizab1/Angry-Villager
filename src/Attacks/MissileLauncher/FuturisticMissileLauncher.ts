@@ -14,21 +14,21 @@ MCFunction(
           particle("minecraft:campfire_cosy_smoke", rel(0, 1, 0), [0.5, 0.5, 0.5], 0.1, 3);
           particle("minecraft:cloud", rel(0, 1, 0), [0.5, 0.5, 0.5], 0.4, 10);
 
-          functionCmd("internal:missiles");
+          functionCmd("internal:futuristic_missile");
         });
         execute.positioned(rel(1, 1, 1)).run(() => {
           // Display particle
           particle("minecraft:campfire_cosy_smoke", rel(0, 1, 0), [0.5, 0.5, 0.5], 0.1, 3);
           particle("minecraft:cloud", rel(0, 1, 0), [0.5, 0.5, 0.5], 0.4, 10);
 
-          functionCmd("internal:missiles");
+          functionCmd("internal:futuristic_missile");
         });
         execute.positioned(rel(-1, 1, 1)).run(() => {
           // Display particle
           particle("minecraft:campfire_cosy_smoke", rel(0, 1, 0), [0.5, 0.5, 0.5], 0.1, 3);
           particle("minecraft:cloud", rel(0, 1, 0), [0.5, 0.5, 0.5], 0.4, 10);
 
-          functionCmd("internal:missiles");
+          functionCmd("internal:futuristic_missile");
         });
       });
   },
