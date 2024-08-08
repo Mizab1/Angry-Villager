@@ -16,7 +16,13 @@ import {
 import { summonAxeThrower } from "../../Enemies/SummonAxeThrower";
 import { summonNormalPillager } from "../../Enemies/SummonNormalPillager";
 import { summonNormalVindicator } from "../../Enemies/SummonNormalVindicator";
-import { enemyCounterScore, isStarted, isUpgradedLightningAbility, levelCounterScore } from "../../Gameplay/Tick";
+import {
+  enemyCounterScore,
+  isStarted,
+  isUpgradedLightningAbility,
+  isUpgradedMeteorAbility,
+  levelCounterScore,
+} from "../../Gameplay/Tick";
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { startLevel3 } from "../Level3/Tick";
@@ -39,7 +45,7 @@ const showTip = () => {
 const giveToolsToAllPlayers = MCFunction(`levels/level_${levelNumber}/give_tools_to_players`, () => {
   // Disable the upgraded ability
   isUpgradedLightningAbility.set(0);
-  isUpgradedLightningAbility.set(0);
+  isUpgradedMeteorAbility.set(0);
 
   // Change the gamemode
   gamemode("survival", "@a");
