@@ -119,8 +119,9 @@
 ✔ Retexture player Armor to a warrior.
 ✔ Make the powerups upgradable.
 ✔ Integrate particle patterns 
-☐ Modify the shield particle
+✔ Modify the shield particle
 ☐ Add divinity bar (progress bar)
+✔ Fixed abrupt size amplifier
 
 ☐ Change the command in command block at the hub
 
