@@ -11,6 +11,8 @@ export const levelCounterScore = gameScoreboard("Level:");
 const gameplayPrivateScoreboard = Objective.create("pvt_gmply", "dummy");
 export const isStarted = gameplayPrivateScoreboard("is_started");
 export const isTemporalOngoing = gameplayPrivateScoreboard("is_temporal_ongoing");
+export const isUpgradedLightningAbility = gameplayPrivateScoreboard("is_upgraded_lightning_ability");
+export const isUpgradedMeteorAbility = gameplayPrivateScoreboard("is_upgraded_meteor_ability");
 
 MCFunction(
   "gameplay/load",

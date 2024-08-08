@@ -4,6 +4,7 @@ import {
   Objective,
   Score,
   Selector,
+  TimeArgument,
   _,
   execute,
   kill,
@@ -12,15 +13,18 @@ import {
   playsound,
   raw,
   rel,
+  schedule,
   summon,
   tellraw,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
+import { spawnHexagonPattern } from "../../Gameplay/ParticlePattern/Spawn/Hexagon";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("meteor_cooldown", "dummy")("@s");
 const COOL_DOWN_TIME = 80;
+const DISPLAY_PATTERN_TIME: TimeArgument = "2s";
 
 // ! Ticking function
 export const meteorTick = MCFunction(
@@ -50,11 +54,19 @@ export const meteorLogic = MCFunction("ability/meteor/logic", () => {
             raw(`particle dust 0.412 0.431 0.404 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
           }),
           MCFunction("raycast/meteor/hit", () => {
+            execute.positioned(rel(0, 0.35, 0)).run(() => spawnHexagonPattern());
+
             execute.positioned(rel(0, 40, 0)).run(() => {
+              spawnHexagonPattern();
               summonMeteor();
             });
             // Add a cooldown
             cooldownScore.set(0);
+
+            // Schedule the function to kill the particle
+            schedule.function(() => {
+              kill(Selector("@e", { type: "minecraft:armor_stand", tag: "hexagon_pattern" }));
+            }, DISPLAY_PATTERN_TIME);
           }),
           1,
           60

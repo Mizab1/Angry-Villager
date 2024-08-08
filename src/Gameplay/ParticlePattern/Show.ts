@@ -19,6 +19,12 @@ export const showParticle = MCFunction("gameplay/particle_pattern/show", () => {
     .as(Selector("@e", { type: "minecraft:armor_stand", tag: "circles_pattern" }))
     .at(self)
     .run.functionCmd("particle_patterns:circles");
+
+  // Hexagon Pattern
+  execute
+    .as(Selector("@e", { type: "minecraft:armor_stand", tag: "hexagon_pattern" }))
+    .at(self)
+    .run.functionCmd("particle_patterns:hexagon");
 });
 
 export const rotateClockwise = MCFunction("gameplay/particle_pattern/rotate_clockwise", () => {
