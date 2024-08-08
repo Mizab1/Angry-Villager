@@ -1,50 +1,72 @@
-import { _, abs, clear, execute, give, item, MCFunction, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
+import {
+  _,
+  abs,
+  clear,
+  effect,
+  execute,
+  gamemode,
+  item,
+  MCFunction,
+  sleep,
+  spawnpoint,
+  teleport,
+  tellraw,
+  title,
+} from "sandstone";
+import { summonAxeThrower } from "../../Enemies/SummonAxeThrower";
 import { summonNormalPillager } from "../../Enemies/SummonNormalPillager";
 import { summonNormalVindicator } from "../../Enemies/SummonNormalVindicator";
-import { enemyCounterScore, isStarted, levelCounterScore } from "../../Gameplay/Tick";
+import { enemyCounterScore, isStarted, isUpgradedLightningAbility, levelCounterScore } from "../../Gameplay/Tick";
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { startLevel3 } from "../Level3/Tick";
+import { giveSizeAmplifierAbility } from "../../Abilities/SizeAmplifier/Give";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
-const levelStartCoords = abs(16, 150, 1537);
-const levelStartViewAngle = abs(135, 5);
+const levelStartCoords = abs(1311, 19, 121);
+const levelStartViewAngle = abs(-156, 2);
 const levelNumber = 2;
-const villageNumber = 1;
 const nextLevel = startLevel3;
 
 const showTip = () => {
-  tellraw("@a", { text: "TIP: You now have a bow, you can shoot projectile and dodge attacks", color: "green" });
+  tellraw("@a", { text: "TIP: You now have a custom armor and your size is also increased", color: "green" });
 };
 
-const giveToolsToAllPlayers = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/give_tools_to_players`, () => {
-  give("@a", "minecraft:diamond_sword");
-  give("@a", "minecraft:bow");
-  give("@a", "minecraft:arrow", 12);
+const giveToolsToAllPlayers = MCFunction(`levels/level_${levelNumber}/give_tools_to_players`, () => {
+  // Disable the upgraded ability
+  isUpgradedLightningAbility.set(0);
+  isUpgradedLightningAbility.set(0);
+
+  // Change the gamemode
+  gamemode("survival", "@a");
 
   // Give full set of armor
-  item.replace.entity("@a", "armor.head").with("minecraft:leather_helmet", 1);
-  item.replace.entity("@a", "armor.chest").with("minecraft:leather_chestplate", 1);
-  item.replace.entity("@a", "armor.legs").with("minecraft:leather_leggings", 1);
-  item.replace.entity("@a", "armor.feet").with("minecraft:leather_boots", 1);
+  item.replace.entity("@a", "armor.head").with("minecraft:diamond_helmet", 1);
+  item.replace.entity("@a", "armor.chest").with("minecraft:diamond_chestplate", 1);
+  item.replace.entity("@a", "armor.legs").with("minecraft:diamond_leggings", 1);
+  item.replace.entity("@a", "armor.feet").with("minecraft:diamond_boots", 1);
+
+  execute.as("@a").run(() => giveSizeAmplifierAbility());
 });
 
-const spawnEnemiesAtCoord = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/spawn_enemies`, () => {
-  const enemiesPillagerSpawnCoords = [
-    abs(1, 150, 1514),
-    abs(-25, 150, 1502),
-    abs(-14, 150, 1482),
-    abs(4, 150, 1500),
-    abs(20, 150, 1504),
-  ];
-  const enemiesVindicatorSpawnCoords = [
-    abs(-32, 150, 1508),
-    abs(-49, 150, 1499),
-    abs(-10, 150, 1533),
-    abs(-9, 150, 1551),
-    abs(-3, 150, 1530),
-  ];
+const giveEffects = MCFunction(
+  "levels/give_effect_tick",
+  () => {
+    _.if(_.and(isStarted.equalTo(1), levelCounterScore.equalTo(levelNumber)), () => {
+      effect.give("@a", "minecraft:strength", 15, 2, true);
+      effect.give("@a", "minecraft:jump_boost", 15, 3, true);
+      effect.give("@a", "minecraft:speed", 15, 2, true);
+    });
+  },
+  { onConflict: "append" }
+);
+
+const spawnEnemiesAtCoord = MCFunction(`levels/level_${levelNumber}/spawn_enemies`, () => {
+  const enemiesPillagerSpawnCoords = [abs(1308, 19, 163), abs(1314, 19, 121), abs(1303, 19, 108), abs(1298, 19, 98)];
+  const enemiesAxeManSpawnCoords = [abs(1326, 19, 109), abs(1332, 19, 116), abs(1332, 19, 130)];
+  const enemiesSwordsManSpawnCoords = [abs(1314, 19, 151), abs(1314, 19, 97), abs(1314, 19, 86)];
+  const enemiesAxeThrowerSpawnCoords = [abs(1314, 19, 136), abs(1318, 19, 109), abs(1337, 19, 143)];
 
   enemiesPillagerSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
@@ -52,15 +74,27 @@ const spawnEnemiesAtCoord = MCFunction(`levels/village_${villageNumber}/level_${
     });
   });
 
-  enemiesVindicatorSpawnCoords.forEach((coords) => {
+  enemiesAxeManSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
-      summonNormalVindicator(8);
+      summonNormalVindicator(6, "minecraft:iron_axe");
+    });
+  });
+
+  enemiesSwordsManSpawnCoords.forEach((coords) => {
+    execute.positioned(coords).run(() => {
+      summonNormalVindicator(6, "minecraft:iron_sword");
+    });
+  });
+
+  enemiesAxeThrowerSpawnCoords.forEach((coords) => {
+    execute.positioned(coords).run(() => {
+      summonAxeThrower();
     });
   });
 });
 
 // ! Don't modify these
-export const startLevel2 = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/start`, async () => {
+export const startLevel2 = MCFunction(`levels/level_${levelNumber}/start`, async () => {
   // Teleport player to the village
   teleport("@a", levelStartCoords, levelStartViewAngle);
 
@@ -72,6 +106,12 @@ export const startLevel2 = MCFunction(`levels/village_${villageNumber}/level_${l
 
   // Set the level counter
   levelCounterScore.set(levelNumber);
+
+  // Clear items
+  clear("@a");
+
+  // Clear all the effects
+  effect.clear("@a");
 
   await sleep("1s");
 
@@ -97,7 +137,7 @@ export const startLevel2 = MCFunction(`levels/village_${villageNumber}/level_${l
   showTip();
 });
 
-const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/end`, async () => {
+const levelEndSequence = MCFunction(`levels/level_${levelNumber}/end`, async () => {
   // Kill all the enemy in the level
   execute.at("@a").run(() => killAllEnemy());
 
