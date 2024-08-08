@@ -4,7 +4,7 @@ MCFunction("enemies/summon_normal_vindicator", () => {
   summonNormalVindicator();
 });
 
-export const summonNormalVindicator = (damage: number = 6, axeName: ITEMS = "minecraft:wooden_axe") => {
+export const summonNormalVindicator = (damage: number = 6, toolName: ITEMS = "minecraft:wooden_axe") => {
   summon("minecraft:vindicator", rel(0, 0, 0), {
     DeathLootTable: "minecraft:bat",
     CustomName: '{"text":"Axe Wielder"}',
@@ -16,7 +16,7 @@ export const summonNormalVindicator = (damage: number = 6, axeName: ITEMS = "min
     Tags: ["enemy", "normal_vindicator"],
     HandItems: [
       {
-        id: axeName,
+        id: toolName,
         Count: NBT.byte(1),
         tag: {
           AttributeModifiers: [

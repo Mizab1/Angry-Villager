@@ -11,5 +11,6 @@ export const summonFuturisticSoldier = MCFunction("enemies/summon_futuristic_sol
     CanJoinRaid: NBT.byte(0),
     Tags: ["enemy", " futuristic_soldier"],
     HandItems: [{ id: "minecraft:crossbow", Count: NBT.byte(1), tag: { CustomModelData: 100002 } }, {}],
+    HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
   });
 });

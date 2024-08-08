@@ -29,6 +29,7 @@ export const summonAxeThrower = MCFunction("enemies/summon_axe_thrower", () => {
       },
       {},
     ],
+    HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
     Attributes: [{ Name: "generic.attack_damage", Base: 0 }],
   });
 });

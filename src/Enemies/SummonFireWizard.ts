@@ -11,5 +11,6 @@ export const summonFireWizard = MCFunction("enemies/summon_fire_wizard", () => {
     CanJoinRaid: NBT.byte(0),
     Tags: ["enemy", "fire_pillager"],
     HandItems: [{ id: "minecraft:fire_charge", Count: NBT.byte(1) }, {}],
+    HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
   });
 });

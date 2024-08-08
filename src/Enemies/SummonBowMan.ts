@@ -9,6 +9,7 @@ export const summonBowMan = MCFunction("enemies/summon_bow_man", () => {
     Silent: NBT.byte(1),
     Tags: ["enemy", " bowman"],
     HandItems: [{ id: "minecraft:bow", Count: NBT.byte(1) }, {}],
+    HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
     ArmorItems: [{}, {}, {}, { id: "minecraft:leather_helmet", Count: NBT.byte(1) }],
     ArmorDropChances: [NBT.float(0.0), NBT.float(0.0), NBT.float(0.0), NBT.float(0.0)],
   });

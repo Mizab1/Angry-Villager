@@ -23,5 +23,6 @@ export const summonEnchantedPillager = MCFunction("enemies/summon_enchanted_pill
       },
       {},
     ],
+    HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
   });
 });

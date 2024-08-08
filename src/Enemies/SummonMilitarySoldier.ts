@@ -11,5 +11,6 @@ export const summonMilitarySoldier = MCFunction("enemies/summon_military_soldier
     CanJoinRaid: NBT.byte(0),
     Tags: ["enemy", " military_soldier"],
     HandItems: [{ id: "minecraft:crossbow", Count: NBT.byte(1), tag: { CustomModelData: 100001 } }, {}],
+    HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
   });
 });

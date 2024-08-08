@@ -11,5 +11,6 @@ export const summonHealer = MCFunction("enemies/summon_healer", () => {
     DeathLootTable: "minecraft:bat",
     Tags: ["enemy", "healer"],
     HandItems: [{ id: "minecraft:splash_potion", Count: NBT.byte(1), tag: { Potion: "minecraft:healing" } }, {}],
+    HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
   });
 });
