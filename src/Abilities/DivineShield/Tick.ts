@@ -5,6 +5,7 @@ import {
   Selector,
   _,
   execute,
+  functionCmd,
   kill,
   particle,
   playsound,
@@ -21,39 +22,44 @@ const cooldownScore: Score<string> = Objective.create("divine_cooldown", "dummy"
 const COOL_DOWN_TIME = 160;
 const PROTECT_THIS = "protect_this";
 const PROTECT_DURATION = 4;
-const SPHERE_RADIUS = 5;
+const SPHERE_RADIUS = 3;
 
 // ! Ticking function
 export const divineShieldTick = MCFunction(
   "ability/divine_shield/tick",
   () => {
-    execute.at(Selector("@a", { tag: PROTECT_THIS })).run(() => {
-      // Display the sphere around the player
-      for (let theta = 0; theta <= 20; theta++) {
-        for (let phi = 0; phi <= 20; phi++) {
-          // @ts-ignore
-          particle(
-            "minecraft:dust",
-            [1.0, 1.0, 1.0],
-            1,
-            rel(
-              parseFloat((SPHERE_RADIUS * Math.cos(theta) * Math.sin(phi)).toFixed(4)),
-              parseFloat((SPHERE_RADIUS * Math.sin(theta) * Math.sin(phi)).toFixed(4)),
-              parseFloat((SPHERE_RADIUS * Math.cos(phi)).toFixed(4))
-            ),
-            [0.3, 0.3, 0.3],
-            0,
-            1,
-            "normal"
-          );
+    execute
+      .at(Selector("@a", { tag: PROTECT_THIS }))
+      .positioned(rel(0, 0.5, 0))
+      .run(() => {
+        // Display the sphere around the player
+        for (let theta = 0; theta <= 15; theta++) {
+          for (let phi = 0; phi <= 15; phi++) {
+            particle(
+              // @ts-ignore
+              "minecraft:electric_spark",
+              rel(
+                parseFloat((SPHERE_RADIUS * Math.cos(theta) * Math.sin(phi)).toFixed(4)),
+                parseFloat((SPHERE_RADIUS * Math.sin(theta) * Math.sin(phi)).toFixed(4)),
+                parseFloat((SPHERE_RADIUS * Math.cos(phi)).toFixed(4))
+              ),
+              [0, 0, 0],
+              0,
+              1,
+              "normal"
+            );
+          }
         }
-      }
 
-      // Kill or deflect all the attacks from the player
-      kill(Selector("@e", { type: "#aestd1:projectiles", distance: [Infinity, SPHERE_RADIUS + 1] }));
-      kill(Selector("@e", { tag: AXE_TAG, distance: [Infinity, SPHERE_RADIUS + 1] }));
-      kill(Selector("@e", { type: "minecraft:armor_stand", tag: "tfcp_proj" }));
-    });
+        functionCmd("particle_patterns:boundary_xy");
+        functionCmd("particle_patterns:boundary_yz");
+        functionCmd("particle_patterns:boundary_zx");
+
+        // Kill or deflect all the attacks from the player
+        kill(Selector("@e", { type: "#aestd1:projectiles", distance: [Infinity, SPHERE_RADIUS + 1] }));
+        kill(Selector("@e", { tag: AXE_TAG, distance: [Infinity, SPHERE_RADIUS + 1] }));
+        kill(Selector("@e", { type: "minecraft:armor_stand", tag: "tfcp_proj" }));
+      });
   },
   {
     runEachTick: true,
