@@ -186,7 +186,7 @@ const levelEndSequence = MCFunction(`levels/level_${levelNumber}/end`, async () 
   await sleep("6s");
 
   // Start the next level
-  // nextLevel();
+  nextLevel();
 });
 
 const checkAndEndLevel = MCFunction(
