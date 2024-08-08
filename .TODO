@@ -77,10 +77,10 @@
   ✔ demigod with a custom armor, it have to loosk good like the ones I sent you
   ✔ crossbows, boomerang, iron axes, iron swords
   ✔ Strength(lvl3), jump boost(lvl3), speed (lvl2), increase size power (double the strength level)
-☐ Wave 3: (820 19 135)
-  ☐ Wizards( with fireball spells ) with spells and potions + wave 2
-  ☐ the player evolves to a god
-  ☐ wave 2 + The player can fly, also has the lightbolt power
+✔ Wave 3: (820 19 135)
+  ✔ Wizards( with fireball spells ) with spells and potions + wave 2
+  ✔ the player evolves to a god
+  ✔ wave 2 + The player can fly, also has the lightbolt power
 ☐ Wave 4: 
   ☐ Catapults + wave 3
   ☐ wave 3 + longer lightbolt power + health power + pacificator arpe (enemies in the radius don’t attack for a while)
@@ -98,7 +98,7 @@
 
 ✔ Kill all the villager and iron golems and cats
 /function angry_villager:kill_all
-/tp @s 2443 180 1003 180 0
+/tp @s -125 7 149 180 0
 
 - Tasks
 ✔ 1) remove drops from pillagers
