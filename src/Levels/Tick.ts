@@ -6,6 +6,11 @@ MCFunction("levels/tick", () => {}, {
   onConflict: "append",
 });
 
+MCFunction("levels/give_effect_tick", () => {}, {
+  runEachTick: true,
+  onConflict: "append",
+});
+
 MCFunction(
   "levels/enable_flying",
   () => {
