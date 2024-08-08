@@ -68,6 +68,33 @@
   ✔ Special Attacks: Missiles, bombs, and combined attacks.
   ✔ Strategy: Use all divine powers to survive this ultimate challenge, focusing on area damage and protection.
 
+- New levels
+☐ Wave 1: 
+  ☐ bows, stone axes, stone swords
+  ☐ player will be demigod
+  ☐ Strength(lvl2), jump boost(lvl2), speed (lvl1)
+☐ Wave 2:  
+  ☐ demigod with a custom armor, it have to loosk good like the ones I sent you
+  ☐ crossbows, boomerang, iron axes, iron swords
+  ☐ Strength(lvl3), jump boost(lvl3), speed (lvl2), increase size power (double the strength level)
+☐ Wave 3: 
+  ☐ Wizards( with fireball spells ) with spells and potions + wave 2
+  ☐ the player evolves to a god
+  ☐ wave 2 + The player can fly, also has the lightbolt power
+☐ Wave 4: 
+  ☐ Catapults + wave 3
+  ☐ wave 3 + longer lightbolt power + health power + pacificator arpe (enemies in the radius don’t attack for a while)
+☐ Wave 5: 
+  ☐ TNTs, cannons, and catapults, also warriors (zombies with iron helmet or maybe just the warrior skin, maybe custom armor would be the best option, in iron horses with crossbows and long swords)
+  ☐ wave 4 + tornado power + fire storm
+☐ Wave 6: 
+  ☐ Army base, missiles and bombs, and maybe war drones, 
+  ☐ the player becomes a god of gods(add light particles around)
+  ☐ wave 5 + temporal power (the skill of pause all the projectiles and enemies for 5 seconds) + multiples meteors
+☐ Wave 7: 
+  ☐ Futuristic village where the villagers will be robots mainly, big laser turrets and bombs in the ceiling of the houses, maybe some electric traps that trap the player from some seconds etc
+  ☐ wave 6 + now the lightbolt power will summon a rain, then will summon on lightning bolt on every mob
+  
 - Textures
   ✔ Abilites
 
@@ -85,22 +112,19 @@
 - Tasks
 ✔ 1) remove drops from pillagers
 ✔ 2) the glow effect could be automatic, after 60 seconds or 90 seconds fighting
-☐ 3) if you are giant, you should have more strenght
 ✔ 4) if I remember good, there's a way to make the colddown visual in the items bar
 ✔ 5) can u develop more in detail the tornado and the fire tornado, like implement a circle rounding particles to it looks better and more like a tornado instead it looks more like a cloud
 ✔ 6) what happen when you die
 ✔ 7) meteor should to be more massive explosion
 ✔ 8) when I was in the level 3 it say level 4
-☐ 9) level 7 is pretty hard, you should reduce the colddown maybe for the first attacks 
 ✔ Remove meteor positional bug
 ✔ Add image of fabric installer in zip
 ✔ Run glow effect on when the level is started
-☐ Add more levels and enemies  
 
 ✔ Make the missile white and remove the fire in futuristic launcher
 ✔ Make Particles (anime like).
 ✔ Add gamerules like keep inventory, no mobile spawning, disable day night cycle.
-☐ Add warrior on a horse with sword.
+✔ Add warrior on a horse with sword.
 ☐ Retexture player Armor to a warrior.
 ☐ Make the powerups upgradable.
 ☐ Integrate particle patterns 
