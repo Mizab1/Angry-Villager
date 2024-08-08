@@ -14,7 +14,7 @@ MCFunction("levels/give_effect_tick", () => {}, {
 MCFunction(
   "levels/enable_flying",
   () => {
-    _.if(_.and(isStarted.equalTo(1), levelCounterScore.matches([8, 10])), () => {
+    _.if(_.and(isStarted.equalTo(1), levelCounterScore.matches([3, 7])), () => {
       raw(`fly enable @a`);
     });
   },
