@@ -69,15 +69,15 @@
   ✔ Strategy: Use all divine powers to survive this ultimate challenge, focusing on area damage and protection.
 
 - New levels
-☐ Wave 1: 
-  ☐ bows, stone axes, stone swords
-  ☐ player will be demigod
-  ☐ Strength(lvl2), jump boost(lvl2), speed (lvl1)
-☐ Wave 2:  
-  ☐ demigod with a custom armor, it have to loosk good like the ones I sent you
-  ☐ crossbows, boomerang, iron axes, iron swords
-  ☐ Strength(lvl3), jump boost(lvl3), speed (lvl2), increase size power (double the strength level)
-☐ Wave 3: 
+✔ Wave 1: (314 19 135)
+  ✔ bows, stone axes, stone swords
+  ✔ player will be demigod
+  ✔ Strength(lvl2), jump boost(lvl2), speed (lvl1)
+✔ Wave 2: (1311 19 121)
+  ✔ demigod with a custom armor, it have to loosk good like the ones I sent you
+  ✔ crossbows, boomerang, iron axes, iron swords
+  ✔ Strength(lvl3), jump boost(lvl3), speed (lvl2), increase size power (double the strength level)
+☐ Wave 3: (820 19 135)
   ☐ Wizards( with fireball spells ) with spells and potions + wave 2
   ☐ the player evolves to a god
   ☐ wave 2 + The player can fly, also has the lightbolt power
@@ -95,17 +95,8 @@
   ☐ Futuristic village where the villagers will be robots mainly, big laser turrets and bombs in the ceiling of the houses, maybe some electric traps that trap the player from some seconds etc
   ☐ wave 6 + now the lightbolt power will summon a rain, then will summon on lightning bolt on every mob
   
-- Textures
-  ✔ Abilites
-
-- Coords
-  level1    0 150 1000 (-38 150 956),   0 150 1500 (16 150 1537)
-  level2   500 150 1000(495 150 1003),   500 150 1500 (500 150 1500)
-  level3   1000 150 1000 (1036 150 985),  1000 150 1500 (1000 150 1500)
-  level4   1500 150 1500 (1488 150 1536),  2000 150 1500 (1988 150 1532),   2500 150 1500 (2488, 150, 1539),  3000 150 1500 (2981 150 1531)
 
 ✔ Kill all the villager and iron golems and cats
-/trigger highlight
 /function angry_villager:kill_all
 /tp @s 2443 180 1003 180 0
 
@@ -128,4 +119,8 @@
 ✔ Retexture player Armor to a warrior.
 ✔ Make the powerups upgradable.
 ✔ Integrate particle patterns 
+☐ Modify the shield particle
+☐ Add divinity bar (progress bar)
+
+☐ Change the command in command block at the hub
 
