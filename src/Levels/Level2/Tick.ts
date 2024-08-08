@@ -30,7 +30,10 @@ const levelNumber = 2;
 const nextLevel = startLevel3;
 
 const showTip = () => {
-  tellraw("@a", { text: "TIP: You now have a custom armor and your size is also increased", color: "green" });
+  tellraw("@a", {
+    text: "TIP: You now have a custom armor and your size is also increased. You have unlocked the Size Amplifier Ability.",
+    color: "green",
+  });
 };
 
 const giveToolsToAllPlayers = MCFunction(`levels/level_${levelNumber}/give_tools_to_players`, () => {
