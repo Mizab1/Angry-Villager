@@ -1,10 +1,28 @@
-import { MCFunction, Objective, Score, Selector, _, execute, loc, playsound, raw, rel, summon, tellraw } from "sandstone";
+import {
+  MCFunction,
+  Objective,
+  Score,
+  Selector,
+  TimeArgument,
+  _,
+  execute,
+  kill,
+  loc,
+  playsound,
+  raw,
+  rel,
+  schedule,
+  summon,
+  tellraw,
+} from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
+import { spawnCirclesPattern } from "../../Gameplay/ParticlePattern/Spawn/Circles";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("ltng_cooldown", "dummy")("@s");
 const COOL_DOWN_TIME = 100;
+const DISPLAY_PATTERN_TIME: TimeArgument = "4s";
 
 // ! Ticking function
 export const lightningTick = MCFunction("ability/lightning/tick", () => {}, {
@@ -28,7 +46,18 @@ export const lightningLogic = MCFunction("ability/lightning/logic", () => {
             raw(`particle dust 0.941 0.941 0.941 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
           }),
           MCFunction("raycast/lightning/hit", () => {
+            // Spawn particle pattern
+            execute.positioned(rel(0, 0.35, 0)).run(() => spawnCirclesPattern());
+            execute.positioned(rel(0, 30, 0)).run(() => spawnCirclesPattern());
+
+            // Run the function to spawn lightning
             summonLightning();
+
+            // Schedule the function to kill the particle
+            schedule.function(() => {
+              kill(Selector("@e", { type: "minecraft:armor_stand", tag: "circles_pattern" }));
+            }, DISPLAY_PATTERN_TIME);
+
             // Add a cooldown
             cooldownScore.set(0);
           }),
@@ -67,9 +96,11 @@ export const lightningCooldownLogic = MCFunction("ability/lightning/cooldown_log
 });
 
 const summonLightning = MCFunction("ability/lightning/summon_lightning", () => {
-  // Summon lightning on the nearby entity
   summon("minecraft:lightning_bolt", rel(0, 0, 0), { Tags: ["lightning_bolt"] });
+
+  // Summon lightning on the nearby entity
   execute.at(Selector("@e", { distance: [Infinity, 6] })).run(() => {
     summon("minecraft:lightning_bolt", rel(0, 0, 0), { Tags: ["lightning_bolt"] });
+    // execute.positioned(rel(0, 0.35, 0)).run(() => spawnCirclesPattern());
   });
 });

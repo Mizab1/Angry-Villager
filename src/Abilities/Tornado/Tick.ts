@@ -4,6 +4,7 @@ import {
   Objective,
   Score,
   Selector,
+  TimeArgument,
   _,
   execute,
   kill,
@@ -12,18 +13,21 @@ import {
   playsound,
   raw,
   rel,
+  schedule,
   summon,
   tellraw,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 import { RunOnce } from "../../Utils/UtilFunctions";
+import { spawnRingsPattern } from "../../Gameplay/ParticlePattern/Spawn/Rings";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("tornado_cooldown", "dummy")("@s");
 const tornadoLifeScore: Score<string> = Objective.create("tornado_life", "dummy")("@s");
 const COOL_DOWN_TIME = 160;
 const TORNADO_LIFE = 240;
+const DISPLAY_PATTERN_TIME: TimeArgument = "7s";
 
 // ! Ticking function
 export const tornadoTick = MCFunction(
@@ -53,8 +57,17 @@ export const tornadoLogic = MCFunction("ability/tornado/logic", () => {
             raw(`particle dust 0.706 0.769 0.663 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
           }),
           MCFunction("raycast/tornado/hit", () => {
+            // Spawn the particle pattern
+            execute.positioned(rel(0, 0.35, 0)).run(() => spawnRingsPattern());
             execute.positioned(rel(0, 40, 0)).run(() => {
+              // Spawn the particle pattern
+              spawnRingsPattern();
               summonTornado();
+
+              // Schedule the function to kill the particle
+              schedule.function(() => {
+                kill(Selector("@e", { type: "minecraft:armor_stand", tag: "rings_pattern" }));
+              }, DISPLAY_PATTERN_TIME);
             });
             // Add a cooldown
             cooldownScore.set(0);

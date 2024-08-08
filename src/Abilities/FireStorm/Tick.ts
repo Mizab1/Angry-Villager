@@ -4,6 +4,7 @@ import {
   Objective,
   Score,
   Selector,
+  TimeArgument,
   _,
   execute,
   fill,
@@ -13,10 +14,12 @@ import {
   playsound,
   raw,
   rel,
+  schedule,
   summon,
   tellraw,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
+import { spawnTrianglePattern } from "../../Gameplay/ParticlePattern/Spawn/Triangle";
 import { self } from "../../Tick";
 import { RunOnce } from "../../Utils/UtilFunctions";
 
@@ -25,6 +28,7 @@ const cooldownScore: Score<string> = Objective.create("fr_stm_cdn", "dummy")("@s
 const fireStormLifeScore: Score<string> = Objective.create("fire_storm_life", "dummy")("@s");
 const COOL_DOWN_TIME = 220;
 const FIRE_STORM_LIFE = 360;
+const DISPLAY_PATTERN_TIME: TimeArgument = "5s";
 
 // ! Ticking function
 export const fireStormTick = MCFunction(
@@ -54,8 +58,15 @@ export const fireStormLogic = MCFunction("ability/fire_storm/logic", () => {
             raw(`particle dust 0.788 0.765 0.063 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
           }),
           MCFunction("raycast/fire_storm/hit", () => {
+            execute.positioned(rel(0, 0.35, 0)).run(() => spawnTrianglePattern());
             execute.positioned(rel(0, 40, 0)).run(() => {
+              spawnTrianglePattern();
               summonFireStorm();
+
+              // Schedule the function to kill the particle
+              schedule.function(() => {
+                kill(Selector("@e", { type: "minecraft:armor_stand", tag: "triangle_pattern" }));
+              }, DISPLAY_PATTERN_TIME);
             });
             // Add a cooldown
             cooldownScore.set(0);

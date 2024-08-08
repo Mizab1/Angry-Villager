@@ -25,12 +25,12 @@ export const rotateClockwise = MCFunction("gameplay/particle_pattern/rotate_cloc
   execute
     .as(Selector("@e", { type: "minecraft:armor_stand", tag: "rotate_clockwise" }))
     .at(self)
-    .run.teleport(self, rel(0, 0, 0), rel(0.7, 0));
+    .run.teleport(self, rel(0, 0, 0), rel(2.5, 0));
 });
 
 export const rotateAntiClockwise = MCFunction("gameplay/particle_pattern/rotate_anti_clockwise", () => {
   execute
     .as(Selector("@e", { type: "minecraft:armor_stand", tag: "rotate_anti_clockwise" }))
     .at(self)
-    .run.teleport(self, rel(0, 0, 0), rel(-0.7, 0));
+    .run.teleport(self, rel(0, 0, 0), rel(-2.5, 0));
 });

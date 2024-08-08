@@ -1,6 +1,6 @@
 import { MCFunction, NBT, rel, summon } from "sandstone";
 
-const spawnRingsPattern = MCFunction("gameplay/particle_pattern/spawn/rings", () => {
+export const spawnRingsPattern = MCFunction("gameplay/particle_pattern/spawn/rings", () => {
   summon("minecraft:armor_stand", rel(0, 0, 0), {
     Invisible: NBT.byte(1),
     NoGravity: NBT.byte(1),
