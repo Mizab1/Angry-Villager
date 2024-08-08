@@ -20,6 +20,7 @@ import {
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 import { spawnHexagonPattern } from "../../Gameplay/ParticlePattern/Spawn/Hexagon";
+import { isUpgradedMeteorAbility } from "../../Gameplay/Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("meteor_cooldown", "dummy")("@s");
@@ -54,12 +55,24 @@ export const meteorLogic = MCFunction("ability/meteor/logic", () => {
             raw(`particle dust 0.412 0.431 0.404 2 ^-1 ^-1 ^ 0.2 0.2 0.2 0 3 normal`);
           }),
           MCFunction("raycast/meteor/hit", () => {
-            execute.positioned(rel(0, 0.35, 0)).run(() => spawnHexagonPattern());
+            // Defining the function
+            const summonMeteorWithPattern = (x: number = 0, z: number = 0) => {
+              execute.positioned(rel(x, 0.35, z)).run(() => spawnHexagonPattern());
+              execute.positioned(rel(x, 40, z)).run(() => {
+                spawnHexagonPattern();
+                summonMeteor();
+              });
+            };
 
-            execute.positioned(rel(0, 40, 0)).run(() => {
-              spawnHexagonPattern();
-              summonMeteor();
+            // Using the defined function
+            _.if(isUpgradedMeteorAbility.equalTo(1), () => {
+              summonMeteorWithPattern(5, 5);
+              summonMeteorWithPattern(-5, 5);
+              summonMeteorWithPattern(0, -5);
+            }).else(() => {
+              summonMeteorWithPattern();
             });
+
             // Add a cooldown
             cooldownScore.set(0);
 

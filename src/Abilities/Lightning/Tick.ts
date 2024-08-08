@@ -14,10 +14,12 @@ import {
   schedule,
   summon,
   tellraw,
+  weather,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
 import { self } from "../../Tick";
 import { spawnCirclesPattern } from "../../Gameplay/ParticlePattern/Spawn/Circles";
+import { isUpgradedLightningAbility } from "../../Gameplay/Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("ltng_cooldown", "dummy")("@s");
@@ -99,8 +101,15 @@ const summonLightning = MCFunction("ability/lightning/summon_lightning", () => {
   summon("minecraft:lightning_bolt", rel(0, 0, 0), { Tags: ["lightning_bolt"] });
 
   // Summon lightning on the nearby entity
-  execute.at(Selector("@e", { distance: [Infinity, 6] })).run(() => {
-    summon("minecraft:lightning_bolt", rel(0, 0, 0), { Tags: ["lightning_bolt"] });
-    // execute.positioned(rel(0, 0.35, 0)).run(() => spawnCirclesPattern());
+  _.if(isUpgradedLightningAbility.equalTo(1), () => {
+    weather.thunder(20 * 6);
+    execute.at(Selector("@e", { distance: [Infinity, 40] })).run(() => {
+      summon("minecraft:lightning_bolt", rel(0, 0, 0), { Tags: ["lightning_bolt"] });
+    });
+  }).else(() => {
+    execute.at(Selector("@e", { distance: [Infinity, 6] })).run(() => {
+      summon("minecraft:lightning_bolt", rel(0, 0, 0), { Tags: ["lightning_bolt"] });
+      // execute.positioned(rel(0, 0.35, 0)).run(() => spawnCirclesPattern());
+    });
   });
 });
