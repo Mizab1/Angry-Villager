@@ -1,5 +1,6 @@
 import { _, effect, execute, kill, MCFunction, Objective, raw, scoreboard, Selector, tellraw } from "sandstone";
 import { countEnemies } from "./EnemyCounter";
+import { rotateAntiClockwise, rotateClockwise, showParticle } from "./ParticlePattern/Show";
 
 // Side scores for information
 const gameScoreboard = Objective.create("game_scb", "dummy", { text: "Game", color: "gold" });
@@ -24,7 +25,12 @@ MCFunction(
 MCFunction(
   "gameplay/tick",
   () => {
+    showParticle();
+    rotateClockwise();
+    rotateAntiClockwise();
     countEnemies();
+
+    // If the temporal ability is used, kill the projectiles
     execute.if(isTemporalOngoing.equalTo(1)).run(() => {
       kill(Selector("@e", { type: "minecraft:armor_stand", tag: "missile" }));
       kill(Selector("@e", { type: "minecraft:tnt" }));
