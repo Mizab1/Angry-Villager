@@ -26,7 +26,7 @@ export const healingLightTick = MCFunction(
   "ability/healing_light/tick",
   () => {
     execute.at(Selector("@a", { tag: HEAL_THIS_TAG })).run(() => {
-      particle("minecraft:flash", rel(0, 0, 0), [0.5, 0.5, 0.5], 0, 3, "normal");
+      particle("minecraft:flash", rel(0, 0, 0), [2, 2, 2], 0, 2, "normal");
     });
   },
   {
