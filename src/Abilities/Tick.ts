@@ -10,6 +10,7 @@ import { meteorCooldownLogic, meteorLogic, meteorTick } from "./Meteor/Tick";
 import { runAbility } from "./Private/RunAbility";
 import { tornadoCooldownLogic, tornadoLogic, tornadoTick } from "./Tornado/Tick";
 import { temporalCooldownLogic, temporalLogic } from "./Temporal/Tick";
+import { sizeAmplifierCooldownLogic, sizeAmplifierLogic } from "./SizeAmplifier/Tick";
 
 // Global Variable
 const selfRightClickCAOS: Score<string> = Objective.create(
@@ -28,6 +29,7 @@ export const abilitiesNamesDict = {
   healing_light_ability: "healing_light_ability",
   divine_shield_ability: "divine_shield_ability",
   temporal_ability: "temporal_ability",
+  size_amplifier_ability: "size_amplifier_ability",
 };
 
 // Functions
@@ -46,6 +48,7 @@ const checkUsedAbility = MCFunction("ability/check_used", () => {
       healingLightCooldownLogic();
       divineShieldCooldownLogic();
       temporalCooldownLogic();
+      sizeAmplifierCooldownLogic();
 
       // Check which ability was used
       _.if(selfRightClickCAOS.greaterThan(0), () => {
@@ -76,6 +79,9 @@ const checkUsedAbility = MCFunction("ability/check_used", () => {
         });
         runAbility(abilitiesNamesDict.temporal_ability, () => {
           temporalLogic();
+        });
+        runAbility(abilitiesNamesDict.size_amplifier_ability, () => {
+          sizeAmplifierLogic();
         });
 
         // Reset the COAS score
