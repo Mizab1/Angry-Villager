@@ -18,6 +18,7 @@ export const summonHorseriderBowman = MCFunction("enemies/summon_horserider_bowm
         CanJoinRaid: NBT.byte(0),
         Tags: ["enemy", " normal_pillager"],
         HandItems: [{ id: "minecraft:crossbow", Count: NBT.byte(1) }, {}],
+        HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
       },
     ],
   });
