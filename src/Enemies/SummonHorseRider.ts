@@ -23,16 +23,4 @@ export const summonHorseRider = MCFunction("enemies/summon_horse_rider", () => {
       },
     ],
   });
-  // summon("minecraft:zombie", rel(0, 0, 0), {
-  //   DeathLootTable: "minecraft:bat",
-  //   CustomName: '{"text":"Horse Rider"}',
-  //   PersistenceRequired: NBT.byte(1),
-  //   CanPickUpLoot: NBT.byte(0),
-  //   Tags: ["enemy", "horse_rider"],
-  //   Health: NBT.float(20),
-  //   HandItems: [{ id: "minecraft:diamond_sword", Count: NBT.byte(1) }, {}],
-  //   HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
-  //   ArmorItems: [{}, {}, {}, { id: "minecraft:chainmail_helmet", Count: NBT.byte(1) }],
-  //   ArmorDropChances: [NBT.float(0.0), NBT.float(0.0), NBT.float(0.0), NBT.float(0.0)],
-  // });
 });
