@@ -34,5 +34,6 @@ export const summonNormalVindicator = (damage: number = 6, toolName: ITEMS = "mi
       {},
     ],
     Attributes: [{ Name: "generic.attack_damage", Base: 0 }],
+    HandDropChances: [NBT.float(0.0), NBT.float(0.0)],
   });
 };
