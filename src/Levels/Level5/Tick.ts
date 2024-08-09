@@ -22,7 +22,6 @@ import { giveTornadoAbility } from "../../Abilities/Tornado/Give";
 import { summonCannon } from "../../Enemies/SummonCannon";
 import { summonCatapult } from "../../Enemies/SummonCatapult";
 import { summonFireWizard } from "../../Enemies/SummonFireWizard";
-import { summonHorserider } from "../../Enemies/SummonHorseRider";
 import { summonHorseriderBowman } from "../../Enemies/SummonHorseriderBowman";
 import {
   enemyCounterScore,
@@ -34,6 +33,7 @@ import {
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { startLevel6 } from "../Level6/Tick";
+import { summonHorserider } from "../../Enemies/SummonHorserider";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
