@@ -7,6 +7,7 @@ import {
   gamemode,
   item,
   MCFunction,
+  setblock,
   sleep,
   spawnpoint,
   teleport,
@@ -34,6 +35,10 @@ import {
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { startLevel7 } from "../Level7/Tick";
+import { summonMilitarySoldier } from "../../Enemies/SummonMilitarySoldier";
+import { summonMissileLauncher } from "../../Enemies/SummonMissileLauncher";
+import { summonTank } from "../../Enemies/SummonTank";
+import { summonDrone } from "../../Enemies/SummonDrone";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
@@ -86,32 +91,58 @@ const giveEffects = MCFunction(
 );
 
 const spawnEnemiesAtCoord = MCFunction(`levels/level_${levelNumber}/spawn_enemies`, () => {
-  const enemiesMilitarySoldierSpawnCoords = [];
-  const enemiesMissileLauncherSpawnCoords = [];
-  const enemiesTankSpawnCoords = [];
-  const enemiesDroneSpawnCoords = [];
+  const enemiesMilitarySoldierSpawnCoords = [
+    abs(2890, 15, 160),
+    abs(2870, 15, 190),
+    abs(2850, 15, 167),
+    abs(2872, 15, 120),
+    abs(2816, 15, 122),
+    abs(2791, 15, 96),
+    abs(2784, 15, 118),
+    abs(2721, 15, 118),
+    abs(2818, 15, 69),
+    abs(2812, 15, 52),
+    abs(2813, 15, 30),
+    abs(2797, 15, 31),
+    abs(2735, 15, 27),
+  ];
+  const enemiesMissileLauncherSpawnCoords = [
+    abs(2882, 15, 131),
+    abs(2770, 15, 140),
+    abs(2711, 15, 188),
+    abs(2733, 15, 38),
+    abs(2878, 15, 23),
+  ];
+  const enemiesTankSpawnCoords = [abs(2781, 15, 27), abs(2816, 15, 94), abs(2771, 15, 103), abs(2827, 15, 144)];
+  const enemiesDroneSpawnCoords = [
+    abs(2865, 15, 41),
+    abs(2829, 15, 116),
+    abs(2829, 15, 196),
+    abs(2772, 15, 163),
+    abs(2726, 15, 100),
+  ];
 
   enemiesMilitarySoldierSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
-      summonHealer();
+      summonMilitarySoldier();
     });
   });
 
   enemiesMissileLauncherSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
-      summonEnchantedPillager();
+      summonMissileLauncher();
     });
   });
 
   enemiesTankSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
-      summonNormalVindicator(8, "minecraft:diamond_axe");
+      summonTank();
     });
   });
 
   enemiesDroneSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
-      summonFireWizard();
+      summonDrone();
     });
   });
 });
