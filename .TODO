@@ -84,9 +84,9 @@
 ✔ Wave 4: (1823 19 152)
   ✔ Catapults + wave 3
   ✔ wave 3 + longer lightbolt power + health power + pacificator arpe (enemies in the radius don’t attack for a while)
-☐ Wave 5: 
-  ☐ TNTs, cannons, and catapults, also warriors (zombies with iron helmet or maybe just the warrior skin, maybe custom armor would be the best option, in iron horses with crossbows and long swords)
-  ☐ wave 4 + tornado power + fire storm
+✔ Wave 5: (2277 18 133)
+  ✔ TNTs, cannons, and catapults, also warriors (zombies with iron helmet or maybe just the warrior skin, maybe custom armor would be the best option, in iron horses with crossbows and long swords)
+  ✔ wave 4 + tornado power + fire storm
 ☐ Wave 6: 
   ☐ Army base, missiles and bombs, and maybe war drones, 
   ☐ the player becomes a god of gods(add light particles around)
@@ -121,6 +121,7 @@
 ✔ Integrate particle patterns 
 ✔ Modify the shield particle
 ☐ Add divinity bar (progress bar)
+☐ Remove creeper texture
 ✔ Fixed abrupt size amplifier
 
 ☐ Change the command in command block at the hub
