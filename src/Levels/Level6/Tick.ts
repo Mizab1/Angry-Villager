@@ -7,7 +7,6 @@ import {
   gamemode,
   item,
   MCFunction,
-  setblock,
   sleep,
   spawnpoint,
   teleport,
@@ -21,10 +20,10 @@ import { giveMeteorAbility } from "../../Abilities/Meteor/Give";
 import { giveSizeAmplifierAbility } from "../../Abilities/SizeAmplifier/Give";
 import { giveTemporalAbility } from "../../Abilities/Temporal/Give";
 import { giveTornadoAbility } from "../../Abilities/Tornado/Give";
-import { summonEnchantedPillager } from "../../Enemies/SummonEnchantedPillager";
-import { summonFireWizard } from "../../Enemies/SummonFireWizard";
-import { summonHealer } from "../../Enemies/SummonHealer";
-import { summonNormalVindicator } from "../../Enemies/SummonNormalVindicator";
+import { summonDrone } from "../../Enemies/SummonDrone";
+import { summonMilitarySoldier } from "../../Enemies/SummonMilitarySoldier";
+import { summonMissileLauncher } from "../../Enemies/SummonMissileLauncher";
+import { summonTank } from "../../Enemies/SummonTank";
 import {
   enemyCounterScore,
   isStarted,
@@ -35,10 +34,6 @@ import {
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { startLevel7 } from "../Level7/Tick";
-import { summonMilitarySoldier } from "../../Enemies/SummonMilitarySoldier";
-import { summonMissileLauncher } from "../../Enemies/SummonMissileLauncher";
-import { summonTank } from "../../Enemies/SummonTank";
-import { summonDrone } from "../../Enemies/SummonDrone";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
@@ -212,7 +207,7 @@ const levelEndSequence = MCFunction(`levels/level_${levelNumber}/end`, async () 
   await sleep("6s");
 
   // Start the next level
-  // nextLevel();
+  nextLevel();
 });
 
 const checkAndEndLevel = MCFunction(
