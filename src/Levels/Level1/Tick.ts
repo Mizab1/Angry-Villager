@@ -1,4 +1,18 @@
-import { _, abs, clear, effect, execute, gamemode, MCFunction, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
+import {
+  _,
+  abs,
+  bossbar,
+  clear,
+  effect,
+  execute,
+  gamemode,
+  MCFunction,
+  sleep,
+  spawnpoint,
+  teleport,
+  tellraw,
+  title,
+} from "sandstone";
 import { summonBowMan } from "../../Enemies/SummonBowMan";
 import { summonNormalVindicator } from "../../Enemies/SummonNormalVindicator";
 import {
@@ -11,6 +25,7 @@ import {
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
 import { startLevel2 } from "../Level2/Tick";
+import { bossbarName, createDivinityBar } from "../../Gameplay/DivinityBar";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
@@ -76,6 +91,9 @@ const spawnEnemiesAtCoord = MCFunction(`levels/level_${levelNumber}/spawn_enemie
 
 // ! Don't modify these
 export const startLevel1 = MCFunction(`levels/level_${levelNumber}/start`, async () => {
+  // Create the bossbar
+  createDivinityBar();
+
   // Teleport player to the village
   teleport("@a", levelStartCoords, levelStartViewAngle);
 
@@ -131,6 +149,9 @@ const levelEndSequence = MCFunction(`levels/level_${levelNumber}/end`, async () 
   title("@a").title({ text: `You have completed the Level ${levelNumber}!`, color: "gold" });
   execute.as("@a").at(self).run.playsound("minecraft:ui.toast.challenge_complete", "master", self);
   clear("@a");
+
+  // Add 1 to the bossbar
+  bossbar.set(bossbarName).value(levelNumber);
 
   await sleep("2s");
 

@@ -1,6 +1,7 @@
 import {
   _,
   abs,
+  bossbar,
   clear,
   effect,
   execute,
@@ -37,6 +38,7 @@ import { summonAxeThrower } from "../../Enemies/SummonAxeThrower";
 import { summonHealer } from "../../Enemies/SummonHealer";
 import { summonNormalPillager } from "../../Enemies/SummonNormalPillager";
 import { summonCatapult } from "../../Enemies/SummonCatapult";
+import { bossbarName } from "../../Gameplay/DivinityBar";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
@@ -194,6 +196,9 @@ const levelEndSequence = MCFunction(`levels/level_${levelNumber}/end`, async () 
   title("@a").title({ text: `You have completed the Level ${levelNumber}!`, color: "gold" });
   execute.as("@a").at(self).run.playsound("minecraft:ui.toast.challenge_complete", "master", self);
   clear("@a");
+
+  // Add 1 to the bossbar
+  bossbar.set(bossbarName).value(levelNumber);
 
   await sleep("2s");
 
