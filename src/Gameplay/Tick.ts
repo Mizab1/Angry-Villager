@@ -1,4 +1,4 @@
-import { _, effect, execute, kill, MCFunction, Objective, raw, scoreboard, Selector, tellraw } from "sandstone";
+import { _, bossbar, effect, execute, kill, MCFunction, Objective, raw, scoreboard, Selector, tellraw } from "sandstone";
 import { countEnemies } from "./EnemyCounter";
 import { rotateAntiClockwise, rotateClockwise, showParticle } from "./ParticlePattern/Show";
 
