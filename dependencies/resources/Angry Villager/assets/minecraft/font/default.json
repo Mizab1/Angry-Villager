@@ -1,0 +1,13 @@
+{
+    "providers": [
+        {
+            "type": "bitmap",
+            "file": "minecraft:font/torch.png",
+            "ascent": 29,
+            "height": 60,
+            "chars": [
+                "\uE903"
+            ]
+        }
+    ]
+}

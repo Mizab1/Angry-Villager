@@ -4,7 +4,7 @@ export const bossbarName = "divinity_bar";
 
 export const createDivinityBar = MCFunction("gameplay/create_divinity_bar", () => {
   // Bossbar
-  bossbar.add(bossbarName, { text: "Divinity Bar", color: "gold" });
+  bossbar.add(bossbarName, { text: "\uE903", color: "gold" });
   bossbar.set(bossbarName).color("yellow");
   bossbar.set(bossbarName).max(7);
   bossbar.set(bossbarName).style("progress");
