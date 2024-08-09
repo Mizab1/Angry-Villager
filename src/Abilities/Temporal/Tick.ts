@@ -1,6 +1,6 @@
 import { MCFunction, Objective, Score, Selector, _, effect, playsound, rel, schedule, tellraw } from "sandstone";
-import { self } from "../../Tick";
 import { isTemporalOngoing } from "../../Gameplay/Tick";
+import { self } from "../../Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("tempo_cdn", "dummy")("@s");
@@ -15,7 +15,7 @@ export const temporalTick = MCFunction("ability/temporal/tick", () => {}, {
 // * Functions
 export const temporalLogic = MCFunction("ability/temporal/logic", () => {
   _.if(cooldownScore.matches(COOL_DOWN_TIME), () => {
-    playsound("minecraft:item.trident.thunder", "master", self, rel(0, 0, 0), 1, 0.4);
+    playsound("minecraft:item.totem.use", "master", self);
 
     effect.give(Selector("@e", { tag: "enemy" }), "minecraft:slowness", FREEZE_FOR, 100);
     isTemporalOngoing.set(1);
