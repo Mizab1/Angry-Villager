@@ -59,6 +59,7 @@ export const divineShieldTick = MCFunction(
         kill(Selector("@e", { type: "#aestd1:projectiles", distance: [Infinity, SPHERE_RADIUS + 1] }));
         kill(Selector("@e", { tag: AXE_TAG, distance: [Infinity, SPHERE_RADIUS + 1] }));
         kill(Selector("@e", { type: "minecraft:armor_stand", tag: "tfcp_proj" }));
+        kill(Selector("@e", { type: "minecraft:armor_stand", tag: "missile" }));
       });
   },
   {
