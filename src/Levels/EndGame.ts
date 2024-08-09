@@ -1,4 +1,4 @@
-import { abs, execute, MCFunction, playsound, raw, rel, sleep, teleport, tellraw, title } from "sandstone";
+import { abs, execute, MCFunction, playsound, raw, rel, sleep, teleport, title } from "sandstone";
 import { self } from "../Tick";
 
 export const endGame = MCFunction("levels/end_game", async () => {
