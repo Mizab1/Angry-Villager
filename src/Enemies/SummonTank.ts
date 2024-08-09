@@ -1,6 +1,6 @@
 import { MCFunction, NBT, rel, summon } from "sandstone";
 
-const summonTank = MCFunction("enemies/summon_tank", () => {
+export const summonTank = MCFunction("enemies/summon_tank", () => {
   summon("minecraft:zombie", rel(0, 0, 0), {
     Silent: NBT.byte(1),
     PersistenceRequired: NBT.byte(1),
