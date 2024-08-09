@@ -8,4 +8,5 @@ MCFunction("reset", () => {
 
   //@ts-ignore
   bossbar.set(bossbarName).visible(false);
+  bossbar.set(bossbarName).value(0);
 });
