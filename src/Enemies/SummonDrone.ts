@@ -17,7 +17,7 @@ export const summonDrone = MCFunction("enemies/summon_drone", () => {
         Marker: NBT.byte(1),
         Small: NBT.byte(1),
         Fire: 1000000,
-        Tags: ["ld_drone"],
+        Tags: ["ld_drone", "enemy"],
         ArmorItems: [
           {},
           {},

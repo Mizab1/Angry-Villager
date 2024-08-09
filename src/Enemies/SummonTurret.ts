@@ -41,7 +41,7 @@ export const summonTurret = MCFunction("enemies/summon_turret", () => {
     .run(() => {
       // Summon turret
       summon("minecraft:armor_stand", rel(0, 0, 0), {
-        Tags: ["ld_turret_blaster"],
+        Tags: ["ld_turret_blaster", "enemy"],
         Invulnerable: NBT.byte(1),
         Small: NBT.byte(1),
         Marker: NBT.byte(1),
