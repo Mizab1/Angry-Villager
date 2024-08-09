@@ -1,110 +1,115 @@
-import { _, abs, clear, execute, give, item, MCFunction, NBT, sleep, spawnpoint, teleport, tellraw, title } from "sandstone";
+import {
+  _,
+  abs,
+  clear,
+  effect,
+  execute,
+  gamemode,
+  item,
+  MCFunction,
+  sleep,
+  spawnpoint,
+  teleport,
+  tellraw,
+  title,
+} from "sandstone";
 import { giveFireStormAbility } from "../../Abilities/FireStorm/Give";
+import { giveHealingLightAbility } from "../../Abilities/HealingLight/Give";
 import { giveLightningAbility } from "../../Abilities/Lightning/Give";
+import { giveMeteorAbility } from "../../Abilities/Meteor/Give";
+import { giveSizeAmplifierAbility } from "../../Abilities/SizeAmplifier/Give";
+import { giveTemporalAbility } from "../../Abilities/Temporal/Give";
 import { giveTornadoAbility } from "../../Abilities/Tornado/Give";
 import { summonEnchantedPillager } from "../../Enemies/SummonEnchantedPillager";
 import { summonFireWizard } from "../../Enemies/SummonFireWizard";
 import { summonHealer } from "../../Enemies/SummonHealer";
 import { summonNormalVindicator } from "../../Enemies/SummonNormalVindicator";
-import { enemyCounterScore, isStarted, levelCounterScore } from "../../Gameplay/Tick";
+import {
+  enemyCounterScore,
+  isStarted,
+  isUpgradedLightningAbility,
+  isUpgradedMeteorAbility,
+  levelCounterScore,
+} from "../../Gameplay/Tick";
 import { killAllEnemy } from "../../KillAll";
 import { self } from "../../Tick";
-import { i } from "../../Utils/UtilFunctions";
 import { startLevel7 } from "../Level7/Tick";
 
 // ! Change this according to the level
 // !! RENAME "startLevel" to the current level
-const levelStartCoords = abs(1000, 150, 1500);
-const levelStartViewAngle = abs(62, 1);
+const levelStartCoords = abs(2830, 15, 42);
+const levelStartViewAngle = abs(0, 0);
 const levelNumber = 6;
-const villageNumber = 3;
 const nextLevel = startLevel7;
 
 const showTip = () => {
   tellraw("@a", {
-    text: "TIP: Look out for healers, they can heal these enemies. Kill them first",
+    text: "TIP: You have unlocked the Temporal Ability and upgraded Meteor Ability. Watch out for army forces, tanks, drones, etc. Good Luck!",
     color: "green",
   });
 };
 
-const giveToolsToAllPlayers = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/give_tools_to_players`, () => {
-  give("@a", "minecraft:diamond_axe");
-  give(
-    "@a",
-    i("minecraft:crossbow", {
-      Enchantments: [{ id: "minecraft:multishot", lvl: NBT.short(1) }],
-    })
-  );
-  give("@a", "minecraft:arrow", 32);
-  give("@a", "minecraft:shield");
+const giveToolsToAllPlayers = MCFunction(`levels/level_${levelNumber}/give_tools_to_players`, () => {
+  // Disable the upgraded ability
+  isUpgradedLightningAbility.set(0);
+  isUpgradedMeteorAbility.set(1);
 
-  // Ability
-  execute.as("@a").run(() => giveLightningAbility());
-  execute.as("@a").run(() => giveTornadoAbility());
-  execute.as("@a").run(() => giveFireStormAbility());
-
-  // Convert to giant
-  // ! MOD USED
-  execute.as("@a").run.raw(`scale set pehkui:base 5`);
+  // Change the gamemode
+  gamemode("survival", "@a");
 
   // Give full set of armor
-  item.replace.entity("@a", "armor.head").with("minecraft:iron_helmet", 1);
-  item.replace.entity("@a", "armor.chest").with("minecraft:iron_chestplate", 1);
-  item.replace.entity("@a", "armor.legs").with("minecraft:iron_leggings", 1);
-  item.replace.entity("@a", "armor.feet").with("minecraft:iron_boots", 1);
+  item.replace.entity("@a", "armor.head").with("minecraft:diamond_helmet", 1);
+  item.replace.entity("@a", "armor.chest").with("minecraft:diamond_chestplate", 1);
+  item.replace.entity("@a", "armor.legs").with("minecraft:diamond_leggings", 1);
+  item.replace.entity("@a", "armor.feet").with("minecraft:diamond_boots", 1);
+
+  // Ability
+  execute.as("@a").run(() => giveSizeAmplifierAbility());
+  execute.as("@a").run(() => giveLightningAbility());
+  execute.as("@a").run(() => giveHealingLightAbility());
+  execute.as("@a").run(() => giveMeteorAbility());
+  execute.as("@a").run(() => giveFireStormAbility());
+  execute.as("@a").run(() => giveTornadoAbility());
+  execute.as("@a").run(() => giveTemporalAbility());
 });
 
-const spawnEnemiesAtCoord = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/spawn_enemies`, () => {
-  const enemiesHealerSpawnCoords = [
-    abs(989, 150, 1508),
-    abs(971, 150, 1508),
-    abs(968, 150, 1495),
-    abs(1010, 150, 1476),
-    abs(944, 150, 1500),
-  ];
-  const enemiesEnchantedPillagerSpawnCoords = [
-    abs(1010, 150, 1494),
-    abs(1010, 150, 1505),
-    abs(1010, 150, 1514),
-    abs(1010, 150, 1525),
-    abs(1021, 150, 1484),
-  ];
-  const enemiesEnchantedVindicatorSpawnCoords = [
-    abs(989, 150, 1494),
-    abs(989, 150, 1486),
-    abs(989, 150, 1475),
-    abs(1001, 150, 1484),
-    abs(968, 150, 1502),
-    abs(998, 150, 1529),
-    abs(989, 150, 1522),
-  ];
-  const enemiesFireWizardSpawnCoords = [
-    abs(989, 150, 1541),
-    abs(974, 150, 1529),
-    abs(958, 150, 1529),
-    abs(949, 150, 1529),
-    abs(944, 150, 1513),
-  ];
+const giveEffects = MCFunction(
+  "levels/give_effect_tick",
+  () => {
+    _.if(_.and(isStarted.equalTo(1), levelCounterScore.equalTo(levelNumber)), () => {
+      effect.give("@a", "minecraft:strength", 15, 2, true);
+      effect.give("@a", "minecraft:jump_boost", 15, 3, true);
+      effect.give("@a", "minecraft:speed", 15, 2, true);
+    });
+  },
+  { onConflict: "append" }
+);
 
-  enemiesHealerSpawnCoords.forEach((coords) => {
+const spawnEnemiesAtCoord = MCFunction(`levels/level_${levelNumber}/spawn_enemies`, () => {
+  const enemiesMilitarySoldierSpawnCoords = [];
+  const enemiesMissileLauncherSpawnCoords = [];
+  const enemiesTankSpawnCoords = [];
+  const enemiesDroneSpawnCoords = [];
+
+  enemiesMilitarySoldierSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
       summonHealer();
     });
   });
 
-  enemiesEnchantedPillagerSpawnCoords.forEach((coords) => {
+  enemiesMissileLauncherSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
       summonEnchantedPillager();
     });
   });
 
-  enemiesEnchantedVindicatorSpawnCoords.forEach((coords) => {
+  enemiesTankSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
       summonNormalVindicator(8, "minecraft:diamond_axe");
     });
   });
 
-  enemiesFireWizardSpawnCoords.forEach((coords) => {
+  enemiesDroneSpawnCoords.forEach((coords) => {
     execute.positioned(coords).run(() => {
       summonFireWizard();
     });
@@ -112,7 +117,7 @@ const spawnEnemiesAtCoord = MCFunction(`levels/village_${villageNumber}/level_${
 });
 
 // ! Don't modify these
-export const startLevel6 = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/start`, async () => {
+export const startLevel6 = MCFunction(`levels/level_${levelNumber}/start`, async () => {
   // Teleport player to the village
   teleport("@a", levelStartCoords, levelStartViewAngle);
 
@@ -124,6 +129,12 @@ export const startLevel6 = MCFunction(`levels/village_${villageNumber}/level_${l
 
   // Set the level counter
   levelCounterScore.set(levelNumber);
+
+  // Clear items
+  clear("@a");
+
+  // Clear all the effects
+  effect.clear("@a");
 
   await sleep("1s");
 
@@ -149,7 +160,7 @@ export const startLevel6 = MCFunction(`levels/village_${villageNumber}/level_${l
   showTip();
 });
 
-const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${levelNumber}/end`, async () => {
+const levelEndSequence = MCFunction(`levels/level_${levelNumber}/end`, async () => {
   // Kill all the enemy in the level
   execute.at("@a").run(() => killAllEnemy());
 
@@ -170,7 +181,7 @@ const levelEndSequence = MCFunction(`levels/village_${villageNumber}/level_${lev
   await sleep("6s");
 
   // Start the next level
-  nextLevel();
+  // nextLevel();
 });
 
 const checkAndEndLevel = MCFunction(
