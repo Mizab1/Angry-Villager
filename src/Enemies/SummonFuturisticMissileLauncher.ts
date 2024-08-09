@@ -1,6 +1,6 @@
 import { MCFunction, NBT, rel, summon } from "sandstone";
 
-const summonFuturisticMissileLauncher = MCFunction("enemies/summon_futuristic_missile_launcher", () => {
+export const summonFuturisticMissileLauncher = MCFunction("enemies/summon_futuristic_missile_launcher", () => {
   summon("minecraft:zombie", rel(0, 0, 0), {
     Tags: ["futuristic_missile_launcher", "enemy"],
     PersistenceRequired: NBT.byte(1),

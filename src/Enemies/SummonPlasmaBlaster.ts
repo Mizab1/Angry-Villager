@@ -1,6 +1,6 @@
 import { MCFunction, NBT, rel, summon } from "sandstone";
 
-const summonPlasmaBlaster = MCFunction("enemies/summon_plasma_blaster", () => {
+export const summonPlasmaBlaster = MCFunction("enemies/summon_plasma_blaster", () => {
   summon("minecraft:zombie", rel(0, 0, 0), {
     Tags: ["plasma_blaster", "enemy"],
     PersistenceRequired: NBT.byte(1),
