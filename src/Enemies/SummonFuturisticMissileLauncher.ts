@@ -4,7 +4,12 @@ export const summonFuturisticMissileLauncher = MCFunction("enemies/summon_futuri
   summon("minecraft:zombie", rel(0, 0, 0), {
     Tags: ["futuristic_missile_launcher", "enemy"],
     PersistenceRequired: NBT.byte(1),
-    ArmorItems: [{}, {}, {}, { id: "minecraft:wooden_hoe", Count: NBT.byte(1), tag: { CustomModelData: 100005 } }],
+    ArmorItems: [
+      {},
+      {},
+      {},
+      { id: "minecraft:wooden_hoe", Count: NBT.byte(1), tag: { Unbreakable: NBT.byte(1), CustomModelData: 100005 } },
+    ],
     ArmorDropChances: [NBT.float(0.0), NBT.float(0.0), NBT.float(0.0), NBT.float(0.0)],
     Silent: NBT.byte(1),
     NoAI: NBT.byte(1),

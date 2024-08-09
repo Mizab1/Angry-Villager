@@ -6,7 +6,12 @@ export const summonTank = MCFunction("enemies/summon_tank", () => {
     PersistenceRequired: NBT.byte(1),
     Health: NBT.float(40),
     Tags: ["tank", "enemy"],
-    ArmorItems: [{}, {}, {}, { id: "minecraft:wooden_hoe", Count: NBT.byte(1), tag: { CustomModelData: 100003 } }],
+    ArmorItems: [
+      {},
+      {},
+      {},
+      { id: "minecraft:wooden_hoe", Count: NBT.byte(1), tag: { Unbreakable: NBT.byte(1), CustomModelData: 100003 } },
+    ],
     ArmorDropChances: [NBT.float(0.0), NBT.float(0.0), NBT.float(0.0), NBT.float(0.0)],
     ActiveEffects: [{ Id: 14, Amplifier: NBT.byte(1), Duration: 999999, ShowParticles: NBT.byte(0) }],
     Attributes: [

@@ -4,7 +4,12 @@ export const summonPlasmaBlaster = MCFunction("enemies/summon_plasma_blaster", (
   summon("minecraft:zombie", rel(0, 0, 0), {
     Tags: ["plasma_blaster", "enemy"],
     PersistenceRequired: NBT.byte(1),
-    ArmorItems: [{}, {}, {}, { id: "minecraft:wooden_hoe", Count: NBT.byte(1), tag: { CustomModelData: 100006 } }],
+    ArmorItems: [
+      {},
+      {},
+      {},
+      { id: "minecraft:wooden_hoe", Count: NBT.byte(1), tag: { Unbreakable: NBT.byte(1), CustomModelData: 100006 } },
+    ],
     ArmorDropChances: [NBT.float(0.0), NBT.float(0.0), NBT.float(0.0), NBT.float(0.0)],
     Silent: NBT.byte(1),
     NoAI: NBT.byte(1),
