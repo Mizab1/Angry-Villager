@@ -17,9 +17,9 @@ import {
   weather,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
-import { self } from "../../Tick";
 import { spawnCirclesPattern } from "../../Gameplay/ParticlePattern/Spawn/Circles";
 import { isUpgradedLightningAbility } from "../../Gameplay/Tick";
+import { self } from "../../Tick";
 
 // Global Variables
 const cooldownScore: Score<string> = Objective.create("ltng_cooldown", "dummy")("@s");
