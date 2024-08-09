@@ -1,4 +1,4 @@
-import { abs, execute, MCFunction, playsound, raw, sleep, teleport, tellraw } from "sandstone";
+import { abs, execute, MCFunction, playsound, raw, rel, sleep, teleport, tellraw, title } from "sandstone";
 import { self } from "../Tick";
 
 export const endGame = MCFunction("levels/end_game", async () => {
@@ -8,8 +8,8 @@ export const endGame = MCFunction("levels/end_game", async () => {
   await sleep("30t");
 
   // Send the message
-  tellraw("@a", { text: "The world has become more religious now", color: "yellow" });
-  execute.as("@a").at(self).run.playsound("minecraft:ui.toast.challenge_complete", "master", self);
+  title("@a").title({ text: "The world has become more religious now!", color: "yellow" });
+  execute.as("@a").at(self).run.playsound("minecraft:ui.toast.challenge_complete", "master", self, rel(0, 0, 0), 1, 0.5);
 
   // Play the sound
   playsound("minecraft:music_disc.pigstep", "master", "@a", abs(-140, -12, 153));
