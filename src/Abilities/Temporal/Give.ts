@@ -7,9 +7,9 @@ export const giveTemporalAbility = MCFunction("ability/temporal/give", () => {
     self,
     i("minecraft:carrot_on_a_stick", {
       display: {
-        Name: '{"text":"Stop Time","color":"gold","italic":false}',
+        Name: '{"text":"Temporal Ability","color":"gold","italic":false}',
         Lore: [
-          '{"text":"Stop the time from passing for few seconds","color":"light_purple","italic":true}',
+          '{"text":"Stops any enemy projectile for a few seconds","color":"light_purple","italic":true}',
           '{"text":"Used by pressing right click","color":"light_purple","italic":true}',
         ],
       },
