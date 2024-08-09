@@ -1,6 +1,6 @@
 import { MCFunction, NBT, rel, summon } from "sandstone";
 
-export const summonHorseRider = MCFunction("enemies/summon_horse_rider", () => {
+export const summonHorserider = MCFunction("enemies/summon_horse_rider", () => {
   summon("minecraft:horse", rel(0, 0, 0), {
     Tags: ["enemy_horse"],
     DeathLootTable: "minecraft:bat",
