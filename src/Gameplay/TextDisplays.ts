@@ -12,7 +12,7 @@
 //     `summon text_display -125 10 140 {billboard:"vertical",alignment:"center",Tags:["title_text"],text:'{"text":"Angry Villager","color":"gold","italic":false}'}`
 //   );
 //   raw(
-//     `summon text_display -125 8 140 {billboard:"vertical",line_width:400,alignment:"center",Tags:["about_text"],text:'[{"text":"This map is about player who is fighting with the villagers. \\n","color":"white","italic":false},{"text":"The player will evolve and unlocked new abilities. \\n"},{"text":"At the same time, the villagers will also evolve and defend themselves. \\n"},{"text":"The player\'s goal is to destroy every threat using tools and powers.\\n"},{"text":"\\n"},{"text":"All the best!","color":"dark_aqua"}]'}`
+//     `summon text_display -125 8 140 {billboard:"vertical",line_width:400,alignment:"center",Tags:["about_text"],text:'[{"text":"Play as a powerful divine entity facing off against rebellious villagers. \\n","color":"white","italic":false},{"text":"Use your strength and abilities to eliminate them. \\n"},{"text":"Each level increases your divinity bar, \\n"},{"text":"with the ultimate goal of fully restoring it.\\n"},{"text":"\\n\\n"},{"text":"All the best!","color":"dark_aqua"}]'}`
 //   );
 
 // Set world spawn (Go on the coords)
