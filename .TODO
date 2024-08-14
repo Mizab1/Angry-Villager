@@ -97,6 +97,8 @@
   
 
 ✔ Kill all the villager and iron golems and cats
+
+- Give this command to the client
 /function angry_villager:kill_all
 /tp @s -125 7 149 180 0
 /effect give @e[tag=enemy] minecraft:glowing 10
