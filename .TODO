@@ -95,10 +95,7 @@
   ✔ Futuristic village where the villagers will be robots mainly, big laser turrets and bombs in the ceiling of the houses, maybe some electric traps that trap the player from some seconds etc
   ✔ wave 6 + now the lightbolt power will summon a rain, then will summon on lightning bolt on every mob
   
-
-✔ Kill all the villager and iron golems and cats
-
-- Give this command to the client
+  - Give this command to the client
 /function angry_villager:kill_all
 /tp @s -125 7 149 180 0
 /effect give @e[tag=enemy] minecraft:glowing 10
@@ -115,6 +112,7 @@
 ✔ Add image of fabric installer in zip
 ✔ Run glow effect on when the level is started
 
+✔ Kill all the villager and iron golems and cats
 ✔ Make the missile white and remove the fire in futuristic launcher
 ✔ Make Particles (anime like).
 ✔ Add gamerules like keep inventory, no mobile spawning, disable day night cycle.
